@@ -8,6 +8,11 @@ export interface Project {
   disciplines: string[];
   description: string;
   featured: boolean;
+
+  preview:
+    | "fmipa"
+    | "monitoring"
+    | "rekmed";
 }
 
 export const projects: Project[] = [
@@ -26,6 +31,8 @@ export const projects: Project[] = [
     description:
       "Redesigning the digital presence of FMIPA UGM through a clearer information structure and a more contemporary web experience.",
     featured: true,
+
+    preview: "fmipa"
   },
 
   {
@@ -43,6 +50,8 @@ export const projects: Project[] = [
     description:
       "A role-based academic monitoring feature designed and developed for FMIPA UGM's internal academic dashboard.",
     featured: true,
+
+    preview: "monitoring"
   },
 
   {
@@ -60,5 +69,7 @@ export const projects: Project[] = [
     description:
       "High-fidelity healthcare dashboard concepts created to communicate product ideas and proposed functionality to stakeholders.",
     featured: true,
+
+    preview: "rekmed"
   },
 ];

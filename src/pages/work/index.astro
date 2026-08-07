@@ -27,11 +27,14 @@ import { projects } from "../../data/projects";
     </div>
 
     <div class="grid gap-20 md:gap-28">
-      {
-        projects.map((project) => (
-          <ProjectCard project={project} />
-        ))
-      }
+    {
+    projects.map((project, index) => (
+        <ProjectCard
+        project={project}
+        index={index}
+        />
+    ))
+    }
     </div>
   </section>
 </BaseLayout>

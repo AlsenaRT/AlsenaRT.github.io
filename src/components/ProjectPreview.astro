@@ -1,0 +1,344 @@
+---
+import type { Project } from "../data/projects";
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<div
+  class="project-preview relative aspect-[4/3] overflow-hidden"
+>
+
+  <!-- =====================================================
+       FMIPA
+       ===================================================== -->
+
+  {
+    project.preview === "fmipa" && (
+      <div
+        class="absolute inset-0 overflow-hidden bg-[#1d2423]"
+      >
+        <!-- Giant editorial label -->
+
+        <div
+          class="absolute inset-x-0 top-[8%] overflow-hidden"
+        >
+          <p
+            class="translate-x-[-0.04em] whitespace-nowrap text-[clamp(5rem,12vw,11rem)] leading-none font-medium tracking-[-0.07em] text-[#f2f0e9]/10"
+          >
+            FMIPA
+          </p>
+        </div>
+
+
+        <!-- Mock browser surface -->
+
+        <div
+          class="absolute right-[7%] bottom-[8%] left-[13%] top-[23%] bg-[#f4f2eb] transition-transform duration-700 ease-out group-hover:-translate-y-2"
+        >
+          <!-- Browser header -->
+
+          <div
+            class="flex h-[11%] items-center justify-between border-b border-black/10 px-[4%]"
+          >
+            <div class="flex gap-1.5">
+              <span
+                class="h-1.5 w-1.5 rounded-full bg-black/20"
+              ></span>
+
+              <span
+                class="h-1.5 w-1.5 rounded-full bg-black/20"
+              ></span>
+
+              <span
+                class="h-1.5 w-1.5 rounded-full bg-black/20"
+              ></span>
+            </div>
+
+            <span
+              class="font-mono text-[7px] uppercase tracking-[0.1em] text-black/35"
+            >
+              Website
+            </span>
+          </div>
+
+
+          <!-- Abstract website structure -->
+
+          <div class="p-[6%]">
+            <div
+              class="h-2 w-[18%] bg-black/15"
+            ></div>
+
+            <div
+              class="mt-[5%] h-[14%] w-[75%] bg-black/75"
+            ></div>
+
+            <div
+              class="mt-[2%] h-[8%] w-[58%] bg-black/75"
+            ></div>
+
+            <div
+              class="mt-[8%] grid grid-cols-3 gap-[3%]"
+            >
+              <div
+                class="aspect-[5/3] bg-black/8"
+              ></div>
+
+              <div
+                class="aspect-[5/3] bg-black/8"
+              ></div>
+
+              <div
+                class="aspect-[5/3] bg-black/8"
+              ></div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Metadata -->
+
+        <div
+          class="absolute top-[6%] left-[5%] font-mono text-[8px] uppercase tracking-[0.12em] text-white/45"
+        >
+          Temporary project preview
+        </div>
+
+        <div
+          class="absolute right-[5%] bottom-[5%] font-mono text-[8px] uppercase tracking-[0.12em] text-white/45"
+        >
+          01 / Web Experience
+        </div>
+      </div>
+    )
+  }
+
+
+  <!-- =====================================================
+       STUDENT MONITORING
+       ===================================================== -->
+
+  {
+    project.preview === "monitoring" && (
+      <div
+        class="absolute inset-0 overflow-hidden bg-[#d7d8d2]"
+      >
+        <!-- Project number -->
+
+        <span
+          class="absolute right-[5%] top-[2%] font-mono text-[clamp(4rem,10vw,10rem)] leading-none tracking-[-0.08em] text-black/8"
+        >
+          02
+        </span>
+
+
+        <!-- Abstract software window -->
+
+        <div
+          class="absolute right-[10%] bottom-[10%] left-[7%] top-[12%] border border-black/10 bg-[#191a18] transition-transform duration-700 ease-out group-hover:-translate-y-2"
+        >
+          <!-- Header -->
+
+          <div
+            class="flex h-[11%] items-center border-b border-white/10 px-[4%]"
+          >
+            <span
+              class="h-1.5 w-1.5 rounded-full bg-white/30"
+            ></span>
+
+            <span
+              class="ml-3 font-mono text-[7px] uppercase tracking-[0.1em] text-white/35"
+            >
+              System / Dashboard
+            </span>
+          </div>
+
+
+          <div
+            class="grid h-[89%] grid-cols-[18%_1fr]"
+          >
+            <!-- Sidebar -->
+
+            <div
+              class="border-r border-white/10 p-[15%]"
+            >
+              <div
+                class="h-1.5 w-[65%] bg-white/20"
+              ></div>
+
+              <div
+                class="mt-[30%] space-y-[14%]"
+              >
+                <div
+                  class="h-1 w-full bg-white/8"
+                ></div>
+
+                <div
+                  class="h-1 w-[80%] bg-white/8"
+                ></div>
+
+                <div
+                  class="h-1 w-[90%] bg-white/8"
+                ></div>
+
+                <div
+                  class="h-1 w-[70%] bg-white/8"
+                ></div>
+              </div>
+            </div>
+
+
+            <!-- Content -->
+
+            <div class="p-[5%]">
+              <div
+                class="flex items-end justify-between"
+              >
+                <div>
+                  <div
+                    class="h-1.5 w-12 bg-white/15"
+                  ></div>
+
+                  <div
+                    class="mt-2 h-4 w-28 bg-white/65"
+                  ></div>
+                </div>
+
+                <div
+                  class="h-5 w-12 border border-white/15"
+                ></div>
+              </div>
+
+              <div
+                class="mt-[7%] grid grid-cols-3 gap-[3%]"
+              >
+                {
+                  [1, 2, 3].map(() => (
+                    <div
+                      class="aspect-[3/2] border border-white/8 bg-white/[0.03] p-[8%]"
+                    >
+                      <div
+                        class="h-1 w-[50%] bg-white/15"
+                      ></div>
+
+                      <div
+                        class="mt-[15%] h-5 w-[38%] bg-white/55"
+                      ></div>
+                    </div>
+                  ))
+                }
+              </div>
+
+              <div
+                class="mt-[5%] h-[30%] border border-white/8 bg-white/[0.02]"
+              ></div>
+            </div>
+          </div>
+        </div>
+
+
+        <div
+          class="absolute bottom-[5%] left-[5%] font-mono text-[8px] uppercase tracking-[0.12em] text-black/40"
+        >
+          Temporary project preview
+        </div>
+      </div>
+    )
+  }
+
+
+  <!-- =====================================================
+       REKMED
+       ===================================================== -->
+
+  {
+    project.preview === "rekmed" && (
+      <div
+        class="absolute inset-0 overflow-hidden bg-[#e0e5df]"
+      >
+        <!-- Vertical title -->
+
+        <p
+          class="absolute top-[8%] left-[5%] font-mono text-[8px] uppercase tracking-[0.14em] text-black/40"
+        >
+          Product concept / 2026
+        </p>
+
+
+        <!-- Back sheet -->
+
+        <div
+          class="absolute left-[18%] top-[20%] h-[63%] w-[60%] border border-black/10 bg-[#bdc9c0] transition-transform duration-700 ease-out group-hover:-translate-x-2"
+        ></div>
+
+
+        <!-- Front sheet -->
+
+        <div
+          class="absolute bottom-[9%] right-[8%] h-[63%] w-[60%] bg-[#f6f5f0] p-[6%] transition-transform duration-700 ease-out group-hover:-translate-y-2"
+        >
+          <div
+            class="flex items-center justify-between"
+          >
+            <span
+              class="font-mono text-[7px] uppercase tracking-[0.1em] text-black/35"
+            >
+              RekMed
+            </span>
+
+            <span
+              class="h-2 w-2 rounded-full bg-[#83998b]"
+            ></span>
+          </div>
+
+          <div class="mt-[16%]">
+            <div
+              class="h-2 w-[20%] bg-black/12"
+            ></div>
+
+            <div
+              class="mt-[4%] h-5 w-[78%] bg-black/75"
+            ></div>
+
+            <div
+              class="mt-[2%] h-5 w-[55%] bg-black/75"
+            ></div>
+          </div>
+
+          <div
+            class="mt-[14%] grid grid-cols-2 gap-[5%]"
+          >
+            <div
+              class="aspect-[4/3] border border-black/8"
+            ></div>
+
+            <div
+              class="aspect-[4/3] bg-black/[0.04]"
+            ></div>
+          </div>
+        </div>
+
+
+        <!-- Big lettering -->
+
+        <span
+          class="absolute bottom-[2%] left-[4%] text-[clamp(3rem,7vw,7rem)] leading-none font-medium tracking-[-0.07em] text-black/8"
+        >
+          RM
+        </span>
+
+
+        <div
+          class="absolute right-[5%] top-[5%] font-mono text-[8px] uppercase tracking-[0.12em] text-black/35"
+        >
+          Temporary project preview
+        </div>
+      </div>
+    )
+  }
+
+</div>

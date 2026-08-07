@@ -1,10 +1,15 @@
 ---
+import { site } from "../data/site";
+
 const year = new Date().getFullYear();
 ---
 
 <footer class="site-container mt-24 md:mt-40">
   <div class="border-t border-line">
-    <!-- Contact CTA -->
+
+    <!-- ===================================================
+         CONTACT CTA
+         =================================================== -->
 
     <div
       class="grid gap-10 py-16 md:grid-cols-12 md:py-24"
@@ -19,51 +24,67 @@ const year = new Date().getFullYear();
         class="md:col-span-8 md:col-start-5"
       >
         <p
-          class="section-title text-balance"
+          class="section-title max-w-4xl text-balance"
         >
           Have a role, project, or idea worth talking about?
         </p>
 
         <a
-          href="mailto:alifrafitulusena@gmail.com"
+          href={`mailto:${site.email}`}
           class="text-link mt-10 text-base md:text-lg"
         >
-          alifrafitulusena@gmail.com ↗
+          {site.email} ↗
         </a>
       </div>
     </div>
 
 
-    <!-- Bottom footer -->
+    <!-- ===================================================
+         FOOTER META
+         =================================================== -->
 
     <div
-      class="flex flex-col gap-6 border-t border-line py-7 text-[12px] text-muted md:flex-row md:items-center md:justify-between"
+      class="grid gap-6 border-t border-line py-7 text-[11px] text-muted md:grid-cols-3 md:items-center"
     >
       <p class="font-mono">
-        © {year} Alif Rafi Tulusena
+        © {year} {site.name}
       </p>
 
-      <div class="flex gap-6">
+      <div
+        class="flex gap-6 md:justify-center"
+      >
         <a
-          href="mailto:alifrafitulusena@gmail.com"
-          class="transition-colors hover:text-ink"
+          href={`mailto:${site.email}`}
+          class="transition-colors duration-200 hover:text-ink"
         >
           Email
         </a>
 
         <a
-          href="https://www.linkedin.com/in/alifrafitulusena"
+          href={site.links.linkedin}
           target="_blank"
           rel="noreferrer"
-          class="transition-colors hover:text-ink"
+          class="transition-colors duration-200 hover:text-ink"
         >
           LinkedIn ↗
         </a>
+
+        <a
+          href={site.links.github}
+          target="_blank"
+          rel="noreferrer"
+          class="transition-colors duration-200 hover:text-ink"
+        >
+          GitHub ↗
+        </a>
       </div>
 
-      <p class="font-mono">
+      <p
+        class="font-mono md:text-right"
+      >
         Designed & built by Alif
       </p>
     </div>
+
   </div>
 </footer>
