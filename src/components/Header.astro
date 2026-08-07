@@ -13,53 +13,78 @@ const navItems = [
 ];
 
 const isActive = (href: string) => {
-  if (href === "/") {
-    return pathname === "/";
-  }
-
   return pathname.startsWith(href);
 };
 ---
 
-<header class="relative z-50">
-  <div
-    class="site-container flex h-[88px] items-center justify-between"
-  >
-    <a
-      href="/"
-      class="text-[14px] font-semibold tracking-[-0.02em]"
-      aria-label="Alif Rafi Tulusena — Home"
+<header
+  class="sticky top-0 z-50 bg-paper/90 backdrop-blur-md"
+>
+  <div class="site-container">
+    <div
+      class="flex h-[72px] items-center justify-between border-b border-line"
     >
-      ALIF RAFI T.
-    </a>
-
-    <nav
-      aria-label="Primary navigation"
-      class="flex items-center gap-6 text-[14px] md:gap-8"
-    >
-      {
-        navItems.map((item) => (
-          <a
-            href={item.href}
-            aria-current={isActive(item.href) ? "page" : undefined}
-            class:list={[
-              "transition-opacity duration-200 hover:opacity-50",
-              {
-                "font-semibold": isActive(item.href),
-              },
-            ]}
-          >
-            {item.label}
-          </a>
-        ))
-      }
+      <!-- Identity -->
 
       <a
-        href="mailto:alifrafitulusena@gmail.com"
-        class="transition-opacity duration-200 hover:opacity-50"
+        href="/"
+        aria-label="Alif Rafi Tulusena — Home"
+        class="group flex items-center gap-3"
       >
-        Contact
+        <span
+          class="h-2 w-2 rounded-full bg-ink transition-transform duration-300 group-hover:scale-150"
+          aria-hidden="true"
+        ></span>
+
+        <span
+          class="text-[13px] font-semibold tracking-[-0.02em]"
+        >
+          <span class="hidden sm:inline">
+            Alif Rafi Tulusena
+          </span>
+
+          <span class="sm:hidden">
+            Alif Rafi
+          </span>
+        </span>
       </a>
-    </nav>
+
+
+      <!-- Navigation -->
+
+      <nav
+        aria-label="Primary navigation"
+        class="flex items-center gap-5 text-[13px] md:gap-8"
+      >
+        {
+          navItems.map((item) => (
+            <a
+              href={item.href}
+              aria-current={
+                isActive(item.href)
+                  ? "page"
+                  : undefined
+              }
+              class:list={[
+                "text-link transition-opacity",
+                {
+                  "font-semibold":
+                    isActive(item.href),
+                },
+              ]}
+            >
+              {item.label}
+            </a>
+          ))
+        }
+
+        <a
+          href="mailto:alifrafitulusena@gmail.com"
+          class="text-link"
+        >
+          Contact
+        </a>
+      </nav>
+    </div>
   </div>
 </header>

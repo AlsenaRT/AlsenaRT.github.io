@@ -1,23 +1,50 @@
 @import "tailwindcss";
 
-:root {
-  --color-background: #ffffff;
-  --color-foreground: #111111;
-  --color-muted: #6b6b6b;
-  --color-border: #dedede;
-  --color-surface: #f6f6f4;
 
-  --page-max-width: 1440px;
-  --page-padding: 24px;
+/* =========================================================
+   TAILWIND THEME
+   ========================================================= */
 
-  --header-height: 88px;
+@theme {
+  --font-sans:
+    "Manrope Variable",
+    "Segoe UI",
+    sans-serif;
 
-  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  --font-mono:
+    "IBM Plex Mono",
+    "SFMono-Regular",
+    Consolas,
+    monospace;
+
+  --color-paper: #f5f4f0;
+  --color-ink: #10100f;
+  --color-muted: #6d6c67;
+  --color-line: #d8d6cf;
+  --color-panel: #e9e7df;
+  --color-panel-dark: #1c1c1a;
 }
 
 
 /* =========================================================
-   BASE / RESET
+   GLOBAL TOKENS
+   ========================================================= */
+
+:root {
+  --page-max-width: 1600px;
+
+  --page-padding:
+    clamp(1.25rem, 3.5vw, 3.5rem);
+
+  --header-height: 72px;
+
+  --ease-out:
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* =========================================================
+   RESET
    ========================================================= */
 
 *,
@@ -27,8 +54,9 @@
 }
 
 html {
-  background: var(--color-background);
-  color: var(--color-foreground);
+  background: var(--color-paper);
+  color: var(--color-ink);
+
   scroll-behavior: smooth;
 }
 
@@ -37,16 +65,17 @@ body {
 
   min-width: 320px;
 
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
+  overflow-x: hidden;
 
-  background: var(--color-background);
-  color: var(--color-foreground);
+  font-family: var(--font-sans);
+
+  background: var(--color-paper);
+  color: var(--color-ink);
 
   text-rendering: optimizeLegibility;
+
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 img,
@@ -55,6 +84,7 @@ video,
 canvas,
 svg {
   display: block;
+
   max-width: 100%;
 }
 
@@ -92,6 +122,7 @@ ul,
 ol {
   margin: 0;
   padding: 0;
+
   list-style: none;
 }
 
@@ -107,19 +138,24 @@ ol {
 
 .skip-link {
   position: fixed;
+
   top: 12px;
   left: 12px;
+
   z-index: 9999;
 
   padding: 10px 14px;
 
-  background: var(--color-foreground);
-  color: var(--color-background);
+  background: var(--color-ink);
+  color: var(--color-paper);
 
-  font-size: 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
 
   transform: translateY(-150%);
-  transition: transform 180ms ease;
+
+  transition:
+    transform 180ms ease;
 }
 
 .skip-link:focus {
@@ -128,7 +164,7 @@ ol {
 
 
 /* =========================================================
-   GLOBAL LAYOUT
+   LAYOUT
    ========================================================= */
 
 .site-container {
@@ -142,29 +178,99 @@ ol {
 
 
 /* =========================================================
-   TEXT SELECTION
+   TYPOGRAPHY UTILITIES
    ========================================================= */
 
-::selection {
-  background: var(--color-foreground);
-  color: var(--color-background);
+.display-title {
+  font-size:
+    clamp(
+      3.25rem,
+      8.1vw,
+      8.75rem
+    );
+
+  line-height: 0.9;
+
+  font-weight: 500;
+
+  letter-spacing: -0.065em;
+}
+
+.section-title {
+  font-size:
+    clamp(
+      2.5rem,
+      5vw,
+      5.5rem
+    );
+
+  line-height: 0.96;
+
+  font-weight: 500;
+
+  letter-spacing: -0.055em;
+}
+
+.mono-label {
+  font-family: var(--font-mono);
+
+  font-size: 11px;
+
+  line-height: 1.4;
+
+  letter-spacing: 0.06em;
+
+  text-transform: uppercase;
+}
+
+.text-balance {
+  text-wrap: balance;
 }
 
 
 /* =========================================================
-   RESPONSIVE TOKENS
+   LINKS
    ========================================================= */
 
-@media (min-width: 768px) {
-  :root {
-    --page-padding: 40px;
-  }
+.text-link {
+  position: relative;
+
+  display: inline-block;
 }
 
-@media (min-width: 1200px) {
-  :root {
-    --page-padding: 56px;
-  }
+.text-link::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: -4px;
+
+  width: 100%;
+  height: 1px;
+
+  background: currentColor;
+
+  transform: scaleX(0);
+  transform-origin: right;
+
+  transition:
+    transform 350ms var(--ease-out);
+}
+
+.text-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+
+::selection {
+  background: var(--color-ink);
+  color: var(--color-paper);
 }
 
 
@@ -181,7 +287,11 @@ ol {
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+
     animation-iteration-count: 1 !important;
+
     transition-duration: 0.01ms !important;
+
+    scroll-behavior: auto !important;
   }
 }

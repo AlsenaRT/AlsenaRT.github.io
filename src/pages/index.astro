@@ -1,118 +1,215 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
 import ProjectCard from "../components/ProjectCard.astro";
 
-import { projects } from "../data/projects";
+import {
+  projects,
+} from "../data/projects";
 
-const featuredProjects = projects.filter(
-  (project) => project.featured
-);
+const featuredProjects =
+  projects.filter(
+    (project) => project.featured
+  );
 ---
 
 <BaseLayout>
+
   <!-- =====================================================
        HERO
        ===================================================== -->
 
   <section class="site-container">
     <div
-      class="flex min-h-[calc(100vh-88px)] flex-col justify-between py-12 md:py-16"
+      class="flex min-h-[calc(100svh-72px)] flex-col"
     >
-      <div class="pt-[8vh] md:pt-[12vh]">
-        <p
-          class="mb-6 text-[12px] uppercase tracking-[0.12em] text-neutral-500"
-        >
-          UI/UX Designer · Computer Science
+
+      <!-- Hero metadata -->
+
+      <div
+        class="grid gap-3 border-b border-line py-5 font-mono text-[10px] uppercase tracking-[0.07em] text-muted sm:grid-cols-3"
+      >
+        <p>
+          Portfolio / 2026
         </p>
 
+        <p class="sm:text-center">
+          UI/UX Designer
+        </p>
+
+        <p class="sm:text-right">
+          South Tangerang, Indonesia
+        </p>
+      </div>
+
+
+      <!-- Main statement -->
+
+      <div
+        class="flex flex-1 items-center py-16 md:py-20"
+      >
         <h1
-          class="max-w-[1200px] text-[clamp(3.25rem,8.5vw,9rem)] leading-[0.9] font-medium tracking-[-0.065em]"
+          class="display-title max-w-[1450px] text-balance"
         >
-          Designing digital experiences with an understanding of how they're built.
+          I design digital experiences that make
+          <span class="text-muted">
+            complex things feel clear.
+          </span>
         </h1>
       </div>
 
+
+      <!-- Hero footer -->
+
       <div
-        class="mt-16 flex flex-col gap-6 border-t border-neutral-200 pt-6 md:flex-row md:items-end md:justify-between"
+        class="grid gap-7 border-t border-line py-6 md:grid-cols-12 md:items-end"
       >
         <p
-          class="max-w-lg text-[15px] leading-relaxed text-neutral-600 md:text-base"
+          class="max-w-xl text-[14px] leading-[1.65] text-muted md:col-span-5"
         >
-          I'm Alif, a Computer Science graduate focused on
-          UI/UX design, with experience across product
-          design, web development, and implementation.
+          Computer Science graduate focused on
+          UI/UX design, combining interface
+          thinking with an understanding of web
+          development and implementation.
         </p>
 
-        <a
-          href="#selected-work"
-          class="text-[13px] uppercase tracking-[0.08em] transition-opacity hover:opacity-50"
+        <div
+          class="md:col-span-3 md:col-start-7"
         >
-          Selected work ↓
-        </a>
+          <p class="mono-label text-muted">
+            Currently
+          </p>
+
+          <p class="mt-2 text-[13px]">
+            Open to UI/UX opportunities
+          </p>
+        </div>
+
+        <div
+          class="md:col-span-3 md:text-right"
+        >
+          <a
+            href="#selected-work"
+            class="text-link text-[13px]"
+          >
+            View selected work ↓
+          </a>
+        </div>
       </div>
+
     </div>
   </section>
 
 
   <!-- =====================================================
-       SELECTED WORK
+       SELECTED WORK INTRODUCTION
        ===================================================== -->
 
   <section
     id="selected-work"
-    class="site-container scroll-mt-10 py-24 md:py-32"
+    class="site-container scroll-mt-24 pt-28 md:pt-44"
   >
     <div
-      class="mb-12 flex items-end justify-between border-b border-neutral-200 pb-5 md:mb-16"
+      class="grid gap-10 pb-12 md:grid-cols-12 md:pb-16"
     >
-      <h2
-        class="text-[12px] uppercase tracking-[0.12em]"
-      >
-        Selected Work
-      </h2>
+      <div class="md:col-span-3">
+        <p class="mono-label text-muted">
+          01 / Selected Work
+        </p>
+      </div>
 
-      <span class="text-[12px] text-neutral-400">
-        01—03
-      </span>
+      <div
+        class="md:col-span-7 md:col-start-5"
+      >
+        <h2
+          class="section-title text-balance"
+        >
+          A selection of work across product design,
+          web experiences, and technical implementation.
+        </h2>
+      </div>
+
+      <div
+        class="flex items-end justify-end md:col-span-1 md:col-start-12"
+      >
+        <p
+          class="font-mono text-[11px] text-muted"
+        >
+          01—03
+        </p>
+      </div>
     </div>
 
-    <div class="grid gap-20 md:gap-28">
+
+    <!-- Projects -->
+
+    <div>
       {
-        featuredProjects.map((project) => (
-          <ProjectCard project={project} />
-        ))
+        featuredProjects.map(
+          (project, index) => (
+            <ProjectCard
+              project={project}
+              index={index}
+            />
+          )
+        )
       }
     </div>
   </section>
 
 
   <!-- =====================================================
-       ABOUT PREVIEW
+       ABOUT
        ===================================================== -->
 
-  <section class="site-container py-24 md:py-40">
+  <section
+    class="site-container py-28 md:py-48"
+  >
     <div
-      class="grid gap-10 border-t border-neutral-200 pt-8 md:grid-cols-12"
+      class="grid gap-12 border-t border-line pt-8 md:grid-cols-12"
     >
-      <p
-        class="text-[12px] uppercase tracking-[0.12em] md:col-span-3"
-      >
-        About
-      </p>
-
-      <div class="md:col-span-8 md:col-start-5">
-        <p
-          class="text-3xl leading-[1.15] tracking-[-0.04em] md:text-5xl"
-        >
-          I work at the intersection of design and
-          technology, turning requirements and complex
-          information into interfaces that feel clear,
-          useful, and intentional.
+      <div class="md:col-span-3">
+        <p class="mono-label text-muted">
+          02 / About
         </p>
+      </div>
+
+      <div
+        class="md:col-span-8 md:col-start-5"
+      >
+        <p
+          class="section-title text-balance"
+        >
+          I work between design and technology,
+          translating requirements into interfaces
+          that are useful, structured, and intentional.
+        </p>
+
+        <div
+          class="mt-12 grid gap-8 md:grid-cols-2"
+        >
+          <p
+            class="max-w-sm text-[14px] leading-[1.75] text-muted"
+          >
+            My primary focus is UI/UX design,
+            supported by a Computer Science
+            background and hands-on experience
+            developing web-based systems.
+          </p>
+
+          <p
+            class="max-w-sm text-[14px] leading-[1.75] text-muted"
+          >
+            That combination allows me to think
+            beyond how an interface looks and
+            consider how it behaves, scales, and
+            eventually gets implemented.
+          </p>
+        </div>
 
         <a
           href="/about/"
-          class="mt-10 inline-block border-b border-black pb-1 text-sm"
+          class="text-link mt-12 text-[13px]"
         >
           More about me ↗
         </a>
@@ -122,29 +219,65 @@ const featuredProjects = projects.filter(
 
 
   <!-- =====================================================
-       CONTACT
+       CAPABILITIES
        ===================================================== -->
 
-  <section class="site-container py-24 md:py-40">
-    <div class="border-t border-neutral-200 pt-8">
-      <p
-        class="mb-12 text-[12px] uppercase tracking-[0.12em]"
-      >
-        Contact
-      </p>
+  <section
+    class="site-container pb-24 md:pb-40"
+  >
+    <div
+      class="grid gap-12 border-t border-line pt-8 md:grid-cols-12"
+    >
+      <div class="md:col-span-3">
+        <p class="mono-label text-muted">
+          03 / Capabilities
+        </p>
+      </div>
 
-      <p
-        class="max-w-5xl text-[clamp(3rem,7vw,7rem)] leading-[0.92] font-medium tracking-[-0.06em]"
-      >
-        Have an opportunity or something interesting to build?
-      </p>
 
-      <a
-        href="mailto:alifrafitulusena@gmail.com"
-        class="mt-12 inline-block text-lg underline decoration-1 underline-offset-8"
+      <!-- Design -->
+
+      <div
+        class="md:col-span-3 md:col-start-5"
       >
-        alifrafitulusena@gmail.com ↗
-      </a>
+        <p
+          class="mb-6 text-[13px] font-semibold"
+        >
+          Design
+        </p>
+
+        <div
+          class="space-y-3 text-[14px] text-muted"
+        >
+          <p>UI/UX Design</p>
+          <p>Interface Design</p>
+          <p>Responsive Web Design</p>
+          <p>Figma</p>
+        </div>
+      </div>
+
+
+      <!-- Technical -->
+
+      <div
+        class="md:col-span-3 md:col-start-9"
+      >
+        <p
+          class="mb-6 text-[13px] font-semibold"
+        >
+          Technical
+        </p>
+
+        <div
+          class="space-y-3 text-[14px] text-muted"
+        >
+          <p>HTML / CSS / JavaScript</p>
+          <p>PHP / MySQL</p>
+          <p>WordPress</p>
+          <p>Git</p>
+        </div>
+      </div>
     </div>
   </section>
+
 </BaseLayout>
