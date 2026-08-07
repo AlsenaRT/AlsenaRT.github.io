@@ -7,43 +7,152 @@ import "../styles/global.css";
 
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import { site } from "../data/site";
 
 interface Props {
   title?: string;
+
   description?: string;
+
+  noindex?: boolean;
 }
 
+
 const {
-  title = "Alif Rafi Tulusena — UI/UX Designer",
-  description = "Portfolio of Alif Rafi Tulusena, a UI/UX Designer with a Computer Science background.",
+  title = `${site.name} — ${site.role}`,
+
+  description =
+    "Portfolio of Alif Rafi Tulusena, a UI/UX Designer with a Computer Science background.",
+
+  noindex = false,
 } = Astro.props;
 
+
 const pageTitle =
-  title === "Alif Rafi Tulusena — UI/UX Designer"
+  title === `${site.name} — ${site.role}`
     ? title
-    : `${title} — Alif Rafi Tulusena`;
+    : `${title} — ${site.name}`;
+
+
+const canonicalURL =
+  new URL(
+    Astro.url.pathname,
+    site.url
+  );
 ---
 
 <!doctype html>
 
 <html lang="en">
-  <head>
+    <head>
+
     <meta charset="UTF-8" />
+
     <script is:inline>
         document.documentElement.classList.add("js");
     </script>
 
+
     <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
     />
 
-    <meta name="description" content={description} />
 
-    <meta name="generator" content={Astro.generator} />
+    <title>
+        {pageTitle}
+    </title>
 
-    <title>{pageTitle}</title>
-  </head>
+
+    <!-- Basic SEO -->
+
+    <meta
+        name="description"
+        content={description}
+    />
+
+    <link
+        rel="canonical"
+        href={canonicalURL}
+    />
+
+
+    {
+        noindex && (
+        <meta
+            name="robots"
+            content="noindex,nofollow"
+        />
+        )
+    }
+
+
+    <!-- Open Graph -->
+
+    <meta
+        property="og:type"
+        content="website"
+    />
+
+    <meta
+        property="og:title"
+        content={pageTitle}
+    />
+
+    <meta
+        property="og:description"
+        content={description}
+    />
+
+    <meta
+        property="og:url"
+        content={canonicalURL}
+    />
+
+    <meta
+        property="og:site_name"
+        content={site.name}
+    />
+
+
+    <!-- Twitter / generic social cards -->
+
+    <meta
+        name="twitter:card"
+        content="summary"
+    />
+
+    <meta
+        name="twitter:title"
+        content={pageTitle}
+    />
+
+    <meta
+        name="twitter:description"
+        content={description}
+    />
+
+
+    <!-- Browser -->
+
+    <meta
+        name="theme-color"
+        content="#f5f4f0"
+    />
+
+    <link
+        rel="icon"
+        type="image/svg+xml"
+        href="/favicon.svg"
+    />
+
+
+    <meta
+        name="generator"
+        content={Astro.generator}
+    />
+
+    </head>
 
   <body>
     <a href="#main-content" class="skip-link">

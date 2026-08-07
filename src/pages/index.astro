@@ -7,6 +7,10 @@ import {
   projects,
 } from "../data/projects";
 
+import {
+  site,
+} from "../data/site";
+
 const featuredProjects =
   projects.filter(
     (project) => project.featured
@@ -210,78 +214,25 @@ const featuredProjects =
           </p>
         </div>
 
-        <a
-          href="/about/"
-          class="text-link mt-12 text-[13px]"
-        >
-          More about me ↗
-        </a>
+		<div
+			class="mt-12 flex flex-wrap gap-7"
+			>
+			<a
+				href="/about/"
+				class="text-link text-[13px]"
+			>
+				More about me ↗
+			</a>
+
+			<a
+				href={site.resume}
+				target="_blank"
+				class="text-link text-[13px]"
+			>
+				View résumé ↗
+			</a>
+		</div>
       </div>
     </div>
   </section>
-
-
-  <!-- =====================================================
-       CAPABILITIES
-       ===================================================== -->
-
-  <section
-    class="site-container pb-24 md:pb-40"
-  >
-    <div
-      class="grid gap-12 border-t border-line pt-8 md:grid-cols-12"
-	  data-reveal
-    >
-      <div class="md:col-span-3">
-        <p class="mono-label text-muted">
-          03 / Capabilities
-        </p>
-      </div>
-
-
-      <!-- Design -->
-
-      <div
-        class="md:col-span-3 md:col-start-5"
-      >
-        <p
-          class="mb-6 text-[13px] font-semibold"
-        >
-          Design
-        </p>
-
-        <div
-          class="space-y-3 text-[14px] text-muted"
-        >
-          <p>UI/UX Design</p>
-          <p>Interface Design</p>
-          <p>Responsive Web Design</p>
-          <p>Figma</p>
-        </div>
-      </div>
-
-
-      <!-- Technical -->
-
-      <div
-        class="md:col-span-3 md:col-start-9"
-      >
-        <p
-          class="mb-6 text-[13px] font-semibold"
-        >
-          Technical
-        </p>
-
-        <div
-          class="space-y-3 text-[14px] text-muted"
-        >
-          <p>HTML / CSS / JavaScript</p>
-          <p>PHP / MySQL</p>
-          <p>WordPress</p>
-          <p>Git</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
 </BaseLayout>

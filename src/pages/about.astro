@@ -1,49 +1,395 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import BaseLayout
+  from "../layouts/BaseLayout.astro";
+
+import { site }
+  from "../data/site";
+
+const experience = [
+  {
+    period: "2026",
+    role: "UI/UX Designer",
+    organization: "FMIPA UGM",
+    description:
+      "Redesigning the faculty's main website and departmental websites while translating approved interfaces into WordPress.",
+  },
+
+  {
+    period: "2026",
+    role: "UI/UX Designer Intern",
+    organization: "Datacakra",
+    description:
+      "Created product interface concepts for RekMed and collaborated with the IT team around technical and product requirements.",
+  },
+
+  {
+    period: "2024 — 2025",
+    role: "Full-stack Web Developer Intern",
+    organization: "FMIPA UGM",
+    description:
+      "Designed and developed a student performance monitoring feature for the faculty's academic dashboard.",
+  },
+];
+
+const designSkills = [
+  "UI/UX Design",
+  "Interface Design",
+  "Responsive Web Design",
+  "Wireframing",
+  "Prototyping",
+  "Figma",
+];
+
+const technicalSkills = [
+  "HTML / CSS",
+  "JavaScript",
+  "PHP",
+  "MySQL",
+  "WordPress",
+  "Git",
+];
 ---
 
 <BaseLayout
   title="About"
-  description="About Alif Rafi Tulusena, UI/UX Designer and Computer Science graduate."
+  description="About Alif Rafi Tulusena, a UI/UX Designer and Computer Science graduate based in Indonesia."
 >
-  <section class="site-container py-20 md:py-32">
-    <div class="grid gap-12 md:grid-cols-12">
+
+  <!-- =====================================================
+       INTRO
+       ===================================================== -->
+
+  <section class="site-container">
+
+    <div
+      class="grid gap-12 pb-20 pt-16 md:grid-cols-12 md:pb-32 md:pt-24"
+    >
+
       <div class="md:col-span-3">
-        <p
-          class="text-[12px] uppercase tracking-[0.12em] text-neutral-500"
-        >
-          About
+        <p class="mono-label text-muted">
+          About / 2026
         </p>
       </div>
 
-      <div class="md:col-span-8 md:col-start-5">
+
+      <div
+        class="md:col-span-8 md:col-start-5"
+      >
         <h1
-          class="text-[clamp(3.5rem,7vw,7rem)] leading-[0.92] font-medium tracking-[-0.06em]"
+          class="max-w-5xl text-[clamp(3.6rem,7.2vw,8rem)] leading-[0.91] font-medium tracking-[-0.065em]"
         >
-          Designer by focus. Technologist by background.
+          Designer by focus.
+          <span class="text-muted">
+            Technologist by background.
+          </span>
         </h1>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       PROFILE
+       ===================================================== -->
+
+  <section
+    class="site-container py-20 md:py-32"
+  >
+    <div
+      class="grid gap-12 border-t border-line pt-8 md:grid-cols-12"
+      data-reveal
+    >
+
+      <div class="md:col-span-3">
+        <p class="mono-label text-muted">
+          01 / Profile
+        </p>
+      </div>
+
+
+      <div
+        class="md:col-span-7 md:col-start-5"
+      >
+        <p
+          class="text-[clamp(1.8rem,3vw,3.5rem)] leading-[1.1] tracking-[-0.045em]"
+        >
+          I'm a Computer Science graduate from
+          Universitas Gadjah Mada focused on
+          designing clear and useful digital
+          experiences.
+        </p>
+
 
         <div
-          class="mt-16 max-w-2xl space-y-6 text-lg leading-relaxed text-neutral-600"
+          class="mt-12 grid gap-8 text-[14px] leading-[1.8] text-muted md:grid-cols-2"
         >
           <p>
-            I'm Alif, a Computer Science graduate focused
-            on UI/UX design and digital product experiences.
+            My work primarily sits within UI/UX
+            and web design, where I enjoy turning
+            requirements, content, and complex
+            information into interfaces that feel
+            structured and intentional.
           </p>
 
           <p>
-            My technical background gives me an
-            understanding of what happens beyond the design
-            file, allowing me to think about both user
-            experience and implementation.
-          </p>
-
-          <p>
-            This page will eventually contain the complete
-            story, experience, tools, and background.
+            My development background also gives me
+            an understanding of what happens beyond
+            the design file. I've worked with
+            frontend technologies, PHP, MySQL,
+            WordPress, and web-based systems.
           </p>
         </div>
+
+
+        <div
+          class="mt-12 flex flex-wrap gap-6"
+        >
+          <a
+            href={site.resume}
+            target="_blank"
+            class="text-link text-[13px]"
+          >
+            View résumé ↗
+          </a>
+
+          <a
+            href={site.links.linkedin}
+            target="_blank"
+            rel="noreferrer"
+            class="text-link text-[13px]"
+          >
+            LinkedIn ↗
+          </a>
+
+          <a
+            href={site.links.github}
+            target="_blank"
+            rel="noreferrer"
+            class="text-link text-[13px]"
+          >
+            GitHub ↗
+          </a>
+        </div>
+
       </div>
+
     </div>
   </section>
+
+
+  <!-- =====================================================
+       EXPERIENCE
+       ===================================================== -->
+
+  <section
+    class="site-container py-20 md:py-32"
+  >
+    <div
+      class="grid gap-12 border-t border-line pt-8 md:grid-cols-12"
+      data-reveal
+    >
+
+      <div class="md:col-span-3">
+        <p class="mono-label text-muted">
+          02 / Experience
+        </p>
+      </div>
+
+
+      <div
+        class="md:col-span-8 md:col-start-5"
+      >
+
+        {
+          experience.map(
+            (item) => (
+              <article
+                class="grid gap-4 border-b border-line py-8 first:pt-0 md:grid-cols-[150px_1fr]"
+              >
+
+                <p
+                  class="font-mono text-[10px] uppercase tracking-[0.06em] text-muted"
+                >
+                  {item.period}
+                </p>
+
+
+                <div>
+                  <h2
+                    class="text-xl font-medium tracking-[-0.035em] md:text-2xl"
+                  >
+                    {item.role}
+                  </h2>
+
+                  <p
+                    class="mt-1 text-[13px]"
+                  >
+                    {item.organization}
+                  </p>
+
+                  <p
+                    class="mt-5 max-w-xl text-[13px] leading-[1.75] text-muted"
+                  >
+                    {item.description}
+                  </p>
+                </div>
+
+              </article>
+            )
+          )
+        }
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       EDUCATION
+       ===================================================== -->
+
+  <section
+    class="site-container py-20 md:py-32"
+  >
+    <div
+      class="grid gap-12 border-t border-line pt-8 md:grid-cols-12"
+      data-reveal
+    >
+
+      <div class="md:col-span-3">
+        <p class="mono-label text-muted">
+          03 / Education
+        </p>
+      </div>
+
+
+      <div
+        class="md:col-span-8 md:col-start-5"
+      >
+        <div
+          class="grid gap-5 md:grid-cols-[150px_1fr]"
+        >
+
+          <p
+            class="font-mono text-[10px] uppercase tracking-[0.06em] text-muted"
+          >
+            2022 — 2026
+          </p>
+
+
+          <div>
+            <h2
+              class="text-2xl font-medium tracking-[-0.04em] md:text-3xl"
+            >
+              Bachelor of Computer Science
+            </h2>
+
+            <p
+              class="mt-2 text-[14px]"
+            >
+              Universitas Gadjah Mada
+            </p>
+
+            <p
+              class="mt-5 max-w-xl text-[13px] leading-[1.75] text-muted"
+            >
+              Computer Science education covering
+              software development, databases, web
+              technologies, and related technical
+              foundations, complemented by practical
+              experience in UI/UX design.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       CAPABILITIES
+       ===================================================== -->
+
+  <section
+    class="site-container py-20 md:py-32"
+  >
+    <div
+      class="grid gap-12 border-t border-line pt-8 md:grid-cols-12"
+      data-reveal
+    >
+
+      <div class="md:col-span-3">
+        <p class="mono-label text-muted">
+          04 / Capabilities
+        </p>
+      </div>
+
+
+      <div
+        class="grid gap-12 md:col-span-8 md:col-start-5 md:grid-cols-2"
+      >
+
+        <!-- Design -->
+
+        <div>
+          <p
+            class="mb-7 text-[13px] font-semibold"
+          >
+            Design
+          </p>
+
+          <div
+            class="space-y-3"
+          >
+            {
+              designSkills.map(
+                (skill) => (
+                  <p
+                    class="border-b border-line pb-3 text-[13px] text-muted"
+                  >
+                    {skill}
+                  </p>
+                )
+              )
+            }
+          </div>
+        </div>
+
+
+        <!-- Technical -->
+
+        <div>
+          <p
+            class="mb-7 text-[13px] font-semibold"
+          >
+            Technical
+          </p>
+
+          <div
+            class="space-y-3"
+          >
+            {
+              technicalSkills.map(
+                (skill) => (
+                  <p
+                    class="border-b border-line pb-3 text-[13px] text-muted"
+                  >
+                    {skill}
+                  </p>
+                )
+              )
+            }
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
 </BaseLayout>
