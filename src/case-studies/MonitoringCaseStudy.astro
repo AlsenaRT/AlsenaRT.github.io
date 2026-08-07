@@ -1,0 +1,88 @@
+---
+import CaseSection
+  from "../components/case-study/CaseSection.astro";
+
+import CaseMedia
+  from "../components/case-study/CaseMedia.astro";
+---
+
+<CaseSection
+  number="01"
+  label="Problem"
+  title="Helping academic staff identify students who may require attention."
+>
+  <p>
+    This case study will eventually focus more heavily
+    on system logic, user roles, data, and development
+    than visual exploration.
+  </p>
+</CaseSection>
+
+
+<section class="site-container">
+  <CaseMedia
+    label="System overview"
+    caption="Placeholder for a high-level system or user-flow diagram."
+    tone="dark"
+  />
+</section>
+
+
+<CaseSection
+  number="02"
+  label="System Design"
+  title="Different responsibilities required different views of the same academic data."
+>
+  <p>
+    The final content can explain the relationship
+    between user roles, student information, academic
+    warning conditions, and notification workflows.
+  </p>
+</CaseSection>
+
+
+<section
+  class="site-container grid gap-5 md:grid-cols-12"
+>
+  <div class="md:col-span-7">
+    <CaseMedia
+      label="Dashboard"
+      caption="Placeholder for the main monitoring interface."
+      ratio="landscape"
+      tone="panel"
+    />
+  </div>
+
+  <div class="md:col-span-5">
+    <CaseMedia
+      label="Notification"
+      caption="Placeholder for email-warning workflow or interface."
+      ratio="portrait"
+      tone="light"
+    />
+  </div>
+</section>
+
+
+<CaseSection
+  number="03"
+  label="Technical Layer"
+  title="Designing the interface while also building the underlying feature."
+>
+  <p>
+    This is where the final case study can explain
+    relevant implementation decisions, data handling,
+    database relationships, and technical constraints
+    without turning the portfolio into code
+    documentation.
+  </p>
+</CaseSection>
+
+
+<section class="site-container">
+  <CaseMedia
+    label="Architecture / Data"
+    caption="Placeholder for simplified technical architecture."
+    tone="dark"
+  />
+</section>

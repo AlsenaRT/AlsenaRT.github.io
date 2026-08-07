@@ -1,0 +1,76 @@
+---
+import CaseSection
+  from "../components/case-study/CaseSection.astro";
+
+import CaseMedia
+  from "../components/case-study/CaseMedia.astro";
+---
+
+<CaseSection
+  number="01"
+  label="Context"
+  title="Turning product ideas into interfaces stakeholders could understand."
+>
+  <p>
+    The final version will explain the context of the
+    pitch-deck work and the role the interface concepts
+    played in communicating proposed functionality.
+  </p>
+</CaseSection>
+
+
+<section
+  class="site-container grid gap-5 md:grid-cols-2"
+>
+  <CaseMedia
+    label="Concept 01"
+    caption="Placeholder for pitch-deck interface concept."
+    ratio="landscape"
+    tone="green"
+  />
+
+  <CaseMedia
+    label="Concept 02"
+    caption="Placeholder for another dashboard or product concept."
+    ratio="landscape"
+    tone="light"
+  />
+</section>
+
+
+<CaseSection
+  number="02"
+  label="Translation"
+  title="Moving from product requirements to presentation-ready interface concepts."
+>
+  <p>
+    This part can eventually describe how requirements
+    were interpreted visually, how information was
+    prioritized, and how concepts evolved for
+    presentation.
+  </p>
+</CaseSection>
+
+
+<section class="site-container">
+  <CaseMedia
+    label="Pitch deck sequence"
+    caption="Placeholder for a horizontal sequence of selected screens."
+    ratio="wide"
+    tone="dark"
+  />
+</section>
+
+
+<CaseSection
+  number="03"
+  label="Collaboration"
+  title="Working between design requirements and technical considerations."
+>
+  <p>
+    The final section can discuss collaboration with
+    the IT team and any relevant technical input while
+    remaining precise about the actual scope of the
+    work.
+  </p>
+</CaseSection>

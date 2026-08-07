@@ -1,0 +1,116 @@
+---
+import CaseSection
+  from "../components/case-study/CaseSection.astro";
+
+import CaseMedia
+  from "../components/case-study/CaseMedia.astro";
+---
+
+<!-- =======================================================
+     CONTEXT
+     ======================================================= -->
+
+<CaseSection
+  number="01"
+  label="Context"
+  title="Rethinking an academic website with a large amount of information."
+  intro="This section will eventually explain the project background, existing website, users, constraints, and what initiated the redesign."
+>
+  <p>
+    The final version of this section will be written
+    after we gather the complete project materials.
+    For now, this text exists only to establish the
+    reading width, rhythm, and hierarchy of the case
+    study template.
+  </p>
+</CaseSection>
+
+
+<!-- =======================================================
+     BEFORE / RESEARCH MEDIA
+     ======================================================= -->
+
+<section class="site-container">
+  <CaseMedia
+    label="Existing website"
+    caption="Placeholder — existing FMIPA website or initial design context."
+    ratio="wide"
+    tone="light"
+  />
+</section>
+
+
+<!-- =======================================================
+     DESIGN DIRECTION
+     ======================================================= -->
+
+<CaseSection
+  number="02"
+  label="Design Direction"
+  title="Creating a clearer visual and information hierarchy."
+>
+  <p>
+    This section can later contain information about
+    navigation, layout decisions, typography,
+    information architecture, and the visual direction
+    developed for the redesign.
+  </p>
+
+  <p>
+    We will only include processes that actually
+    happened during the project rather than forcing
+    the project into a generic design-thinking
+    framework.
+  </p>
+</CaseSection>
+
+
+<!-- =======================================================
+     TWO VISUALS
+     ======================================================= -->
+
+<section
+  class="site-container grid gap-5 md:grid-cols-2"
+>
+  <CaseMedia
+    label="Homepage"
+    caption="Placeholder for one of the primary interface directions."
+    ratio="portrait"
+    tone="panel"
+  />
+
+  <CaseMedia
+    label="Inner page"
+    caption="Placeholder for departmental or information-page exploration."
+    ratio="portrait"
+    tone="dark"
+  />
+</section>
+
+
+<!-- =======================================================
+     IMPLEMENTATION
+     ======================================================= -->
+
+<CaseSection
+  number="03"
+  label="Implementation"
+  title="Taking the design beyond Figma."
+>
+  <p>
+    This section will document how approved designs
+    were translated into the actual website and where
+    implementation constraints influenced design
+    decisions.
+  </p>
+</CaseSection>
+
+
+<section class="site-container">
+  <CaseMedia
+    label="Final implementation"
+    caption="Placeholder for implemented WordPress pages."
+    ratio="wide"
+    tone="green"
+  />
+</section>

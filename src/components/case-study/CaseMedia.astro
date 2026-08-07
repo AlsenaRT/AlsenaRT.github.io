@@ -1,0 +1,110 @@
+---
+interface Props {
+  label?: string;
+  caption?: string;
+
+  ratio?:
+    | "wide"
+    | "landscape"
+    | "square"
+    | "portrait";
+
+  tone?:
+    | "light"
+    | "panel"
+    | "dark"
+    | "green";
+}
+
+const {
+  label,
+  caption,
+
+  ratio = "wide",
+
+  tone = "panel",
+} = Astro.props;
+
+
+const ratioClasses = {
+  wide:
+    "aspect-video",
+
+  landscape:
+    "aspect-4/3",
+
+  square:
+    "aspect-square",
+
+  portrait:
+    "aspect-3/4",
+};
+
+
+const toneClasses = {
+  light:
+    "bg-[#efede7] text-ink",
+
+  panel:
+    "bg-panel text-ink",
+
+  dark:
+    "bg-[#191a18] text-white",
+
+  green:
+    "bg-[#dce2db] text-ink",
+};
+
+
+const hasMedia =
+  Astro.slots.has("default");
+---
+
+<figure data-reveal>
+  <div
+    class:list={[
+      "relative overflow-hidden",
+      ratioClasses[ratio],
+      toneClasses[tone],
+    ]}
+  >
+    {
+      hasMedia ? (
+        <slot />
+      ) : (
+        <div
+          class="absolute inset-0 flex items-center justify-center"
+        >
+          <div class="text-center">
+            {
+              label && (
+                <p
+                  class="font-mono text-[10px] uppercase tracking-[0.08em] opacity-45"
+                >
+                  {label}
+                </p>
+              )
+            }
+
+            <p
+              class="mt-3 text-[13px] opacity-35"
+            >
+              Media placeholder
+            </p>
+          </div>
+        </div>
+      )
+    }
+  </div>
+
+
+  {
+    caption && (
+      <figcaption
+        class="mt-3 max-w-2xl font-mono text-[9px] leading-[1.6] uppercase tracking-[0.05em] text-muted"
+      >
+        {caption}
+      </figcaption>
+    )
+  }
+</figure>
