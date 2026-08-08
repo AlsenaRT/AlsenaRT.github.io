@@ -1,15 +1,32 @@
 ---
-import type { Project } from "../data/projects";
+import type { Project }
+  from "../data/projects";
 
 interface Props {
   project: Project;
+
+  variant?:
+    | "card"
+    | "hero";
 }
 
-const { project } = Astro.props;
+const {
+  project,
+
+  variant = "card",
+} = Astro.props;
+
+const frameClass =
+  variant === "hero"
+    ? "aspect-[16/9] md:aspect-[16/8]"
+    : "aspect-[4/3]";
 ---
 
 <div
-  class="project-preview relative aspect-[4/3] overflow-hidden"
+  class:list={[
+    "project-preview relative overflow-hidden",
+    frameClass,
+  ]}
 >
 
   <!-- =====================================================
@@ -19,99 +36,84 @@ const { project } = Astro.props;
   {
     project.preview === "fmipa" && (
       <div
-        class="absolute inset-0 overflow-hidden bg-[#1d2423]"
+        class="absolute inset-0 overflow-hidden bg-[#173d61]"
       >
-        <!-- Giant editorial label -->
+        <!-- Background identity -->
 
         <div
-          class="absolute inset-x-0 top-[8%] overflow-hidden"
+          class="absolute inset-x-0 top-0 flex items-center justify-between px-[5%] py-[4%]"
         >
           <p
-            class="translate-x-[-0.04em] whitespace-nowrap text-[clamp(5rem,12vw,11rem)] leading-none font-medium tracking-[-0.07em] text-[#f2f0e9]/10"
+            class="font-mono text-[8px] uppercase tracking-[0.12em] text-white/50"
           >
-            FMIPA
+            FMIPA UGM / Website Redesign
+          </p>
+
+          <p
+            class="font-mono text-[8px] uppercase tracking-[0.12em] text-white/50"
+          >
+            2026
           </p>
         </div>
 
 
-        <!-- Mock browser surface -->
+        <!-- Main browser-like composition -->
 
         <div
-          class="absolute right-[7%] bottom-[8%] left-[13%] top-[23%] bg-[#f4f2eb] transition-transform duration-700 ease-out group-hover:-translate-y-2"
+          class="absolute bottom-[-12%] left-[7%] top-[13%] w-[70%]
+          flex-col overflow-hidden bg-paper shadow-[0_30px_80px_rgba(0,0,0,0.22)]
+          transition-transform duration-700 ease-out
+          group-hover:-translate-y-2"
         >
-          <!-- Browser header -->
+          <!-- browser bar -->
 
           <div
-            class="flex h-[11%] items-center justify-between border-b border-black/10 px-[4%]"
+            class="flex h-[6%] items-center gap-1.5 border-b border-black/10 px-[3%]"
           >
-            <div class="flex gap-1.5">
-              <span
-                class="h-1.5 w-1.5 rounded-full bg-black/20"
-              ></span>
-
-              <span
-                class="h-1.5 w-1.5 rounded-full bg-black/20"
-              ></span>
-
-              <span
-                class="h-1.5 w-1.5 rounded-full bg-black/20"
-              ></span>
-            </div>
-
-            <span
-              class="font-mono text-[7px] uppercase tracking-[0.1em] text-black/35"
-            >
-              Website
-            </span>
+            <span class="h-1.5 w-1.5 rounded-full bg-black/15"></span>
+            <span class="h-1.5 w-1.5 rounded-full bg-black/15"></span>
+            <span class="h-1.5 w-1.5 rounded-full bg-black/15"></span>
           </div>
 
-
-          <!-- Abstract website structure -->
-
-          <div class="p-[6%]">
-            <div
-              class="h-2 w-[18%] bg-black/15"
-            ></div>
-
-            <div
-              class="mt-[5%] h-[14%] w-[75%] bg-black/75"
-            ></div>
-
-            <div
-              class="mt-[2%] h-[8%] w-[58%] bg-black/75"
-            ></div>
-
-            <div
-              class="mt-[8%] grid grid-cols-3 gap-[3%]"
-            >
-              <div
-                class="aspect-[5/3] bg-black/8"
-              ></div>
-
-              <div
-                class="aspect-[5/3] bg-black/8"
-              ></div>
-
-              <div
-                class="aspect-[5/3] bg-black/8"
-              ></div>
-            </div>
+          <div class="relative min-h-0 flex-1 overflow-hidden">
+            <img
+              src="/images/projects/fmipa/new-home.png"
+              alt="Redesigned FMIPA UGM homepage"
+              loading="lazy"
+              class="h-full w-full object-cover object-top"
+            />
           </div>
         </div>
 
 
-        <!-- Metadata -->
+        <!-- Secondary page -->
 
         <div
-          class="absolute top-[6%] left-[5%] font-mono text-[8px] uppercase tracking-[0.12em] text-white/45"
+          class="absolute right-[5%] top-[24%] h-[64%] w-[31%]
+          overflow-hidden border border-white/15 bg-paper
+          shadow-[0_20px_60px_rgba(0,0,0,0.20)]
+          transition-transform duration-700 ease-out
+          group-hover:-translate-y-4"
         >
-          Temporary project preview
+          <img
+            src="/images/projects/fmipa/new-iup.png"
+            alt="Redesigned FMIPA UGM International Undergraduate Program page"
+            loading="lazy"
+            class="h-full w-full object-cover object-top"
+          />
         </div>
 
+
+        <!-- Bottom metadata -->
+
         <div
-          class="absolute right-[5%] bottom-[5%] font-mono text-[8px] uppercase tracking-[0.12em] text-white/45"
+          class="absolute bottom-[4%] left-[4%]"
         >
-          01 / Web Experience
+          <p
+            class="font-mono text-[8px] uppercase tracking-[0.1em] text-white/50"
+          >
+            UI/UX · IA · WordPress
+          </p>
         </div>
       </div>
     )

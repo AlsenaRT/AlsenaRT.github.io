@@ -2,115 +2,529 @@
 import CaseSection
   from "../components/case-study/CaseSection.astro";
 
-import CaseMedia
-  from "../components/case-study/CaseMedia.astro";
+import WebsiteShowcase
+  from "../components/case-study/WebsiteShowcase.astro";
 ---
 
 <!-- =======================================================
-     CONTEXT
+     01 / CONTEXT
      ======================================================= -->
 
 <CaseSection
   number="01"
   label="Context"
-  title="Rethinking an academic website with a large amount of information."
-  intro="This section will eventually explain the project background, existing website, users, constraints, and what initiated the redesign."
+  title="Modernizing a faculty website that had become difficult to navigate and maintain."
+  intro="FMIPA UGM initiated a full website redesign to replace an aging digital experience with a clearer, more responsive, and more maintainable system."
 >
   <p>
-    The final version of this section will be written
-    after we gather the complete project materials.
-    For now, this text exists only to establish the
-    reading width, rhythm, and hierarchy of the case
-    study template.
+    Over time, the existing website had accumulated
+    several issues. Its interface felt visually
+    outdated, some components and assets no longer
+    behaved consistently, responsive behavior was
+    limited, and parts of the website depended on
+    paid assets that introduced recurring maintenance
+    costs.
+  </p>
+
+  <p>
+    The content structure had also become fragmented.
+    Important information was spread across many
+    pages, while several destinations were redundant
+    or difficult to discover.
+  </p>
+
+  <p>
+    The redesign therefore became more than a visual
+    refresh. It was also an opportunity to reconsider
+    how information should be organized and how
+    visitors should move through the faculty website.
   </p>
 </CaseSection>
 
 
 <!-- =======================================================
-     BEFORE / RESEARCH MEDIA
+     BEFORE / AFTER
      ======================================================= -->
 
-<section class="site-container">
-  <CaseMedia
-    label="Existing website"
-    caption="Placeholder — existing FMIPA website or initial design context."
-    ratio="wide"
-    tone="light"
-  />
+<section
+  class="site-container py-12 md:py-16"
+  data-reveal
+>
+
+  <div class="editorial-grid">
+
+    <div>
+      <p class="mono-label text-muted">
+        Before / After
+      </p>
+    </div>
+
+
+    <div class="editorial-content">
+
+      <div
+        class="grid gap-8 lg:grid-cols-2"
+      >
+
+        <!-- Before -->
+
+        <figure>
+
+          <div
+            class="mb-4 flex items-center justify-between"
+          >
+            <p
+              class="font-mono text-[10px] uppercase tracking-[0.07em] text-muted"
+            >
+              Before
+            </p>
+
+            <span
+              class="font-mono text-[9px] uppercase tracking-[0.05em] text-muted"
+            >
+              Previous website
+            </span>
+          </div>
+
+
+          <div
+            class="relative aspect-[16/10] overflow-hidden border border-line bg-white"
+          >
+            <img
+              src="/images/projects/fmipa/old-about.png"
+              alt="Previous FMIPA UGM About page"
+              loading="lazy"
+              class="absolute inset-0 h-full w-full object-cover object-top"
+            />
+          </div>
+
+
+          <figcaption
+            class="mt-4 text-[12px] leading-[1.7] text-muted"
+          >
+            The previous experience relied on an
+            older visual system, dense content,
+            inconsistent hierarchy, and less
+            deliberate long-form structure.
+          </figcaption>
+
+        </figure>
+
+
+        <!-- After -->
+
+        <figure>
+
+          <div
+            class="mb-4 flex items-center justify-between"
+          >
+            <p
+              class="font-mono text-[10px] uppercase tracking-[0.07em] text-muted"
+            >
+              After
+            </p>
+
+            <span
+              class="font-mono text-[9px] uppercase tracking-[0.05em] text-muted"
+            >
+              Redesigned website
+            </span>
+          </div>
+
+
+          <div
+            class="relative aspect-[16/10] overflow-hidden border border-line bg-white"
+          >
+            <img
+              src="/images/projects/fmipa/new-about.png"
+              alt="Redesigned FMIPA UGM About page"
+              loading="lazy"
+              class="absolute inset-0 h-full w-full object-cover object-top"
+            />
+          </div>
+
+
+          <figcaption
+            class="mt-4 text-[12px] leading-[1.7] text-muted"
+          >
+            The new system introduces clearer
+            hierarchy, stronger grouping, more useful
+            navigation cues, and a shared visual
+            language.
+          </figcaption>
+
+        </figure>
+
+      </div>
+
+    </div>
+
+  </div>
+
 </section>
 
 
 <!-- =======================================================
-     DESIGN DIRECTION
+     02 / STRATEGY
      ======================================================= -->
 
 <CaseSection
   number="02"
-  label="Design Direction"
-  title="Creating a clearer visual and information hierarchy."
+  label="Strategy"
+  title="Simplifying the journey before redesigning the interface."
 >
   <p>
-    This section can later contain information about
-    navigation, layout decisions, typography,
-    information architecture, and the visual direction
-    developed for the redesign.
+    I worked as the project's only UI/UX designer,
+    responsible for the overall visual direction,
+    information architecture, page flow, layouts,
+    component decisions, and image selection across
+    the new website.
+  </p>
+
+  <h3>
+    Reducing unnecessary paths
+  </h3>
+
+  <p>
+    One of the largest problems was structural rather
+    than visual. The previous website contained many
+    overlapping, redundant, or low-priority pages.
   </p>
 
   <p>
-    We will only include processes that actually
-    happened during the project rather than forcing
-    the project into a generic design-thinking
-    framework.
+    Instead of carrying that complete structure into
+    a new interface, I reorganized the information
+    architecture and consolidated related content
+    into clearer destinations.
+  </p>
+
+  <h3>
+    Designing within a real team
+  </h3>
+
+  <p>
+    Development was handled by a two-person team. I
+    contributed mainly to frontend implementation,
+    while another developer focused more heavily on
+    backend functionality and custom development.
+  </p>
+
+  <p>
+    The project was supervised by a lecturer acting
+    as both team leader and stakeholder, who reviewed
+    and approved the design direction throughout the
+    process.
   </p>
 </CaseSection>
 
 
 <!-- =======================================================
-     TWO VISUALS
-     ======================================================= -->
-
-<section
-  class="site-container grid gap-5 md:grid-cols-2"
->
-  <CaseMedia
-    label="Homepage"
-    caption="Placeholder for one of the primary interface directions."
-    ratio="portrait"
-    tone="panel"
-  />
-
-  <CaseMedia
-    label="Inner page"
-    caption="Placeholder for departmental or information-page exploration."
-    ratio="portrait"
-    tone="dark"
-  />
-</section>
-
-
-<!-- =======================================================
-     IMPLEMENTATION
+     03 / DESIGN DIRECTION
      ======================================================= -->
 
 <CaseSection
   number="03"
-  label="Implementation"
-  title="Taking the design beyond Figma."
+  label="Design Direction"
+  title="Building a contemporary editorial system while preserving UGM's institutional identity."
 >
   <p>
-    This section will document how approved designs
-    were translated into the actual website and where
-    implementation constraints influenced design
-    decisions.
+    Early in the project, I studied university
+    websites whose structure and editorial treatment
+    aligned with the experience we wanted to create.
+  </p>
+
+  <p>
+    A Japanese university website became the primary
+    visual reference for the agreed direction. The
+    qualities we liked were translated into a system
+    appropriate for FMIPA while preserving UGM's
+    existing identity requirements, including its
+    colors and institutional marks.
+  </p>
+
+  <p>
+    Beyond those brand constraints, I had significant
+    flexibility in defining typography, spacing,
+    composition, imagery, navigation, and reusable
+    interface components.
   </p>
 </CaseSection>
 
 
-<section class="site-container">
-  <CaseMedia
-    label="Final implementation"
-    caption="Placeholder for implemented WordPress pages."
-    ratio="wide"
-    tone="green"
-  />
+<!-- =======================================================
+     FIGMA PROCESS CLUSTER
+     ======================================================= -->
+
+<section
+  class="site-container py-12 md:py-16"
+  data-reveal
+>
+
+  <div class="editorial-grid">
+
+    <div>
+      <p class="mono-label text-muted">
+        Exploration
+      </p>
+    </div>
+
+
+    <div
+      class="editorial-content grid gap-8 lg:grid-cols-2"
+    >
+
+      <figure>
+
+        <div
+          class="overflow-hidden border border-line bg-[#1d1d1d]"
+        >
+          <img
+            src="/images/projects/fmipa/figma-exploration.png"
+            alt="Early cancelled FMIPA website exploration in Figma"
+            loading="lazy"
+            class="block h-auto w-full"
+          />
+        </div>
+
+        <figcaption
+          class="mt-4 font-mono text-[9px] leading-[1.7] uppercase tracking-[0.045em] text-muted"
+        >
+          An earlier design direction that was later
+          discarded.
+        </figcaption>
+
+      </figure>
+
+
+      <figure>
+
+        <div
+          class="overflow-hidden border border-line bg-[#1d1d1d]"
+        >
+          <img
+            src="/images/projects/fmipa/figma-overview.png"
+            alt="High fidelity FMIPA website designs in Figma"
+            loading="lazy"
+            class="block h-auto w-full"
+          />
+        </div>
+
+        <figcaption
+          class="mt-4 font-mono text-[9px] leading-[1.7] uppercase tracking-[0.045em] text-muted"
+        >
+          High-fidelity page development showing
+          several page types within the final system.
+        </figcaption>
+
+      </figure>
+
+    </div>
+
+  </div>
+
 </section>
+
+
+<!-- =======================================================
+     04 / FINAL DESIGN
+     ======================================================= -->
+
+<CaseSection
+  number="04"
+  label="Final Design"
+  title="One system designed to accommodate very different kinds of information."
+>
+  <p>
+    The redesign extended across the complete faculty
+    website rather than a single landing page.
+  </p>
+
+  <p>
+    Shared typography, spacing, navigation,
+    components, colors, and interaction patterns
+    create continuity, while each page is allowed to
+    respond to its own content and audience.
+  </p>
+
+  <p>
+    The following pages illustrate how that system
+    scales across three very different experiences.
+  </p>
+</CaseSection>
+
+
+<!-- =======================================================
+     FINAL DESIGN SHOWCASES
+     Keep them together deliberately.
+     ======================================================= -->
+
+<WebsiteShowcase
+  src="/images/projects/fmipa/new-home.png"
+  alt="Redesigned FMIPA UGM homepage"
+  number="04.1"
+  title="Faculty Homepage"
+  description="A consolidated entry point for departments, admissions, faculty information, news, academic updates, and events."
+  tone="warm"
+  previewPosition="top"
+/>
+
+
+<WebsiteShowcase
+  src="/images/projects/fmipa/new-about.png"
+  alt="Redesigned FMIPA UGM About page"
+  number="04.2"
+  title="About FMIPA"
+  description="A structured long-form destination combining faculty overview, statistics, history, academics, strategic direction, governance, and organizational information."
+  tone="paper"
+  previewPosition="top"
+/>
+
+
+<WebsiteShowcase
+  src="/images/projects/fmipa/new-iup.png"
+  alt="Redesigned FMIPA UGM International Undergraduate Program page"
+  number="04.3"
+  title="International Undergraduate Program"
+  description="A recruitment-oriented experience covering program value, international exposure, study pathways, student support, available programs, and tuition."
+  tone="blue"
+  previewPosition="top"
+/>
+
+
+<!-- =======================================================
+     05 / IMPLEMENTATION + VALIDATION
+     ======================================================= -->
+
+<CaseSection
+  number="05"
+  label="Implementation"
+  title="Bringing the design into WordPress without relying on premium tooling."
+>
+  <p>
+    Implementation introduced another layer of
+    constraint. The website needed to rely on free
+    WordPress plugins rather than premium
+    dependencies, including Elementor Basic instead
+    of Elementor Pro.
+  </p>
+
+  <p>
+    Components that would normally be available
+    through premium page-building tools therefore had
+    to be implemented manually or hardcoded by the
+    development team.
+  </p>
+
+  <h3>
+    Frontend contribution
+  </h3>
+
+  <p>
+    I contributed to frontend implementation and
+    personally implemented the Organization Structure
+    experience in WordPress, including lecturer
+    profiles containing educational and research
+    information.
+  </p>
+
+  <h3>
+    User Acceptance Testing
+  </h3>
+
+  <p>
+    The website went through three rounds of User
+    Acceptance Testing with lecturers and faculty
+    leadership.
+  </p>
+
+  <p>
+    The core design direction remained largely intact.
+    Feedback primarily resulted in smaller functional
+    adjustments, editorial corrections, and content
+    revisions.
+  </p>
+</CaseSection>
+
+
+<!-- =======================================================
+     LIVE STAGING
+     ======================================================= -->
+
+<section
+  class="site-container py-10"
+  data-reveal
+>
+  <div
+    class="editorial-grid border-y border-line py-8"
+  >
+
+    <div>
+      <p class="mono-label text-muted">
+        Live staging
+      </p>
+    </div>
+
+
+    <div
+      class="editorial-content flex flex-col gap-6 md:flex-row md:items-center md:justify-between"
+    >
+      <p
+        class="editorial-copy text-[14px] leading-[1.8]"
+      >
+        The redesign is currently available on a
+        staging environment while the previous
+        production website remains active.
+      </p>
+
+      <a
+        href="https://dark.sheen.id/"
+        target="_blank"
+        rel="noreferrer"
+        class="text-link shrink-0 text-[13px]"
+      >
+        Visit staging website ↗
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- =======================================================
+     06 / REFLECTION
+     ======================================================= -->
+
+<CaseSection
+  number="06"
+  label="Reflection"
+  title="The redesign became an exercise in balancing design, content, maintainability, and implementation."
+>
+  <p>
+    The project gave me responsibility over a much
+    broader design problem than an individual screen
+    or isolated feature.
+  </p>
+
+  <p>
+    Decisions about navigation, content hierarchy,
+    reusable components, imagery, and visual
+    direction needed to work across an entire
+    institutional website.
+  </p>
+
+  <p>
+    Working alongside implementation also made the
+    trade-offs more tangible. A design could not only
+    look appropriate in Figma; it also needed to work
+    within WordPress, existing infrastructure, free
+    tooling, and the resources available to the team.
+  </p>
+
+  <p>
+    That combination strengthened the way I approach
+    UI/UX design: not as a visual layer applied before
+    development, but as part of a larger system that
+    must remain useful and maintainable after the
+    design file is finished.
+  </p>
+</CaseSection>

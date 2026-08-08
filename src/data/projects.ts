@@ -29,7 +29,7 @@ export const projects: Project[] = [
       "WordPress",
     ],
     description:
-      "Redesigning the digital presence of FMIPA UGM through a clearer information structure and a more contemporary web experience.",
+      "A complete redesign of FMIPA UGM's faculty website, covering information architecture, visual direction, responsive interface design, and implementation within a constrained WordPress environment.",
     featured: true,
 
     preview: "fmipa"
