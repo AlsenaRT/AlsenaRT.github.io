@@ -7,12 +7,9 @@ const year = new Date().getFullYear();
 <footer class="site-container mt-24 md:mt-40">
   <div class="border-t border-line">
 
-    <!-- ===================================================
-         CONTACT CTA
-         =================================================== -->
-
     <div
-      class="editorial-grid"
+      class="editorial-grid py-20 md:py-32"
+      data-reveal
     >
       <div>
         <p class="mono-label text-muted">
@@ -20,11 +17,9 @@ const year = new Date().getFullYear();
         </p>
       </div>
 
-      <div
-        class="editorial-content"
-      >
+      <div class="editorial-content">
         <h2
-          class="max-w-[900px] text-[clamp(2.8rem,5vw,5.8rem)] leading-[1.02] font-medium tracking-[-0.045em]"
+          class="max-w-[980px] text-[clamp(2.8rem,5vw,5.8rem)] leading-[1.02] font-medium tracking-[-0.045em]"
         >
           Have a role, project, or idea worth talking about?
         </h2>
@@ -38,13 +33,8 @@ const year = new Date().getFullYear();
       </div>
     </div>
 
-
-    <!-- ===================================================
-         FOOTER META
-         =================================================== -->
-
     <div
-      class="grid gap-6 border-t border-line py-7 text-[11px] md:text-[12px] text-muted md:grid-cols-3 md:items-center"
+      class="grid gap-6 border-t border-line py-7 text-[11px] text-muted md:grid-cols-3 md:items-center md:text-[12px]"
     >
       <p class="font-mono">
         © {year} {site.name}
@@ -79,9 +69,7 @@ const year = new Date().getFullYear();
         </a>
       </div>
 
-      <p
-        class="font-mono md:text-right"
-      >
+      <p class="font-mono md:text-right">
         Designed & built by Alif
       </p>
     </div>

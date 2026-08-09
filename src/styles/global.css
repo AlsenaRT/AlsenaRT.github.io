@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-
 /* =========================================================
    TAILWIND THEME
    ========================================================= */
@@ -25,17 +24,11 @@
   --color-panel-dark: #1c1c1a;
 }
 
-
 /* =========================================================
    GLOBAL TOKENS
    ========================================================= */
 
 :root {
-
-    /* =========================================================
-    TYPOGRAPHY SCALE
-    ========================================================= */
-
   --text-body:
     clamp(
       1rem,
@@ -45,38 +38,35 @@
 
   --text-body-lg:
     clamp(
-      1.05rem,
-      0.45vw + 0.95rem,
-      1.22rem
+      1.075rem,
+      0.45vw + 0.97rem,
+      1.25rem
     );
 
   --text-support:
     clamp(
-      0.93rem,
-      0.25vw + 0.9rem,
-      1.02rem
+      0.95rem,
+      0.25vw + 0.91rem,
+      1.05rem
     );
 
   --text-small:
     clamp(
-      0.82rem,
-      0.18vw + 0.8rem,
-      0.9rem
+      0.84rem,
+      0.18vw + 0.81rem,
+      0.92rem
     );
 
   --text-micro:
     clamp(
-      0.68rem,
-      0.12vw + 0.66rem,
-      0.75rem
+      0.7rem,
+      0.12vw + 0.68rem,
+      0.78rem
     );
 
-  --leading-body:
-    1.78;
+  --leading-body: 1.78;
+  --leading-support: 1.7;
 
-  --leading-support:
-    1.7;
-    
   --page-max-width: 1600px;
 
   --page-padding:
@@ -95,7 +85,6 @@
     cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-
 /* =========================================================
    RESET
    ========================================================= */
@@ -109,19 +98,15 @@
 html {
   background: var(--color-paper);
   color: var(--color-ink);
-
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-
   min-width: 320px;
-
   overflow-x: hidden;
 
   font-family: var(--font-sans);
-
   font-size: var(--text-body);
   line-height: var(--leading-body);
 
@@ -129,7 +114,6 @@ body {
   color: var(--color-ink);
 
   text-rendering: optimizeLegibility;
-
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -140,7 +124,6 @@ video,
 canvas,
 svg {
   display: block;
-
   max-width: 100%;
 }
 
@@ -178,10 +161,8 @@ ul,
 ol {
   margin: 0;
   padding: 0;
-
   list-style: none;
 }
-
 
 /* =========================================================
    ACCESSIBILITY
@@ -194,14 +175,11 @@ ol {
 
 .skip-link {
   position: fixed;
-
   top: 12px;
   left: 12px;
-
   z-index: 9999;
 
   padding: 10px 14px;
-
   background: var(--color-ink);
   color: var(--color-paper);
 
@@ -209,15 +187,12 @@ ol {
   font-size: 12px;
 
   transform: translateY(-150%);
-
-  transition:
-    transform 180ms ease;
+  transition: transform 180ms ease;
 }
 
 .skip-link:focus {
   transform: translateY(0);
 }
-
 
 /* =========================================================
    LAYOUT
@@ -228,7 +203,6 @@ ol {
     calc(100% - (var(--page-padding) * 2)),
     var(--page-max-width)
   );
-
   margin-inline: auto;
 }
 
@@ -255,24 +229,20 @@ ol {
 
 .editorial-content {
   width: 100%;
-
   max-width: 1180px;
 }
 
 .editorial-copy {
   width: 100%;
-  max-width: 980px;
+  max-width: 1080px;
 
   font-size: var(--text-body);
-
   line-height: var(--leading-body);
 }
-
 
 @media (max-width: 767px) {
   .editorial-grid {
     grid-template-columns: 1fr;
-
     row-gap: 2rem;
   }
 }
@@ -283,7 +253,6 @@ ol {
 
 .case-section-flow {
   display: grid;
-
   gap:
     clamp(
       2rem,
@@ -294,7 +263,6 @@ ol {
 
 .showcase-heading-flow {
   display: grid;
-
   gap:
     clamp(
       1.4rem,
@@ -305,23 +273,19 @@ ol {
 
 .showcase-description {
   width: 100%;
-  max-width: 980px;
+  max-width: 1080px;
 
   font-size: var(--text-support);
-
   line-height: var(--leading-support);
-
   color: var(--color-muted);
 }
 
 .case-intro {
   width: 100%;
-  max-width: 980px;
+  max-width: 1080px;
 
   font-size: var(--text-body-lg);
-
   line-height: 1.72;
-
   color: var(--color-muted);
 }
 
@@ -331,23 +295,10 @@ ol {
 
 .case-copy {
   width: 100%;
-  max-width: 980px;
+  max-width: 1080px;
 
   font-size: var(--text-body);
-
   line-height: var(--leading-body);
-
-  color: var(--color-muted);
-
-  font-size:
-  clamp(
-    1rem,
-    1.05vw,
-    1.1rem
-  );
-
-  line-height: 1.85;
-
   color: var(--color-muted);
 }
 
@@ -360,17 +311,14 @@ ol {
 
   font-size:
     clamp(
-      1.15rem,
+      1.2rem,
       1.5vw,
-      1.35rem
+      1.45rem
     );
 
   line-height: 1.35;
-
   font-weight: 600;
-
   letter-spacing: -0.015em;
-
   color: var(--color-ink);
 }
 
@@ -381,11 +329,8 @@ ol {
 
 .case-copy a {
   color: var(--color-ink);
-
   text-decoration: underline;
-
   text-decoration-thickness: 1px;
-
   text-underline-offset: 4px;
 }
 
@@ -403,7 +348,6 @@ ol {
   margin-top: 0.6rem;
 }
 
-
 /* =========================================================
    TYPOGRAPHY UTILITIES
    ========================================================= */
@@ -417,9 +361,7 @@ ol {
     );
 
   line-height: 0.9;
-
   font-weight: 500;
-
   letter-spacing: -0.065em;
 }
 
@@ -435,23 +377,16 @@ ol {
     );
 
   line-height: 1.1;
-
   font-weight: 500;
-
   letter-spacing: -0.03em;
-
   text-wrap: pretty;
 }
 
 .mono-label {
   font-family: var(--font-mono);
-
   font-size: var(--text-micro);
-
   line-height: 1.4;
-
   letter-spacing: 0.08em;
-
   text-transform: uppercase;
 }
 
@@ -459,37 +394,28 @@ ol {
   text-wrap: balance;
 }
 
-
 /* =========================================================
    LINKS
    ========================================================= */
 
 .text-link {
   position: relative;
-
   display: inline-block;
-
   font-size: var(--text-small);
 }
 
 .text-link::after {
   content: "";
-
   position: absolute;
-
   left: 0;
   bottom: -4px;
-
   width: 100%;
   height: 1px;
-
   background: currentColor;
 
   transform: scaleX(0);
   transform-origin: right;
-
-  transition:
-    transform 350ms var(--ease-out);
+  transition: transform 350ms var(--ease-out);
 }
 
 .text-link:hover::after {
@@ -504,16 +430,12 @@ ol {
 @keyframes hero-enter {
   from {
     opacity: 0;
-
-    transform:
-      translateY(16px);
+    transform: translateY(16px);
   }
 
   to {
     opacity: 1;
-
-    transform:
-      translateY(0);
+    transform: translateY(0);
   }
 }
 
@@ -540,9 +462,7 @@ ol {
 
 .js [data-reveal] {
   opacity: 0;
-
-  transform:
-    translateY(18px);
+  transform: translateY(18px);
 
   transition:
     opacity 800ms var(--ease-out),
@@ -551,13 +471,8 @@ ol {
 
 .js [data-reveal].is-visible {
   opacity: 1;
-
-  transform:
-    translateY(0);
+  transform: translateY(0);
 }
-
-
-/* Optional stagger */
 
 .js [data-reveal-delay="1"] {
   transition-delay: 80ms;
@@ -570,7 +485,6 @@ ol {
 .js [data-reveal-delay="3"] {
   transition-delay: 240ms;
 }
-
 
 /* =========================================================
    REDUCED MOTION
@@ -585,11 +499,8 @@ ol {
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
-
     animation-iteration-count: 1 !important;
-
     transition-duration: 0.01ms !important;
-
     scroll-behavior: auto !important;
   }
 }
