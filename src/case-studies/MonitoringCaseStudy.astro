@@ -1,88 +1,811 @@
 ---
-import CaseSection
-  from "../components/case-study/CaseSection.astro";
+import CaseSection from "../components/case-study/CaseSection.astro";
 
-import CaseMedia
-  from "../components/case-study/CaseMedia.astro";
+const degreeFlows = [
+  {
+    number: "03.1",
+    degree: "S1",
+    title: "Undergraduate monitoring",
+    src: "/images/projects/monitoring/flowchart-s1.png",
+    alt: "S1 undergraduate student monitoring flowchart",
+    milestones: ["KKN", "Proposal examination", "Thesis examination"],
+    description:
+      "The undergraduate flow evaluates mandatory milestones in sequence and uses separate reminder and overdue-warning windows before adding a student to the monitoring list.",
+  },
+  {
+    number: "03.2",
+    degree: "S2",
+    title: "Master’s monitoring",
+    src: "/images/projects/monitoring/flowchart-s2.png",
+    alt: "S2 master's student monitoring flowchart",
+    milestones: ["Proposal examination", "Thesis seminar", "Thesis examination"],
+    description:
+      "The master’s flow follows a different progression and timeline, so its academic checkpoints are evaluated independently from the undergraduate rules.",
+  },
+  {
+    number: "03.3",
+    degree: "S3",
+    title: "Doctoral monitoring",
+    src: "/images/projects/monitoring/flowchart-s3.png",
+    alt: "S3 doctoral student monitoring flowchart",
+    milestones: ["Comprehensive examination", "Assessment", "UTUP"],
+    description:
+      "The doctoral flow uses its own mandatory agenda sequence and reminder logic, demonstrating why one generic rule could not represent all degree levels.",
+  },
+];
+
+const roleViews = [
+  {
+    title: "Dean / Faculty",
+    scope: "Faculty-wide access",
+    src: "/images/projects/monitoring/role-dean-redacted.png",
+    alt: "Dean role view of the production student monitoring system",
+    description:
+      "Faculty leadership can review troubled-student records across the faculty rather than being restricted to one program or department.",
+  },
+  {
+    title: "Department Head",
+    scope: "Department-level access",
+    src: "/images/projects/monitoring/role-department-head-redacted.png",
+    alt: "Department head role view of the production student monitoring system",
+    description:
+      "Department leadership receives the same monitoring structure with the dataset restricted to programs inside its department.",
+  },
+  {
+    title: "Program Head",
+    scope: "Study-program access",
+    src: "/images/projects/monitoring/role-program-head-redacted.png",
+    alt: "Program head role view of the production student monitoring system",
+    description:
+      "Program heads and secretaries only receive monitoring data for students within their own study program.",
+  },
+  {
+    title: "Supervisor / Promoter",
+    scope: "Supervised students only",
+    src: "/images/projects/monitoring/role-supervisor-redacted.png",
+    alt: "Academic supervisor role view of the production student monitoring system",
+    description:
+      "Academic supervisors and promoter teams see only students assigned to them, keeping the same feature useful without exposing unrelated records.",
+  },
+];
+
+const testResults = [
+  ["Login system", "Valid"],
+  ["Dean filtering", "Valid"],
+  ["Department filtering", "Valid"],
+  ["Program filtering", "Valid"],
+  ["Supervisor filtering", "Valid"],
+  ["Dashboard Stats", "Valid"],
+  ["Pagination", "Valid"],
+  ["Email notification", "Valid"],
+  ["Excel export", "Troubleshoot"],
+];
 ---
+
+<!-- =======================================================
+     01 / CONTEXT
+     ======================================================= -->
 
 <CaseSection
   number="01"
-  label="Problem"
-  title="Helping academic staff identify students who may require attention."
+  label="Context"
+  title="Detecting academic delays before they become easy to overlook."
+  intro="FMIPA UGM needed an integrated way to identify students who were late completing mandatory academic agendas, notify the people responsible for them, and give academic leadership a clearer monitoring overview."
 >
   <p>
-    This case study will eventually focus more heavily
-    on system logic, user roles, data, and development
-    than visual exploration.
+    Before the feature existed, identifying potentially troubled students relied heavily on
+    manual review. Without an automated monitoring mechanism, early detection could become
+    slow, inconsistent, or simply be overlooked.
+  </p>
+
+  <p>
+    The module was developed inside the existing Persuratan FMIPA system rather than as a
+    separate application. Its core responsibilities were to detect delayed mandatory academic
+    agendas, send email warnings, expose detailed monitoring information, and generate data
+    that academic staff could use for follow-up.
+  </p>
+
+  <p>
+    The resulting project therefore combined UI/UX design, business-rule mapping, relational
+    data processing, role-based access, backend implementation, reporting, notification logic,
+    and functional testing within an existing institutional system.
   </p>
 </CaseSection>
 
+<!-- =======================================================
+     SYSTEM SCOPE
+     ======================================================= -->
 
-<section class="site-container">
-  <CaseMedia
-    label="System overview"
-    caption="Placeholder for a high-level system or user-flow diagram."
-    tone="dark"
-  />
+<section
+  class="site-container py-12 md:py-16"
+  data-reveal
+>
+  <div class="editorial-grid">
+
+    <!-- Label -->
+
+    <div>
+      <p class="mono-label text-muted">
+        System Scope
+      </p>
+    </div>
+
+
+    <!-- Scope cards -->
+
+    <div
+      class="editorial-content grid gap-4 md:grid-cols-2 xl:grid-cols-4"
+    >
+
+      <!-- Degree flows -->
+
+      <article
+        class="border border-line p-6 md:p-7"
+      >
+        <p
+          class="font-mono text-[9px] uppercase tracking-[0.08em] text-muted"
+        >
+          S1 · S2 · S3
+        </p>
+
+        <h3
+          class="mt-4 text-[clamp(1.5rem,2vw,2rem)] leading-[1.05] font-medium tracking-[-0.035em]"
+        >
+          Degree flows
+        </h3>
+
+        <p
+          class="mt-3 text-[13px] leading-[1.7] text-muted"
+        >
+          Separate monitoring logic for undergraduate,
+          master's, and doctoral programs.
+        </p>
+      </article>
+
+
+      <!-- Access scopes -->
+
+      <article
+        class="border border-line p-6 md:p-7"
+      >
+        <p
+          class="font-mono text-[9px] uppercase tracking-[0.08em] text-muted"
+        >
+          4 access levels
+        </p>
+
+        <h3
+          class="mt-4 text-[clamp(1.5rem,2vw,2rem)] leading-[1.05] font-medium tracking-[-0.035em]"
+        >
+          Access scopes
+        </h3>
+
+        <p
+          class="mt-3 text-[13px] leading-[1.7] text-muted"
+        >
+          Faculty, department, program, and
+          supervisor-level data filtering.
+        </p>
+      </article>
+
+
+      <!-- Core features -->
+
+      <article
+        class="border border-line p-6 md:p-7"
+      >
+        <p
+          class="font-mono text-[9px] uppercase tracking-[0.08em] text-muted"
+        >
+          5 core functions
+        </p>
+
+        <h3
+          class="mt-4 text-[clamp(1.5rem,2vw,2rem)] leading-[1.05] font-medium tracking-[-0.035em]"
+        >
+          Core features
+        </h3>
+
+        <p
+          class="mt-3 text-[13px] leading-[1.7] text-muted"
+        >
+          Statistics, monitoring, notifications,
+          reporting, and system integration.
+        </p>
+      </article>
+
+
+      <!-- Warning stages -->
+
+      <article
+        class="border border-line p-6 md:p-7"
+      >
+        <p
+          class="font-mono text-[9px] uppercase tracking-[0.08em] text-muted"
+        >
+          2 warning stages
+        </p>
+
+        <h3
+          class="mt-4 text-[clamp(1.5rem,2vw,2rem)] leading-[1.05] font-medium tracking-[-0.035em]"
+        >
+          Warning flow
+        </h3>
+
+        <p
+          class="mt-3 text-[13px] leading-[1.7] text-muted"
+        >
+          Reminder first, followed by an overdue
+          warning after the required deadline.
+        </p>
+      </article>
+
+    </div>
+
+  </div>
 </section>
 
+<!-- =======================================================
+     02 / REQUIREMENTS + PROTOTYPE
+     ======================================================= -->
 
 <CaseSection
   number="02"
-  label="System Design"
-  title="Different responsibilities required different views of the same academic data."
+  label="Requirements"
+  title="Academic policy had to be translated into rules the system could actually evaluate."
 >
   <p>
-    The final content can explain the relationship
-    between user roles, student information, academic
-    warning conditions, and notification workflows.
+    The project began with understanding the existing Persuratan environment and its technical
+    structure. I was introduced to PHP CodeIgniter 4, MySQL, and the MVC architecture used by
+    the system, then explored the existing codebase with the programmer responsible for
+    maintaining Persuratan FMIPA.
+  </p>
+
+  <p>
+    Requirement discovery then moved beyond the IT team. I communicated with the project
+    initiator and academic administration staff to identify the mandatory agendas used to
+    evaluate student progress at different degree levels.
+  </p>
+
+  <p>
+    The findings were turned into an early UI/UX prototype and process flows. The prototype was
+    used as a communication tool with the project initiator, MBKM mentor, and academic staff
+    before development continued iteratively.
   </p>
 </CaseSection>
 
+<section class="site-container py-10 md:py-16" data-reveal>
+  <div class="editorial-grid">
+    <div>
+      <p class="mono-label text-muted">Early Prototype</p>
+    </div>
 
-<section
-  class="site-container grid gap-5 md:grid-cols-12"
->
-  <div class="md:col-span-7">
-    <CaseMedia
-      label="Dashboard"
-      caption="Placeholder for the main monitoring interface."
-      ratio="landscape"
-      tone="panel"
-    />
-  </div>
+    <div class="editorial-content">
+      <figure>
+        <div class="overflow-hidden border border-line bg-[#ecebe6] p-4 md:p-8">
+          <img
+            src="/images/projects/monitoring/early-prototype.png"
+            alt="Early UI prototype for the FMIPA student monitoring system"
+            loading="lazy"
+            class="mx-auto block h-auto w-full max-w-[1100px] border border-black/10 bg-white"
+          />
+        </div>
 
-  <div class="md:col-span-5">
-    <CaseMedia
-      label="Notification"
-      caption="Placeholder for email-warning workflow or interface."
-      ratio="portrait"
-      tone="light"
-    />
+        <figcaption class="mt-4 max-w-[800px] text-[12px] leading-[1.75] text-muted">
+          Early dashboard prototype used to validate the feature direction before the final
+          production implementation was integrated into Persuratan FMIPA.
+        </figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
+
+<!-- =======================================================
+     03 / DETECTION LOGIC
+     ======================================================= -->
 
 <CaseSection
   number="03"
-  label="Technical Layer"
-  title="Designing the interface while also building the underlying feature."
+  label="Detection Logic"
+  title="One generic rule was not enough for three different academic pathways."
 >
   <p>
-    This is where the final case study can explain
-    relevant implementation decisions, data handling,
-    database relationships, and technical constraints
-    without turning the portfolio into code
-    documentation.
+    The system collects student academic records, supervisor or promoter relationships, and
+    completed mandatory agendas from the existing data environment. Those records are compared
+    against parameters agreed with academic staff to determine whether a student should appear
+    in the troubled-student list.
+  </p>
+
+  <p>
+    S1, S2, and S3 students follow different milestone sequences and timelines. I therefore
+    mapped an independent flow for each degree level rather than forcing all students through a
+    single detection rule.
+  </p>
+
+  <p>
+    Each flow checks whether the required agenda has already been completed, evaluates the
+    student's academic timing, and decides whether the system should send a reminder, issue an
+    overdue warning, or continue checking the next agenda.
   </p>
 </CaseSection>
 
+{degreeFlows.map((flow, index) => (
+  <section class="site-container py-10 md:py-14" data-reveal>
+    <div class="editorial-grid">
+      <div>
+        <p class="mono-label text-muted">{flow.number} / {flow.degree}</p>
+      </div>
 
-<section class="site-container">
-  <CaseMedia
-    label="Architecture / Data"
-    caption="Placeholder for simplified technical architecture."
-    tone="dark"
-  />
+      <div class="editorial-content">
+        <div
+          class:list={[
+            "grid items-start gap-8 lg:grid-cols-[minmax(0,0.42fr)_minmax(0,0.58fr)] lg:gap-12",
+            index % 2 === 1 && "lg:grid-cols-[minmax(0,0.58fr)_minmax(0,0.42fr)]",
+          ]}
+        >
+          <div class:list={[index % 2 === 1 && "lg:order-2"]}>
+            <div class="bg-[#151615] p-4 md:p-7">
+              <img
+                src={flow.src}
+                alt={flow.alt}
+                loading="lazy"
+                class="mx-auto block h-auto w-full max-w-[600px]"
+              />
+            </div>
+          </div>
+
+          <div class:list={["pt-1", index % 2 === 1 && "lg:order-1"]}>
+            <p class="mono-label text-muted">{flow.degree}</p>
+            <h3 class="mt-5 max-w-[620px] text-[clamp(2rem,3vw,3.25rem)] leading-[1.05] font-medium tracking-[-0.04em]">
+              {flow.title}
+            </h3>
+
+            <p class="mt-6 max-w-[620px] text-[14px] leading-[1.8] text-muted">
+              {flow.description}
+            </p>
+
+            <div class="mt-8 border-t border-line">
+              {flow.milestones.map((milestone, milestoneIndex) => (
+                <div class="flex items-center gap-5 border-b border-line py-4">
+                  <span class="font-mono text-[9px] text-muted">0{milestoneIndex + 1}</span>
+                  <span class="text-[13px]">{milestone}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+))}
+
+
+<!-- =======================================================
+     04 / ARCHITECTURE + DATA
+     ======================================================= -->
+
+<CaseSection
+  number="04"
+  label="Architecture & Data"
+  title="The visible dashboard depended on reconstructing useful information from an existing relational data model."
+>
+  <p>
+    The module was implemented with PHP CodeIgniter 4 using MVC, MySQL for data storage and
+    processing, and HTML, CSS, and JavaScript for the frontend. The feature was designed to
+    integrate directly into Persuratan FMIPA and communicate with the system's existing data
+    environment.
+  </p>
+
+  <p>
+    Much of the information required by the monitoring feature was not stored as one clean,
+    ready-to-display dataset. Academic records, supervisor relationships, employee data, user
+    accounts, agenda completion, and program statistics had to be connected and processed
+    before the interface could show a reliable result.
+  </p>
+</CaseSection>
+
+<section class="site-container py-10 md:py-16" data-reveal>
+  <div class="editorial-grid">
+    <div>
+      <p class="mono-label text-muted">System Architecture</p>
+    </div>
+
+    <div class="editorial-content">
+      <div class="bg-[#191b19] p-5 text-white md:p-8 lg:p-10">
+        <div class="grid gap-4 lg:grid-cols-[1fr_auto_1fr_auto_1fr] lg:items-stretch">
+          <div class="border border-white/10 p-6">
+            <p class="font-mono text-[9px] uppercase tracking-[0.08em] text-white/40">View</p>
+            <h3 class="mt-4 text-2xl font-medium tracking-[-0.04em]">Frontend</h3>
+            <p class="mt-4 text-[13px] leading-[1.7] text-white/55">HTML · CSS · JavaScript</p>
+          </div>
+
+          <div class="hidden items-center text-white/25 lg:flex">→</div>
+
+          <div class="border border-white/10 p-6">
+            <p class="font-mono text-[9px] uppercase tracking-[0.08em] text-white/40">Controller / Model</p>
+            <h3 class="mt-4 text-2xl font-medium tracking-[-0.04em]">CodeIgniter 4</h3>
+            <p class="mt-4 text-[13px] leading-[1.7] text-white/55">PHP · MVC · application logic</p>
+          </div>
+
+          <div class="hidden items-center text-white/25 lg:flex">→</div>
+
+          <div class="border border-white/10 p-6">
+            <p class="font-mono text-[9px] uppercase tracking-[0.08em] text-white/40">Data</p>
+            <h3 class="mt-4 text-2xl font-medium tracking-[-0.04em]">MySQL</h3>
+            <p class="mt-4 text-[13px] leading-[1.7] text-white/55">Academic records · parameters · notification logs</p>
+          </div>
+        </div>
+
+        <div class="mt-4 border border-white/10 p-5 md:p-6">
+          <p class="font-mono text-[9px] uppercase tracking-[0.08em] text-white/40">Integration target</p>
+          <p class="mt-3 text-[14px] text-white/75">Existing Persuratan FMIPA system and its academic data environment</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
+
+<section class="site-container py-10 md:py-16" data-reveal>
+  <div class="editorial-grid">
+    <div>
+      <p class="mono-label text-muted">Data Sources</p>
+    </div>
+
+    <div class="editorial-content grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+      <article class="border border-line p-5">
+        <code class="font-mono text-[10px]">api_khs_raw</code>
+        <p class="mt-4 text-[12px] leading-[1.65] text-muted">KHS and course-history records used to evaluate completed academic activity and derive further monitoring data.</p>
+      </article>
+
+      <article class="border border-line p-5">
+        <code class="font-mono text-[10px]">api_bimbingan_raw</code>
+        <p class="mt-4 text-[12px] leading-[1.65] text-muted">Relationship between student NIM and supervisor NIP.</p>
+      </article>
+
+      <article class="border border-line p-5">
+        <code class="font-mono text-[10px]">pegawais</code>
+        <p class="mt-4 text-[12px] leading-[1.65] text-muted">FMIPA employee data used to resolve supervisor information.</p>
+      </article>
+
+      <article class="border border-line p-5">
+        <code class="font-mono text-[10px]">users</code>
+        <p class="mt-4 text-[12px] leading-[1.65] text-muted">Persuratan user accounts used as part of access and user-data handling.</p>
+      </article>
+
+      <article class="border border-line p-5">
+        <code class="font-mono text-[10px]">probstud_prodi</code>
+        <p class="mt-4 text-[12px] leading-[1.65] text-muted">Troubled-student totals used by Dashboard Stats for program-level visualization.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- =======================================================
+     05 / PRODUCTION INTERFACE
+     ======================================================= -->
+
+<CaseSection
+  number="05"
+  label="Production Interface"
+  title="The final module turns monitoring logic into information academic staff can scan and act on."
+>
+  <p>
+    The interface was designed around two main views. Dashboard Stats provides a quick bar-chart
+    overview of troubled-student totals by study program, while the detailed monitoring table
+    exposes the information required for follow-up: academic timing, delayed agenda,
+    supervisor, program, and department.
+  </p>
+
+  <p>
+    The UI was intentionally kept simple and direct because it lives inside an existing
+    administrative system. Navigation and responsive behavior were designed to keep the module
+    usable on desktop and tablet without visually separating it from the surrounding Persuratan
+    environment.
+  </p>
+</CaseSection>
+
+<section class="site-container py-10 md:py-16" data-reveal>
+  <div class="editorial-grid">
+    <div>
+      <p class="mono-label text-muted">Dashboard Stats</p>
+    </div>
+
+    <div class="editorial-content">
+      <figure>
+        <div class="overflow-hidden border border-line bg-[#ecebe6] p-4 md:p-7 lg:p-9">
+          <img
+            src="/images/projects/monitoring/dashboard-stats.png"
+            alt="Production Dashboard Stats showing troubled students by study program"
+            loading="lazy"
+            class="block h-auto w-full border border-black/10 bg-white"
+          />
+        </div>
+
+        <figcaption class="mt-4 max-w-[800px] text-[12px] leading-[1.75] text-muted">
+          Production Dashboard Stats. The implementation report documents this view as a bar
+          chart of troubled-student totals per study program; at the documented stage, the
+          statistics view was still limited to S1 and did not yet include a degree-level selector.
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<CaseSection
+  number="06"
+  label="Role-Based Access"
+  title="The interface stays consistent while the visible dataset changes with organizational responsibility."
+>
+  <p>
+    Login credentials are translated into server-side filtering rules. Dean, Vice Dean, and
+    administrator-level access can review the broader faculty dataset, while narrower roles are
+    restricted to the academic scope they are responsible for.
+  </p>
+
+  <p>
+    Department leadership is limited to its department, program leadership is limited to its
+    study program, and academic supervisors or promoter teams only receive records belonging to
+    students under their supervision.
+  </p>
+
+  <p>
+    This allowed one monitoring module to support several institutional levels while avoiding
+    unnecessary exposure of unrelated student records.
+  </p>
+</CaseSection>
+
+<section class="site-container py-10 md:py-16" data-reveal>
+  <div class="editorial-grid">
+    <div>
+      <p class="mono-label text-muted">Production Views</p>
+    </div>
+
+    <div class="editorial-content grid gap-x-5 gap-y-10 lg:grid-cols-2">
+      {roleViews.map((role) => (
+        <figure>
+          <div class="overflow-hidden border border-line bg-white">
+            <img
+              src={role.src}
+              alt={role.alt}
+              loading="lazy"
+              class="block h-auto w-full"
+            />
+          </div>
+
+          <figcaption class="mt-4">
+            <div class="flex flex-wrap items-baseline justify-between gap-3">
+              <p class="text-[14px] font-medium">{role.title}</p>
+              <p class="font-mono text-[9px] uppercase tracking-[0.06em] text-muted">{role.scope}</p>
+            </div>
+            <p class="mt-3 max-w-[620px] text-[12px] leading-[1.7] text-muted">{role.description}</p>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="site-container py-4 md:py-8" data-reveal>
+  <div class="editorial-grid">
+    <div>
+      <p class="mono-label text-muted">Privacy Note</p>
+    </div>
+
+    <div class="editorial-content border-y border-line py-6">
+      <p class="max-w-[900px] text-[13px] leading-[1.8] text-muted">
+        These are production screenshots from an internal academic system. Only personally
+        sensitive table values are obscured for public presentation; role identity, interface
+        structure, table headers, and non-sensitive monitoring fields are intentionally left
+        visible so the implementation can still be evaluated.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- =======================================================
+     07 / OPERATIONAL FEATURES
+     ======================================================= -->
+
+<CaseSection
+  number="07"
+  label="Operational Features"
+  title="Detection was only useful if staff could navigate the result, communicate it, and take the data forward."
+>
+  <h3>Pagination and sorting</h3>
+  <p>
+    Pagination was added so the interface did not load an unnecessarily large number of
+    records at once, improving efficiency while keeping the monitoring table visually cleaner.
+    Compatible table fields also support sorting to make analysis faster.
+  </p>
+
+  <h3>Two-stage email notification</h3>
+  <p>
+    The notification feature sends both the student and their academic supervisor or promoter
+    team a first reminder before the required agenda becomes overdue. If the agenda is later
+    confirmed as overdue, a stronger warning is sent.
+  </p>
+
+  <p>
+    Email delivery is synchronized with database updates and warning logs so the application
+    can keep track of previous notifications rather than treating every message as a first
+    warning.
+  </p>
+
+  <h3>Excel reporting</h3>
+  <p>
+    A detailed-report export was implemented with PHPSpreadsheet for administrative use. The
+    feature worked, but testing exposed a pagination-related limitation: the downloaded file
+    contained only the records from the currently active page instead of the complete dataset.
+  </p>
+</CaseSection>
+
+<section class="site-container py-10 md:py-14" data-reveal>
+  <div class="editorial-grid">
+    <div>
+      <p class="mono-label text-muted">Pagination UI</p>
+    </div>
+
+    <div class="editorial-content">
+      <div class="max-w-[760px] border border-line bg-white p-6 md:p-10">
+        <img
+          src="/images/projects/monitoring/pagination-ui.png"
+          alt="Production pagination controls for the student monitoring table"
+          loading="lazy"
+          class="block h-auto w-full"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="site-container py-10 md:py-14" data-reveal>
+  <div class="editorial-grid">
+    <div>
+      <p class="mono-label text-muted">Notification Flow</p>
+    </div>
+
+    <div class="editorial-content">
+      <div class="grid gap-3 md:grid-cols-[1fr_auto_1fr_auto_1fr] md:items-stretch">
+        <article class="border border-line p-6">
+          <p class="mono-label text-muted">01 / Detect</p>
+          <h3 class="mt-5 text-xl font-medium tracking-[-0.03em]">Agenda approaching</h3>
+          <p class="mt-3 text-[12px] leading-[1.7] text-muted">Monitoring logic determines that the required agenda has not yet been completed.</p>
+        </article>
+
+        <div class="hidden items-center text-muted md:flex">→</div>
+
+        <article class="border border-line p-6">
+          <p class="mono-label text-muted">02 / Remind</p>
+          <h3 class="mt-5 text-xl font-medium tracking-[-0.03em]">First email</h3>
+          <p class="mt-3 text-[12px] leading-[1.7] text-muted">Student and supervisor or promoter receive a reminder before the agenda becomes overdue.</p>
+        </article>
+
+        <div class="hidden items-center text-muted md:flex">→</div>
+
+        <article class="bg-[#191b19] p-6 text-white">
+          <p class="mono-label text-white/45">03 / Escalate</p>
+          <h3 class="mt-5 text-xl font-medium tracking-[-0.03em]">Overdue warning</h3>
+          <p class="mt-3 text-[12px] leading-[1.7] text-white/55">If the deadline is missed, the second warning is sent and the notification state is updated.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =======================================================
+     08 / TESTING + LIMITATIONS
+     ======================================================= -->
+
+<CaseSection
+  number="08"
+  label="Testing"
+  title="The final validation checked the feature as an integrated workflow, not only as an interface."
+>
+  <p>
+    Functional testing used a black-box approach focused on whether each module produced the
+    expected result from representative inputs. Browser validation was performed with Chrome
+    and Firefox, and MySQL Workbench was used to verify database integrity and query results.
+    PHPUnit was identified as an optional tool for validating selected backend helpers or
+    filtering logic.
+  </p>
+
+  <p>
+    The tested modules covered login, role-based filtering, Dashboard Stats, pagination, Excel
+    export, and automatic email notifications. The final integration results recorded all core
+    modules as successful and valid except the documented Excel-export pagination issue.
+  </p>
+</CaseSection>
+
+<section class="site-container py-10 md:py-14" data-reveal>
+  <div class="editorial-grid">
+    <div>
+      <p class="mono-label text-muted">Result Summary</p>
+    </div>
+
+    <div class="editorial-content">
+      <div class="border-t border-line">
+        {testResults.map(([feature, status], index) => (
+          <div class="grid grid-cols-[48px_1fr_auto] items-center gap-4 border-b border-line py-4">
+            <span class="font-mono text-[9px] text-muted">{String(index + 1).padStart(2, "0")}</span>
+            <span class="text-[13px]">{feature}</span>
+            <span
+              class:list={[
+                "font-mono text-[9px] uppercase tracking-[0.06em]",
+                status === "Valid" ? "text-ink" : "text-muted",
+              ]}
+            >
+              {status}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="site-container py-10 md:py-16" data-reveal>
+  <div class="editorial-grid">
+    <div>
+      <p class="mono-label text-muted">Integration Results</p>
+    </div>
+
+    <div class="editorial-content">
+      <figure>
+        <div class="overflow-hidden border border-line bg-white p-2 md:p-4">
+          <img
+            src="/images/projects/monitoring/integration-test-results.png"
+            alt="Final integration test results for the student monitoring system"
+            loading="lazy"
+            class="block h-auto w-full"
+          />
+        </div>
+
+        <figcaption class="mt-4 max-w-[820px] text-[12px] leading-[1.75] text-muted">
+          Final integration-test summary. Login, every role-filtering level, Dashboard Stats,
+          pagination, and email notification were recorded as valid. Excel export remained the
+          single documented troubleshooting item.
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+
+<!-- =======================================================
+     09 / OWNERSHIP + PRODUCTION
+     ======================================================= -->
+
+<CaseSection
+  number="09"
+  label="Ownership"
+  title="I carried the feature from requirement discovery to an integrated production implementation."
+>
+  <p>
+    My involvement covered requirement gathering, academic-rule mapping, process diagrams,
+    UI/UX prototyping, frontend implementation, backend logic, relational-data handling,
+    role-based filtering, notification behavior, reporting, and testing.
+  </p>
+
+  <p>
+    The project was developed iteratively inside an existing institutional application rather
+    than in isolation. Technical guidance was available from the Persuratan programmer when I
+    needed to understand the surrounding system, while the feature itself remained my primary
+    development responsibility.
+  </p>
+
+  <p>
+    The final deployment was handled by the IT supervisor, and the monitoring module became
+    part of the live Persuratan FMIPA environment used for academic monitoring.
+  </p>
+
+  <p>
+    More than anything, the project made the relationship between interface design and backend
+    data concrete. The dashboard is only the visible layer; its usefulness depends on academic
+    rules, reliable queries, access boundaries, notification state, and testing all working
+    together underneath it.
+  </p>
+</CaseSection>

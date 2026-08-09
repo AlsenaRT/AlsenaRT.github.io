@@ -12,7 +12,8 @@ export interface Project {
   preview:
     | "fmipa"
     | "monitoring"
-    | "rekmed";
+    | "rekmed"
+    | "datacakra";
 }
 
 export const projects: Project[] = [
@@ -35,41 +36,73 @@ export const projects: Project[] = [
     preview: "fmipa"
   },
 
+{
+  number: "02",
+
+  slug:
+    "student-performance-monitoring",
+
+  title:
+    "Student Performance Monitoring System",
+
+  shortTitle:
+    "Student Monitoring",
+
+  year:
+    "2024 — 2025",
+
+  category:
+    "UI/UX + Full-stack",
+
+  disciplines: [
+    "UI/UX Design",
+    "Full-stack Development",
+    "Data Engineering",
+    "System Testing",
+  ],
+
+  description:
+    "A role-based academic monitoring module for FMIPA UGM that detects delayed mandatory milestones, scopes student data by organizational responsibility, sends staged email warnings, and integrates directly into the faculty's existing Persuratan system.",
+
+  featured:
+    true,
+
+  preview:
+    "monitoring",
+},
+
   {
-    number: "02",
-    slug: "student-performance-monitoring",
-    title: "Student Performance Monitoring System",
-    shortTitle: "Student Monitoring",
-    year: "2024",
-    category: "Design & Development",
-    disciplines: [
-      "UI/UX",
-      "PHP",
-      "MySQL",
-    ],
-    description:
-      "A role-based academic monitoring feature designed and developed for FMIPA UGM's internal academic dashboard.",
-    featured: true,
+  number: "03",
 
-    preview: "monitoring"
-  },
+  slug: 
+    "rekmed-product-concepts",
 
-  {
-    number: "03",
-    slug: "rekmed-product-concepts",
-    title: "RekMed Product Concepts",
-    shortTitle: "RekMed",
-    year: "2026",
-    category: "Product UI",
-    disciplines: [
-      "UI Design",
-      "Product Design",
-      "Figma",
-    ],
-    description:
-      "High-fidelity healthcare dashboard concepts created to communicate product ideas and proposed functionality to stakeholders.",
-    featured: true,
+  title:
+    "Datacakra Product Design Internship",
 
-    preview: "rekmed"
+  shortTitle:
+    "Datacakra Internship",
+
+  year:
+    "2026",
+
+  category:
+    "UI/UX + Product Collaboration",
+
+  disciplines: [
+    "UI/UX Design",
+    "Product Communication",
+    "Information Architecture",
+    "Technical Collaboration",
+  ],
+
+  description:
+    "A remote UI/UX internship spanning a sales-facing Smart Building dashboard concept and requirements-mapping support for the integration of Datacakra's RekMed electronic medical record platform with SATUSEHAT.",
+
+  featured:
+    true,
+
+  preview:
+    "datacakra",
   },
 ];

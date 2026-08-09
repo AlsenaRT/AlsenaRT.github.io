@@ -125,130 +125,117 @@ const frameClass =
        ===================================================== -->
 
   {
-    project.preview === "monitoring" && (
+  project.preview === "monitoring" && (
+    <div
+      class="absolute inset-0 overflow-hidden bg-[#164B73]"
+          >
+      <!-- =================================================
+          BACKGROUND DEPTH
+          ================================================= -->
+
       <div
-        class="absolute inset-0 overflow-hidden bg-[#d7d8d2]"
+        class="absolute inset-0"
+        style="
+          background:
+            radial-gradient(
+              circle at 22% 28%,
+              rgba(255,255,255,0.10),
+              transparent 34%
+            ),
+            radial-gradient(
+              circle at 82% 72%,
+              rgba(5,28,47,0.24),
+              transparent 40%
+            );
+        "
+      ></div>
+
+      <!-- =================================================
+           TOP META
+           ================================================= -->
+
+      <div
+        class="absolute inset-x-0 top-0 flex items-center justify-between px-[5%] py-[4%]"
       >
-        <!-- Project number -->
-
-        <span
-          class="absolute right-[5%] top-[2%] font-mono text-[clamp(4rem,10vw,10rem)] leading-none tracking-[-0.08em] text-black/8"
+        <p
+          class="font-mono text-[8px] uppercase tracking-[0.12em] text-white/65"
         >
-          02
-        </span>
+          Student Monitoring / FMIPA UGM
+        </p>
 
-
-        <!-- Abstract software window -->
-
-        <div
-          class="absolute right-[10%] bottom-[10%] left-[7%] top-[12%] border border-black/10 bg-[#191a18] transition-transform duration-700 ease-out group-hover:-translate-y-2"
+        <p
+          class="font-mono text-[8px] uppercase tracking-[0.12em] text-white/65"
         >
-          <!-- Header -->
-
-          <div
-            class="flex h-[11%] items-center border-b border-white/10 px-[4%]"
-          >
-            <span
-              class="h-1.5 w-1.5 rounded-full bg-white/30"
-            ></span>
-
-            <span
-              class="ml-3 font-mono text-[7px] uppercase tracking-[0.1em] text-white/35"
-            >
-              System / Dashboard
-            </span>
-          </div>
-
-
-          <div
-            class="grid h-[89%] grid-cols-[18%_1fr]"
-          >
-            <!-- Sidebar -->
-
-            <div
-              class="border-r border-white/10 p-[15%]"
-            >
-              <div
-                class="h-1.5 w-[65%] bg-white/20"
-              ></div>
-
-              <div
-                class="mt-[30%] space-y-[14%]"
-              >
-                <div
-                  class="h-1 w-full bg-white/8"
-                ></div>
-
-                <div
-                  class="h-1 w-[80%] bg-white/8"
-                ></div>
-
-                <div
-                  class="h-1 w-[90%] bg-white/8"
-                ></div>
-
-                <div
-                  class="h-1 w-[70%] bg-white/8"
-                ></div>
-              </div>
-            </div>
-
-
-            <!-- Content -->
-
-            <div class="p-[5%]">
-              <div
-                class="flex items-end justify-between"
-              >
-                <div>
-                  <div
-                    class="h-1.5 w-12 bg-white/15"
-                  ></div>
-
-                  <div
-                    class="mt-2 h-4 w-28 bg-white/65"
-                  ></div>
-                </div>
-
-                <div
-                  class="h-5 w-12 border border-white/15"
-                ></div>
-              </div>
-
-              <div
-                class="mt-[7%] grid grid-cols-3 gap-[3%]"
-              >
-                {
-                  [1, 2, 3].map(() => (
-                    <div
-                      class="aspect-[3/2] border border-white/8 bg-white/[0.03] p-[8%]"
-                    >
-                      <div
-                        class="h-1 w-[50%] bg-white/15"
-                      ></div>
-
-                      <div
-                        class="mt-[15%] h-5 w-[38%] bg-white/55"
-                      ></div>
-                    </div>
-                  ))
-                }
-              </div>
-
-              <div
-                class="mt-[5%] h-[30%] border border-white/8 bg-white/[0.02]"
-              ></div>
-            </div>
-          </div>
-        </div>
-
-
-        <div
-          class="absolute bottom-[5%] left-[5%] font-mono text-[8px] uppercase tracking-[0.12em] text-black/40"
-        >
-          Temporary project preview
-        </div>
+          Production system · 2024
+        </p>
       </div>
+
+
+      <!-- =================================================
+           MAIN SCREEN
+           Dashboard Stats
+           ================================================= -->
+
+      <div
+        class="absolute bottom-[8%] left-[6%] top-[15%] w-[67%]
+        overflow-hidden border border-white/10 bg-white
+        shadow-[0_24px_65px_rgba(7,25,40,0.28)]
+        transition-transform duration-700 ease-out
+        group-hover:-translate-y-2"
+      >
+
+        <img
+          src="/images/projects/monitoring/dashboard-stats.png"
+          alt="Student monitoring Dashboard Stats production interface"
+          loading="lazy"
+          class="h-full w-full object-cover object-left-top"
+        />
+
+      </div>
+
+
+      <!-- =================================================
+           SECONDARY SCREEN
+           Actual monitoring table
+           ================================================= -->
+
+      <div
+        class="absolute right-[5%] top-[29%] h-[54%] w-[43%]
+        overflow-hidden border border-white/15 bg-white
+        shadow-[0_20px_55px_rgba(7,25,40,0.30)]
+        transition-transform duration-700 ease-out
+        group-hover:-translate-y-4"
+      >
+
+        <img
+          src="/images/projects/monitoring/role-dean-redacted.png"
+          alt="Role-based troubled-student monitoring table"
+          loading="lazy"
+          class="h-full w-full object-cover object-left-top"
+        />
+
+      </div>
+
+
+      <!-- =================================================
+           NOTE
+           ================================================= -->
+
+      <div
+        class="absolute bottom-[3%] left-[5%] flex items-center gap-3"
+      >
+        <span
+          class="h-1.5 w-1.5 rounded-full bg-white/80"
+        ></span>
+
+        <p
+          class="font-mono text-[7px] uppercase tracking-[0.09em] text-white/60"
+        >
+          Real production interface · sensitive values redacted
+        </p>
+      </div>
+
+    </div>
     )
   }
 
@@ -257,90 +244,153 @@ const frameClass =
        REKMED
        ===================================================== -->
 
-  {
-    project.preview === "rekmed" && (
+{
+  project.preview === "datacakra" && (
+    <div
+      class="absolute inset-0 overflow-hidden bg-[#10B6C3]"
+    >
+
+      <!-- =================================================
+           BACKGROUND
+           ================================================= -->
+
       <div
-        class="absolute inset-0 overflow-hidden bg-[#e0e5df]"
+        class="absolute inset-0"
+        style="
+          background:
+            radial-gradient(
+              circle at 18% 22%,
+              rgba(255,255,255,0.22),
+              transparent 34%
+            ),
+            radial-gradient(
+              circle at 84% 76%,
+              rgba(0,74,88,0.22),
+              transparent 38%
+            );
+        "
+      ></div>
+
+
+      <!-- =================================================
+           META
+           ================================================= -->
+
+      <div
+        class="absolute inset-x-0 top-0 z-10 flex items-center justify-between px-[5%] py-[4%]"
       >
-        <!-- Vertical title -->
+        <p
+          class="font-mono text-[8px] uppercase tracking-[0.12em] text-white/75"
+        >
+          Datacakra / Product Design
+        </p>
 
         <p
-          class="absolute top-[8%] left-[5%] font-mono text-[8px] uppercase tracking-[0.14em] text-black/40"
+          class="font-mono text-[8px] uppercase tracking-[0.12em] text-white/75"
         >
-          Product concept / 2026
+          Internship · 2026
+        </p>
+      </div>
+
+
+      <!-- =================================================
+           MAIN MOCKUP
+           ================================================= -->
+
+      <div
+        class="absolute bottom-[8%] left-[6%] top-[16%] w-[72%]
+        overflow-hidden border border-white/30 bg-white
+        shadow-[0_26px_70px_rgba(0,67,79,0.26)]
+        transition-transform duration-700 ease-out
+        group-hover:-translate-y-2"
+      >
+        <img
+          src="/images/projects/datacakra/smart-building-dashboard.jpg"
+          alt="Smart Building real-time monitoring dashboard concept designed for a Datacakra client proposal"
+          loading="lazy"
+          class="h-full w-full object-cover object-left-top"
+        />
+      </div>
+
+
+      <!-- =================================================
+           WORKSTREAM CARD
+           ================================================= -->
+
+      <div
+        class="absolute bottom-[14%] right-[5%] z-10 w-[28%]
+        border border-white/35 bg-white/95 p-[4%]
+        shadow-[0_18px_45px_rgba(0,67,79,0.18)]"
+      >
+
+        <p
+          class="font-mono text-[7px] uppercase tracking-[0.1em] text-[#137480]"
+        >
+          02 workstreams
         </p>
 
 
-        <!-- Back sheet -->
+        <div class="mt-[12%]">
+
+          <p
+            class="text-[clamp(0.7rem,1vw,1rem)] font-medium tracking-[-0.025em] text-black"
+          >
+            Smart Building
+          </p>
+
+          <p
+            class="mt-[4%] text-[7px] leading-[1.6] text-black/45"
+          >
+            Sales-facing dashboard concept
+          </p>
+
+        </div>
+
 
         <div
-          class="absolute left-[18%] top-[20%] h-[63%] w-[60%] border border-black/10 bg-[#bdc9c0] transition-transform duration-700 ease-out group-hover:-translate-x-2"
+          class="my-[10%] border-t border-black/10"
         ></div>
 
 
-        <!-- Front sheet -->
+        <div>
 
-        <div
-          class="absolute bottom-[9%] right-[8%] h-[63%] w-[60%] bg-[#f6f5f0] p-[6%] transition-transform duration-700 ease-out group-hover:-translate-y-2"
-        >
-          <div
-            class="flex items-center justify-between"
+          <p
+            class="text-[clamp(0.7rem,1vw,1rem)] font-medium tracking-[-0.025em] text-black"
           >
-            <span
-              class="font-mono text-[7px] uppercase tracking-[0.1em] text-black/35"
-            >
-              RekMed
-            </span>
+            RekMed × SATUSEHAT
+          </p>
 
-            <span
-              class="h-2 w-2 rounded-full bg-[#83998b]"
-            ></span>
-          </div>
-
-          <div class="mt-[16%]">
-            <div
-              class="h-2 w-[20%] bg-black/12"
-            ></div>
-
-            <div
-              class="mt-[4%] h-5 w-[78%] bg-black/75"
-            ></div>
-
-            <div
-              class="mt-[2%] h-5 w-[55%] bg-black/75"
-            ></div>
-          </div>
-
-          <div
-            class="mt-[14%] grid grid-cols-2 gap-[5%]"
+          <p
+            class="mt-[4%] text-[7px] leading-[1.6] text-black/45"
           >
-            <div
-              class="aspect-[4/3] border border-black/8"
-            ></div>
+            Product and integration requirements
+          </p>
 
-            <div
-              class="aspect-[4/3] bg-black/[0.04]"
-            ></div>
-          </div>
         </div>
 
-
-        <!-- Big lettering -->
-
-        <span
-          class="absolute bottom-[2%] left-[4%] text-[clamp(3rem,7vw,7rem)] leading-none font-medium tracking-[-0.07em] text-black/8"
-        >
-          RM
-        </span>
-
-
-        <div
-          class="absolute right-[5%] top-[5%] font-mono text-[8px] uppercase tracking-[0.12em] text-black/35"
-        >
-          Temporary project preview
-        </div>
       </div>
-    )
-  }
+
+
+      <!-- =================================================
+           FOOTNOTE
+           ================================================= -->
+
+      <div
+        class="absolute bottom-[3%] left-[5%] flex items-center gap-3"
+      >
+        <span
+          class="h-1.5 w-1.5 rounded-full bg-white/85"
+        ></span>
+
+        <p
+          class="font-mono text-[7px] uppercase tracking-[0.09em] text-white/70"
+        >
+          UI/UX · Product communication · Technical collaboration
+        </p>
+      </div>
+
+    </div>
+  )
+}
 
 </div>
