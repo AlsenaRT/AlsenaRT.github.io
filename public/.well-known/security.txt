@@ -1,0 +1,5 @@
+Contact: mailto:alifrafitulusena@gmail.com
+Expires: 2027-07-31T00:00:00Z
+Preferred-Languages: en, id
+Canonical: https://alsenart.github.io/.well-known/security.txt
+Policy: https://alsenart.github.io/security/

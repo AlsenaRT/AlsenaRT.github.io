@@ -39,183 +39,171 @@ const canonicalURL =
     Astro.url.pathname,
     site.url
   );
+
+const isProd = 
+  import.meta.env.PROD;
 ---
 
 <!doctype html>
 
 <html lang="en">
-    <head>
+  <head>
 
     <meta charset="UTF-8" />
 
-    <script is:inline>
-        document.documentElement.classList.add("js");
-    </script>
+    <!--
+      Security controls that can be expressed at document level on static hosting.
+
+      Scripts are restricted to same-origin resources.
+      Inline styles remain allowed because several visual components currently
+      rely on inline style declarations.
+    -->
+   {
+      isProd && (
+        <meta
+          http-equiv="Content-Security-Policy"
+          content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; media-src 'self'; frame-src 'none'; worker-src 'self'; manifest-src 'self'; form-action 'none';"
+        />
+      )
+    }
+
+    <meta
+      name="referrer"
+      content="strict-origin-when-cross-origin"
+    />
+
+    <!-- Synchronous same-origin bootstrap: avoids requiring inline script. -->
+    <script is:inline src="/security-init.js"></script>
 
 
     <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
     />
 
 
     <title>
-        {pageTitle}
+      {pageTitle}
     </title>
 
 
     <!-- Basic SEO -->
 
     <meta
-        name="description"
-        content={description}
+      name="description"
+      content={description}
     />
 
     <link
-        rel="canonical"
-        href={canonicalURL}
+      rel="canonical"
+      href={canonicalURL}
     />
 
 
     {
-        noindex && (
+      noindex && (
         <meta
-            name="robots"
-            content="noindex,nofollow"
+          name="robots"
+          content="noindex,nofollow"
         />
-        )
+      )
     }
 
 
     <!-- Open Graph -->
 
     <meta
-        property="og:type"
-        content="website"
+      property="og:type"
+      content="website"
     />
 
     <meta
-        property="og:title"
-        content={pageTitle}
+      property="og:title"
+      content={pageTitle}
     />
 
     <meta
-        property="og:description"
-        content={description}
+      property="og:description"
+      content={description}
     />
 
     <meta
-        property="og:url"
-        content={canonicalURL}
+      property="og:url"
+      content={canonicalURL}
     />
 
     <meta
-        property="og:site_name"
-        content={site.name}
+      property="og:site_name"
+      content={site.name}
     />
 
 
     <!-- Twitter / generic social cards -->
 
     <meta
-        name="twitter:card"
-        content="summary"
+      name="twitter:card"
+      content="summary"
     />
 
     <meta
-        name="twitter:title"
-        content={pageTitle}
+      name="twitter:title"
+      content={pageTitle}
     />
 
     <meta
-        name="twitter:description"
-        content={description}
+      name="twitter:description"
+      content={description}
     />
 
 
     <!-- Browser -->
 
     <meta
-        name="theme-color"
-        content="#f5f4f0"
+      name="theme-color"
+      content="#f5f4f0"
     />
 
     <link
-        rel="icon"
-        type="image/svg+xml"
-        href="/favicon.svg"
+      rel="icon"
+      type="image/svg+xml"
+      href="/favicon.svg"
     />
 
 
     <meta
-        name="generator"
-        content={Astro.generator}
+      name="generator"
+      content={Astro.generator}
     />
 
-    </head>
+  </head>
 
-  <body>
-    <a href="#main-content" class="skip-link">
+    <body>
+
+    <a
+      href="#main-content"
+      class="skip-link"
+    >
       Skip to content
     </a>
 
+
     <Header />
+
 
     <main id="main-content">
       <slot />
     </main>
 
+
     <Footer />
 
-    <script>
-    const revealElements =
-        document.querySelectorAll<HTMLElement>(
-        "[data-reveal]"
-        );
 
-    if (
-        "IntersectionObserver" in window
-    ) {
-        const observer =
-        new IntersectionObserver(
-            (entries) => {
-            entries.forEach((entry) => {
-                if (
-                entry.isIntersecting
-                ) {
-                entry.target.classList.add(
-                    "is-visible"
-                );
+    <script
+      is:inline
+      src="/reveal.js"
+      defer
+    ></script>
 
-                observer.unobserve(
-                    entry.target
-                );
-                }
-            });
-            },
-            {
-            threshold: 0.08,
+  </body>
 
-            rootMargin:
-                "0px 0px -8% 0px",
-            }
-        );
-
-        revealElements.forEach(
-        (element) => {
-            observer.observe(element);
-        }
-        );
-    } else {
-        revealElements.forEach(
-        (element) => {
-            element.classList.add(
-            "is-visible"
-            );
-        }
-        );
-    }
-    </script>
-
-    </body>
 </html>

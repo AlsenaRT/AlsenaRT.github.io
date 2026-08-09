@@ -41,7 +41,7 @@ const year = new Date().getFullYear();
       </p>
 
       <div
-        class="flex gap-6 md:justify-center"
+        class="flex flex-wrap gap-x-6 gap-y-2 md:justify-center"
       >
         <a
           href={`mailto:${site.email}`}
@@ -53,7 +53,7 @@ const year = new Date().getFullYear();
         <a
           href={site.links.linkedin}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           class="transition-colors duration-200 hover:text-ink"
         >
           LinkedIn ↗
@@ -62,10 +62,17 @@ const year = new Date().getFullYear();
         <a
           href={site.links.github}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           class="transition-colors duration-200 hover:text-ink"
         >
           GitHub ↗
+        </a>
+
+        <a
+          href="/security/"
+          class="transition-colors duration-200 hover:text-ink"
+        >
+          Security
         </a>
       </div>
 
