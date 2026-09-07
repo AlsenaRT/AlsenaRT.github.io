@@ -1,7 +1,4 @@
 ---
-import CaseSection
-  from "../components/case-study/CaseSection.astro";
-
 import type {
   Project,
 } from "../data/projects";
@@ -15,6 +12,124 @@ interface Props {
 const {
   project,
 } = Astro.props;
+
+const productAreas = [
+  {
+    number: "01",
+    title: "Patient Flow",
+    description:
+      "Queues, registration, patient selection, referrals, and examination status.",
+  },
+  {
+    number: "02",
+    title: "Medical Record",
+    description:
+      "Baseline data, complaints, examination, diagnoses, prescriptions, and SOAP.",
+  },
+  {
+    number: "03",
+    title: "Management",
+    description:
+      "Accounts, patients, clinics, doctors, pharmacy, treatments, and supporting data.",
+  },
+  {
+    number: "04",
+    title: "Reporting",
+    description:
+      "Medical-record outputs and other operational reports produced by the system.",
+  },
+];
+
+
+const requirementLayers = [
+  {
+    number: "01",
+    label: "Patient identity",
+    title:
+      "Different people required different identity flows.",
+    items: [
+      "WNI → NIK",
+      "WNA → Passport / KITAS",
+      "Newborn → NIK or mother's NIK + birth order",
+      "WNI without NIK → alternative identity fields",
+    ],
+  },
+  {
+    number: "02",
+    label: "Visit conditions",
+    title:
+      "Queue and visit type changed what information was needed.",
+    items: [
+      "General / BPJS",
+      "New visit / referral",
+      "Sick visit / healthy visit",
+      "Referral number and BPJS status where relevant",
+    ],
+  },
+  {
+    number: "03",
+    label: "Clinical information",
+    title:
+      "Existing RekMed fields needed to align with structured clinical information.",
+    items: [
+      "Conditions → ICD-10",
+      "Procedures → ICD-9-CM",
+      "Medication → KFA / DTO references",
+      "Allergies → structured terminology",
+      "Specimen and diagnostic-report information",
+    ],
+  },
+  {
+    number: "04",
+    label: "Interface behaviour",
+    title:
+      "Some integration requirements also implied new UI behaviour.",
+    items: [
+      "Conditional domicile / KTP address fields",
+      "Polyclinic filtering after BPJS queue selection",
+      "Remaining-queue information",
+      "iCare access when BPJS is connected",
+      "BPJS treatment and DPHO medication actions",
+    ],
+  },
+];
+
+
+const fieldSemantics = [
+  {
+    label: "Numeric",
+    value: "Integer / decimal",
+  },
+  {
+    label: "Measurement",
+    value: "bpm · g · g/dL · mg/dL",
+  },
+  {
+    label: "Binary state",
+    value: "Boolean / Yes-No",
+  },
+  {
+    label: "Controlled option",
+    value: "Enum-like clinical states",
+  },
+];
+
+
+const owned = [
+  "Smart Building dashboard mockup",
+  "RekMed product survey",
+  "Information-architecture mapping",
+  "Field and workflow requirement mapping",
+  "Design communication with my supervisor",
+];
+
+
+const notOwned = [
+  "SATUSEHAT API implementation",
+  "Backend integration",
+  "Existing RekMed interface design",
+  "Later implementation after my involvement ended",
+];
 ---
 
 <!-- =======================================================
@@ -213,1053 +328,1240 @@ const {
 </section>
 
 <!-- =======================================================
-     01 / CONTEXT
-     ======================================================= -->
-
-<CaseSection
-  number="01"
-  label="Context"
-  title="Working between interface design, product communication, and technical requirements."
-  intro="During a remote UI/UX internship at Datacakra, my work moved across two very different product needs: visualizing a Smart Building proposal for a sales pitch and supporting the early requirements work behind a stalled RekMed–SATUSEHAT integration."
->
-  <p>
-    I joined Datacakra as the only UI/UX Design
-    intern in a cross-functional internship batch
-    that also included project management, frontend,
-    backend, and quality-assurance roles.
-  </p>
-
-  <p>
-    My direct design team was much smaller: myself
-    and a company UI/UX Designer who acted as my
-    supervisor.
-  </p>
-
-  <p>
-    Because the internship was fully remote, progress
-    was communicated twice each working day through
-    Slack — once in the morning and again in the
-    afternoon — to my supervisor and the Head of IT.
-  </p>
-
-  <p>
-    The internship was originally centered around one
-    project: helping continue the integration of
-    RekMed with SATUSEHAT. While that work was still
-    preparing for design involvement, I was assigned
-    to another design task that could immediately
-    support the business.
-  </p>
-</CaseSection>
-
-
-<!-- =======================================================
-     WORKSTREAM OVERVIEW
+     01 / INTERNSHIP CONTEXT
      ======================================================= -->
 
 <section
-  class="site-container py-12 md:py-16"
-  data-reveal
+  class="site-container py-20 md:py-32"
 >
-  <div class="editorial-grid">
-
-    <div>
-      <p class="mono-label text-muted">
-        Workstreams
+  <div
+    class="grid gap-12 md:grid-cols-12"
+  >
+    <div
+      class="md:col-span-3"
+    >
+      <p
+        class="rule-label text-muted"
+      >
+        01 / The internship
       </p>
     </div>
 
 
     <div
-      class="editorial-content grid gap-4 md:grid-cols-2"
+      class="md:col-span-8 md:col-start-5"
     >
-
-      <!-- Smart Building -->
-
-      <article
-        class="border border-line p-8 md:p-10"
+      <h2
+        class="max-w-[960px] text-[clamp(2.6rem,5vw,5.8rem)] leading-[0.98] font-medium tracking-[-0.05em]"
       >
-        <p
-          class="font-mono text-[9px] uppercase tracking-[0.08em] text-muted"
-        >
-          01 / External
-        </p>
+        The two assignments required almost
+        opposite ways of working.
+      </h2>
 
-        <h3
-          class="mt-6 text-[clamp(1.8rem,2.5vw,2.7rem)] leading-[1.05] font-medium tracking-[-0.04em]"
-        >
-          Smart Building Proposal
-        </h3>
-
-        <p
-          class="mt-5 w-full text-[clamp(1rem,1.05vw,1.1rem)] leading-[1.8] text-muted"
-        >
-          A monitoring-dashboard concept created for
-          a partnership and product proposal presented
-          to a TNI battalion.
-        </p>
-
-        <p
-          class="mt-8 font-mono text-[8px] uppercase tracking-[0.07em] text-muted"
-        >
-          UI concept · Sales communication
-        </p>
-      </article>
-
-
-      <!-- RekMed -->
-
-      <article
-        class="border border-line p-7 md:p-9"
-      >
-        <p
-          class="font-mono text-[9px] uppercase tracking-[0.08em] text-muted"
-        >
-          02 / Internal
-        </p>
-
-        <h3
-          class="mt-6 text-[clamp(1.8rem,2.5vw,2.7rem)] leading-[1.05] font-medium tracking-[-0.04em]"
-        >
-          RekMed × SATUSEHAT
-        </h3>
-
-        <p
-          class="mt-5 max-w-[520px] text-[14px] leading-[1.8] text-muted"
-        >
-          Product survey, information architecture,
-          and requirements-mapping support for the
-          integration of an existing electronic
-          medical record application.
-        </p>
-
-        <p
-          class="mt-8 font-mono text-[8px] uppercase tracking-[0.07em] text-muted"
-        >
-          Product mapping · Technical collaboration
-        </p>
-      </article>
-
-    </div>
-
-  </div>
-</section>
-
-
-<!-- =======================================================
-     02 / SMART BUILDING
-     ======================================================= -->
-
-<CaseSection
-  number="02"
-  label="Smart Building"
-  title="Making a technical proposal easier to see."
-  intro="While waiting for the RekMed integration work to require design support, I was asked to help Datacakra's design and marketing teams visualize part of a Smart Building proposal."
->
-  <p>
-    The proposal described an integrated monitoring
-    environment combining CCTV analytics, energy
-    monitoring, AC monitoring and control, alerts,
-    reporting, and a centralized web dashboard.
-  </p>
-
-  <p>
-    For the CCTV side of the proposal, the system
-    needed to communicate capabilities such as
-    intrusion detection, crowd detection, loitering
-    detection, camera health, and real-time incident
-    alerts.
-  </p>
-
-  <p>
-    My responsibility was not to design the entire
-    pitch deck or product from zero. The marketing
-    material already existed, and my supervisor had
-    established a visual direction through earlier
-    Figma explorations.
-  </p>
-
-  <p>
-    I was given a verbal brief and asked to extend
-    that existing design language into a convincing
-    dashboard mockup that could be inserted directly
-    into the proposal.
-  </p>
-</CaseSection>
-
-
-<!-- =======================================================
-     SMART BUILDING CONSTRAINT
-     ======================================================= -->
-
-<section
-  class="site-container py-12 md:py-16"
-  data-reveal
->
-  <div class="editorial-grid">
-
-    <div>
-      <p class="mono-label text-muted">
-        Constraint
-      </p>
-    </div>
-
-
-    <div
-      class="editorial-content grid gap-4 md:grid-cols-3"
-    >
-
-      <article
-        class="border border-line p-6 md:p-8"
-      >
-        <p class="mono-label text-muted">
-          Time
-        </p>
-
-        <p
-          class="mt-6 text-[clamp(1.8rem,2.5vw,2.6rem)] font-medium tracking-[-0.04em]"
-        >
-          ~3 hours
-        </p>
-
-        <p
-          class="mt-4 text-[13px] leading-[1.75] text-muted"
-        >
-          The mockup was completed within one short
-          working session.
-        </p>
-      </article>
-
-
-      <article
-        class="border border-line p-6 md:p-8"
-      >
-        <p class="mono-label text-muted">
-          Direction
-        </p>
-
-        <p
-          class="mt-6 text-[clamp(1.8rem,2.5vw,2.6rem)] font-medium tracking-[-0.04em]"
-        >
-          Existing system
-        </p>
-
-        <p
-          class="mt-4 text-[13px] leading-[1.75] text-muted"
-        >
-          The interface extended an existing visual
-          style instead of introducing a completely
-          new product language.
-        </p>
-      </article>
-
-
-      <article
-        class="border border-line p-6 md:p-8"
-      >
-        <p class="mono-label text-muted">
-          Review
-        </p>
-
-        <p
-          class="mt-6 text-[clamp(1.8rem,2.5vw,2.6rem)] font-medium tracking-[-0.04em]"
-        >
-          One iteration
-        </p>
-
-        <p
-          class="mt-4 text-[13px] leading-[1.75] text-muted"
-        >
-          Feedback focused on using empty space more
-          effectively and strengthening typography
-          hierarchy.
-        </p>
-      </article>
-
-    </div>
-
-  </div>
-</section>
-
-
-<!-- =======================================================
-     SMART BUILDING FINAL MOCKUP
-     ======================================================= -->
-
-<section
-  class="site-container py-14 md:py-20"
-  data-reveal
->
-
-  <div class="editorial-grid">
-
-    <div>
-      <p class="mono-label text-muted">
-        Final Mockup
-      </p>
-    </div>
-
-
-    <div class="editorial-content">
 
       <div
-        class="bg-[#0d8e99] p-4 md:p-8 lg:p-10"
+        class="mt-10 grid gap-8 md:grid-cols-2"
+      >
+        <p
+          class="text-[15px] leading-[1.8] text-muted"
+        >
+          I joined Datacakra as the only UI/UX Design
+          intern in a cross-functional internship
+          batch. My direct design team consisted of
+          myself and a company UI/UX Designer who
+          supervised my work.
+        </p>
+
+        <p
+          class="text-[15px] leading-[1.8] text-muted"
+        >
+          Smart Building asked me to move quickly from
+          a brief into a presentation-ready interface.
+          RekMed asked me to slow down, inspect an
+          existing product, and understand what its
+          interface and data were already doing.
+        </p>
+      </div>
+
+
+      <div
+        class="mt-14 border-y border-ink"
       >
         <div
-          class="overflow-hidden border border-white/20 bg-white shadow-[0_24px_65px_rgba(0,65,75,0.20)]"
+          class="grid md:grid-cols-2"
         >
-          <img
-            src="/images/projects/datacakra/smart-building-dashboard.jpg"
-            alt="Smart Building real-time monitoring dashboard mockup"
-            loading="lazy"
-            class="block h-auto w-full"
-          />
+          <div
+            class="border-b border-line py-7 md:border-r md:border-b-0 md:pr-8"
+          >
+            <p
+              class="text-[10px] uppercase tracking-[0.08em] text-accent"
+            >
+              External-facing
+            </p>
+
+            <p
+              class="mt-4 text-[clamp(1.7rem,2.6vw,2.8rem)] leading-[1.05] font-medium tracking-[-0.035em]"
+            >
+              Communicate an idea quickly.
+            </p>
+          </div>
+
+
+          <div
+            class="py-7 md:pl-8"
+          >
+            <p
+              class="text-[10px] uppercase tracking-[0.08em] text-muted"
+            >
+              Internal-facing
+            </p>
+
+            <p
+              class="mt-4 text-[clamp(1.7rem,2.6vw,2.8rem)] leading-[1.05] font-medium tracking-[-0.035em]"
+            >
+              Understand an existing system carefully.
+            </p>
+          </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =======================================================
+     WORKSTREAM A / SMART BUILDING
+     ======================================================= -->
+
+<section
+  class="bg-[#0d8e99] text-white"
+>
+  <div
+    class="site-container py-16 md:py-24"
+  >
+    <div
+      class="grid gap-10 md:grid-cols-12"
+    >
+      <div
+        class="md:col-span-3"
+      >
+        <p
+          class="rule-label text-white/60"
+        >
+          Workstream A
+        </p>
       </div>
 
 
       <div
-        class="mt-6 grid gap-6 md:grid-cols-[1fr_1fr]"
+        class="md:col-span-8 md:col-start-5"
       >
-
         <p
-          class="text-[clamp(1rem,1.05vw,1.1rem)] leading-[1.85] text-muted"
+          class="text-[10px] uppercase tracking-[0.08em] text-white/55"
         >
-          I organized the screen around a compact
-          device summary, visible alert activity, and
-          a large camera grid so the mockup could
-          communicate the idea of centralized
-          real-time supervision immediately.
+          Smart Building Proposal
         </p>
 
-        <p
-          class="text-[clamp(1rem,1.05vw,1.1rem)] leading-[1.85] text-muted"
+        <h2
+          class="mt-7 max-w-[980px] text-[clamp(3rem,6vw,6.5rem)] leading-[0.94] font-medium tracking-[-0.055em]"
         >
-          The final mockup was incorporated into the
-          proposal deck used by Datacakra's CEO for a
-          partnership and product pitch. I was not
-          involved in the later outcome of the
-          proposal.
-        </p>
-
+          Turn technical capability
+          into something a client can see.
+        </h2>
       </div>
-
     </div>
-
   </div>
-
 </section>
 
-
-<!-- =======================================================
-     03 / REKMED
-     ======================================================= -->
-
-<CaseSection
-  number="03"
-  label="RekMed × SATUSEHAT"
-  title="Understanding an existing healthcare product before helping prepare it for integration."
-  intro="The main internship project involved RekMed, Datacakra's existing web-based electronic medical record and clinic-management application, and a SATUSEHAT integration effort that had been inactive before the new intern team was assigned to it."
->
-  <p>
-    Unlike the Smart Building task, my contribution
-    here was not primarily visual interface design.
-  </p>
-
-  <p>
-    I first needed to understand a product I had not
-    designed: what pages existed, what users could do
-    on each page, where patient information entered
-    the system, and which actions changed or produced
-    medical data.
-  </p>
-
-  <p>
-    I studied the existing RekMed guidebook, explored
-    the development version of the application
-    myself, and discussed unfamiliar integration
-    requirements with the project-management intern
-    when the technical documentation was unclear to
-    me.
-  </p>
-</CaseSection>
-
-
-<!-- =======================================================
-     REKMED PRODUCT SURVEY
-     ======================================================= -->
-
 <section
-  class="site-container py-12 md:py-16"
-  data-reveal
+  class="site-container py-20 md:py-32"
 >
-  <div class="editorial-grid">
-
-    <div>
-      <p class="mono-label text-muted">
-        Product Survey
+  <div
+    class="grid gap-12 md:grid-cols-12"
+  >
+    <div
+      class="md:col-span-3"
+    >
+      <p
+        class="rule-label text-muted"
+      >
+        02 / Smart Building
       </p>
     </div>
 
 
     <div
-      class="editorial-content grid gap-4 md:grid-cols-2 xl:grid-cols-4"
+      class="md:col-span-8 md:col-start-5"
     >
-
-      <article
-        class="border border-line p-6 md:p-6"
+      <h2
+        class="max-w-[930px] text-[clamp(2.4rem,4.5vw,5rem)] leading-[1] font-medium tracking-[-0.045em]"
       >
-        <p class="mono-label text-muted">
-          01
-        </p>
+        The brief already had a direction.
+        My job was to make it convincing.
+      </h2>
 
-        <h3
-          class="mt-5 text-[clamp(1.3rem,1.6vw,1.6rem)] leading-[1.15] font-medium tracking-[-0.03em]"
+
+      <div
+        class="mt-10 grid gap-8 md:grid-cols-2"
+      >
+        <p
+          class="text-[14px] leading-[1.8] text-muted"
         >
-          Patient Flow
-        </h3>
+          The proposal described a centralized
+          Smart Building environment covering CCTV
+          analytics, alerts, energy monitoring,
+          reporting, and device supervision.
+        </p>
 
         <p
-          class="mt-4 text-[15px] leading-[1.75] text-muted"
+          class="text-[14px] leading-[1.8] text-muted"
         >
-          Queues, registration, patient selection,
-          referrals, and examination status.
+          I was not designing the entire product or
+          pitch deck from zero. My supervisor had
+          already explored a visual direction, and
+          I extended that language into a dashboard
+          mockup that could be used directly in the
+          proposal.
         </p>
-      </article>
+      </div>
+    </div>
+  </div>
 
 
-      <article
-        class="border border-line p-6 md:p-6"
+  <!-- Constraints -->
+
+  <div
+    class="mt-16 grid border-y border-ink md:grid-cols-3 md:mt-24"
+  >
+
+    <div
+      class="border-b border-line py-8 md:border-r md:border-b-0 md:pr-8"
+    >
+      <p
+        class="text-[10px] uppercase tracking-[0.08em] text-muted"
       >
-        <p class="mono-label text-muted">
-          02
-        </p>
+        Time
+      </p>
 
-        <h3
-          class="mt-5 text-[clamp(1.3rem,1.6vw,1.6rem)] leading-[1.15] font-medium tracking-[-0.03em]"
-        >
-          Medical Record
-        </h3>
-
-        <p
-          class="mt-4 text-[15px] leading-[1.75] text-muted"
-        >
-          Baseline data, complaints, examination,
-          diagnoses, prescriptions, and SOAP.
-        </p>
-      </article>
-
-
-      <article
-        class="border border-line p-6 md:p-6"
+      <p
+        class="mt-5 text-[clamp(2rem,3vw,3.5rem)] font-medium tracking-[-0.045em]"
       >
-        <p class="mono-label text-muted">
-          03
-        </p>
+        ~3 hours
+      </p>
 
-        <h3
-          class="mt-5 text-[clamp(1.3rem,1.6vw,1.6rem)] leading-[1.15] font-medium tracking-[-0.03em]"
-        >
-          Management
-        </h3>
-
-        <p
-          class="mt-4 text-[15px] leading-[1.75] text-muted"
-        >
-          Accounts, patients, clinics, doctors,
-          pharmacy, treatments, and supporting data.
-        </p>
-      </article>
-
-
-      <article
-        class="border border-line p-6 md:p-6"
+      <p
+        class="mt-4 max-w-sm text-[13px] leading-[1.7] text-muted"
       >
-        <p class="mono-label text-muted">
-          04
-        </p>
+        The mockup was completed within one short
+        working session.
+      </p>
+    </div>
 
-        <h3
-          class="mt-5 text-[clamp(1.3rem,1.6vw,1.6rem)] leading-[1.15] font-medium tracking-[-0.03em]"
-        >
-          Reporting
-        </h3>
 
-        <p
-          class="mt-4 text-[15px] leading-[1.75] text-muted"
-        >
-          Medical-record outputs and other
-          operational reports produced by the system.
-        </p>
-      </article>
+    <div
+      class="border-b border-line py-8 md:border-r md:border-b-0 md:px-8"
+    >
+      <p
+        class="text-[10px] uppercase tracking-[0.08em] text-muted"
+      >
+        Direction
+      </p>
 
+      <p
+        class="mt-5 text-[clamp(2rem,3vw,3.5rem)] font-medium tracking-[-0.045em]"
+      >
+        Existing
+      </p>
+
+      <p
+        class="mt-4 max-w-sm text-[13px] leading-[1.7] text-muted"
+      >
+        The dashboard extended an established
+        proposal language rather than creating an
+        unrelated new design system.
+      </p>
+    </div>
+
+
+    <div
+      class="py-8 md:pl-8"
+    >
+      <p
+        class="text-[10px] uppercase tracking-[0.08em] text-muted"
+      >
+        Review
+      </p>
+
+      <p
+        class="mt-5 text-[clamp(2rem,3vw,3.5rem)] font-medium tracking-[-0.045em]"
+      >
+        01
+      </p>
+
+      <p
+        class="mt-4 max-w-sm text-[13px] leading-[1.7] text-muted"
+      >
+        One review focused mainly on using empty
+        space better and strengthening typography
+        hierarchy.
+      </p>
     </div>
 
   </div>
 </section>
 
+<!-- =======================================================
+     SMART BUILDING / FINAL MOCKUP
+     ======================================================= -->
+
+<section
+  class="site-container pb-24 md:pb-40"
+>
+  <figure>
+    <div
+      class="bg-[#0d8e99] p-4 sm:p-6 md:p-10 lg:p-14"
+    >
+      <div
+        class="overflow-hidden bg-white"
+      >
+        <img
+          src="/images/projects/datacakra/smart-building-dashboard.jpg"
+          alt="Smart Building real-time monitoring dashboard mockup"
+          loading="lazy"
+          class="block h-auto w-full"
+        />
+      </div>
+    </div>
+
+
+    <figcaption
+      class="grid gap-5 border-t border-line pt-4 text-[10px] uppercase tracking-[0.07em] text-muted md:grid-cols-3"
+    >
+      <p>
+        Final dashboard mockup
+      </p>
+
+      <p class="md:text-center">
+        CCTV monitoring
+      </p>
+
+      <p class="md:text-right">
+        Proposal communication
+      </p>
+    </figcaption>
+  </figure>
+
+
+  <div
+    class="mt-12 grid gap-10 md:grid-cols-12"
+  >
+    <div
+      class="md:col-span-3"
+    >
+      <p
+        class="text-[10px] uppercase tracking-[0.08em] text-muted"
+      >
+        Design emphasis
+      </p>
+    </div>
+
+
+    <div
+      class="md:col-span-8 md:col-start-5"
+    >
+      <div
+        class="border-t border-line"
+      >
+
+        <div
+          class="grid gap-5 border-b border-line py-6 md:grid-cols-12"
+        >
+          <span
+            class="text-[10px] text-accent md:col-span-1"
+          >
+            01
+          </span>
+
+          <h3
+            class="text-xl font-medium tracking-[-0.03em] md:col-span-4"
+          >
+            Immediate supervision
+          </h3>
+
+          <p
+            class="max-w-lg text-[13px] leading-[1.7] text-muted md:col-span-6"
+          >
+            A large camera grid makes centralized
+            real-time monitoring understandable
+            almost immediately.
+          </p>
+        </div>
+
+
+        <div
+          class="grid gap-5 border-b border-line py-6 md:grid-cols-12"
+        >
+          <span
+            class="text-[10px] text-accent md:col-span-1"
+          >
+            02
+          </span>
+
+          <h3
+            class="text-xl font-medium tracking-[-0.03em] md:col-span-4"
+          >
+            Visible system state
+          </h3>
+
+          <p
+            class="max-w-lg text-[13px] leading-[1.7] text-muted md:col-span-6"
+          >
+            Device summaries and camera-health
+            information communicate that the screen
+            is monitoring infrastructure, not simply
+            displaying video.
+          </p>
+        </div>
+
+
+        <div
+          class="grid gap-5 border-b border-line py-6 md:grid-cols-12"
+        >
+          <span
+            class="text-[10px] text-accent md:col-span-1"
+          >
+            03
+          </span>
+
+          <h3
+            class="text-xl font-medium tracking-[-0.03em] md:col-span-4"
+          >
+            Incidents in context
+          </h3>
+
+          <p
+            class="max-w-lg text-[13px] leading-[1.7] text-muted md:col-span-6"
+          >
+            Alert activity sits close to the
+            monitoring view so capabilities such as
+            intrusion, crowd, and loitering detection
+            can be understood as part of one system.
+          </p>
+        </div>
+
+      </div>
+
+
+      <p
+        class="mt-10 max-w-2xl text-[14px] leading-[1.8] text-muted"
+      >
+        The final mockup was incorporated into the
+        proposal deck used for a partnership and
+        product pitch. My involvement ended before
+        the later proposal outcome.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- =======================================================
+     WORKSTREAM B / REKMED
+     ======================================================= -->
+
+<section
+  class="bg-ink text-paper"
+>
+  <div
+    class="site-container py-20 md:py-32 lg:py-40"
+  >
+    <div
+      class="grid gap-12 md:grid-cols-12"
+    >
+      <div
+        class="md:col-span-3"
+      >
+        <p
+          class="rule-label text-accent"
+        >
+          Workstream B
+        </p>
+      </div>
+
+
+      <div
+        class="md:col-span-8 md:col-start-5"
+      >
+        <p
+          class="text-[10px] uppercase tracking-[0.08em] text-paper/45"
+        >
+          RekMed × SATUSEHAT
+        </p>
+
+        <h2
+          class="mt-7 max-w-[980px] text-[clamp(3rem,6vw,6.5rem)] leading-[0.94] font-medium tracking-[-0.055em]"
+        >
+          Before changing the product,
+          I had to understand what was
+          already there.
+        </h2>
+
+        <p
+          class="mt-10 max-w-2xl text-[14px] leading-[1.8] text-paper/55"
+        >
+          Unlike the Smart Building task, this work
+          was not primarily about visual interface
+          design. I was working inward from an
+          existing electronic medical record product
+          to understand its pages, actions, data, and
+          integration requirements.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =======================================================
+     03 / PRODUCT SURVEY
+     ======================================================= -->
+
+<section
+  class="site-container py-20 md:py-32"
+>
+  <div
+    class="grid gap-12 md:grid-cols-12"
+  >
+    <div
+      class="md:col-span-3"
+    >
+      <p
+        class="rule-label text-muted"
+      >
+        03 / Product survey
+      </p>
+    </div>
+
+
+    <div
+      class="md:col-span-8 md:col-start-5"
+    >
+      <h2
+        class="max-w-[950px] text-[clamp(2.6rem,5vw,5.8rem)] leading-[0.98] font-medium tracking-[-0.05em]"
+      >
+        I mapped the product before mapping
+        the integration.
+      </h2>
+
+      <div
+        class="mt-10 grid gap-8 md:grid-cols-2"
+      >
+        <p
+          class="text-[14px] leading-[1.8] text-muted"
+        >
+          I studied the existing RekMed guidebook,
+          explored the development version of the
+          application, and documented what pages
+          existed and what users could do within them.
+        </p>
+
+        <p
+          class="text-[14px] leading-[1.8] text-muted"
+        >
+          This gave me a working model of where
+          patient information entered the product,
+          which actions changed medical information,
+          and where integration requirements would
+          intersect with the current interface.
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Product areas -->
+
+  <div
+    class="mt-16 border-t border-ink md:mt-24"
+  >
+    {
+      productAreas.map(
+        (area) => (
+          <div
+            class="grid gap-5 border-b border-line py-7 md:grid-cols-12"
+          >
+            <p
+              class="text-[10px] text-accent md:col-span-1"
+            >
+              {area.number}
+            </p>
+
+            <h3
+              class="text-[clamp(1.6rem,2.4vw,2.6rem)] leading-[1.05] font-medium tracking-[-0.035em] md:col-span-4"
+            >
+              {area.title}
+            </h3>
+
+            <p
+              class="max-w-xl text-[14px] leading-[1.75] text-muted md:col-span-6 md:col-start-7"
+            >
+              {area.description}
+            </p>
+          </div>
+        )
+      )
+    }
+  </div>
+</section>
 
 <!-- =======================================================
      INFORMATION ARCHITECTURE
      ======================================================= -->
 
 <section
-  class="site-container py-14 md:py-20"
-  data-reveal
+  class="site-container pb-24 md:pb-40"
 >
-  <div class="editorial-grid">
-
-    <div>
-      <p class="mono-label text-muted">
-        Information Architecture
-      </p>
-    </div>
-
-
-    <div class="editorial-content">
-
-      <div
-        class="border border-line bg-white p-2 md:p-4"
+  <div
+    class="grid gap-12 border-t border-ink pt-10 md:grid-cols-12"
+  >
+    <div
+      class="md:col-span-3"
+    >
+      <p
+        class="rule-label text-muted"
       >
-        <img
-          src="/images/projects/datacakra/rekmed-information-architecture.png"
-          alt="RekMed information architecture mapping pages, features, and actions"
-          loading="lazy"
-          class="block h-auto w-full"
-        />
-      </div>
-
-
-      <div
-        class="mt-6 grid gap-5 md:grid-cols-3"
-      >
-
-        <div>
-          <p
-            class="font-mono text-[9px] uppercase tracking-[0.07em] text-muted"
-          >
-            Yellow
-          </p>
-
-          <p
-            class="mt-3 text-[15px] leading-[1.75] text-muted"
-          >
-            Page or major destination.
-          </p>
-        </div>
-
-
-        <div>
-          <p
-            class="font-mono text-[9px] uppercase tracking-[0.07em] text-muted"
-          >
-            Orange
-          </p>
-
-          <p
-            class="mt-3 text-[15px] leading-[1.75] text-muted"
-          >
-            Feature available inside a page.
-          </p>
-        </div>
-
-
-        <div>
-          <p
-            class="font-mono text-[9px] uppercase tracking-[0.07em] text-muted"
-          >
-            Pink
-          </p>
-
-          <p
-            class="mt-3 text-[15px] leading-[1.75] text-muted"
-          >
-            User action or control tied to a feature.
-          </p>
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-
-<!-- =======================================================
-     04 / REQUIREMENTS MAPPING
-     ======================================================= -->
-
-<CaseSection
-  number="04"
-  label="Requirements Mapping"
-  title="The task was broader than deciding whether an input should accept text or numbers."
->
-  <p>
-    The integration work exposed a larger requirements
-    problem: different patients, visit types, and
-    clinical workflows do not always require the same
-    information.
-  </p>
-
-  <p>
-    The working board therefore mapped both the data
-    that needed to exist and the interface conditions
-    under which that data would be requested.
-  </p>
-
-  <p>
-    My role was to help make those requirements more
-    concrete for the implementation team — not to
-    write the SATUSEHAT API integration itself.
-  </p>
-</CaseSection>
-
-
-<!-- =======================================================
-     REQUIREMENT GROUPS
-     ======================================================= -->
-
-<section
-  class="site-container py-12 md:py-16"
-  data-reveal
->
-  <div class="editorial-grid">
-
-    <div>
-      <p class="mono-label text-muted">
-        Requirement Layers
+        Information architecture
       </p>
     </div>
 
 
     <div
-      class="editorial-content grid gap-4 md:grid-cols-2"
+      class="md:col-span-8 md:col-start-5"
     >
-
-      <!-- Patient identity -->
-
-      <article
-        class="border border-line p-7 md:p-8"
+      <h2
+        class="max-w-[900px] text-[clamp(2.4rem,4.5vw,5rem)] leading-[1] font-medium tracking-[-0.045em]"
       >
-        <p class="mono-label text-muted">
-          Patient identity
-        </p>
+        Pages, features, and actions became
+        one map.
+      </h2>
 
-        <h3
-          class="mt-6 max-w-[520px] text-[clamp(1.5rem,2vw,2rem)] leading-[1.12] font-medium tracking-[-0.035em]"
-        >
-          Different people required different identity flows.
-        </h3>
-
-        <ul
-          class="mt-6 space-y-3 text-[15px] leading-[1.8] text-muted"
-        >
-          <li>WNI → NIK</li>
-          <li>WNA → Passport / KITAS</li>
-          <li>Newborn → NIK or mother's NIK + birth order</li>
-          <li>WNI without NIK → alternative identity fields</li>
-        </ul>
-      </article>
-
-
-      <!-- Visit -->
-
-      <article
-        class="border border-line p-7 md:p-8"
+      <p
+        class="mt-8 max-w-2xl text-[14px] leading-[1.8] text-muted"
       >
-        <p class="mono-label text-muted">
-          Visit conditions
-        </p>
-
-        <h3
-          class="mt-6 max-w-[520px] text-[clamp(1.5rem,2vw,2rem)] leading-[1.12] font-medium tracking-[-0.035em]"
-        >
-          Queue and visit type changed what information was needed.
-        </h3>
-
-        <ul
-          class="mt-6 space-y-3 text-[15px] leading-[1.8] text-muted"
-        >
-          <li>General / BPJS</li>
-          <li>New visit / referral</li>
-          <li>Sick visit / healthy visit</li>
-          <li>Referral number and BPJS status where relevant</li>
-        </ul>
-      </article>
-
-
-      <!-- Clinical -->
-
-      <article
-        class="border border-line p-7 md:p-8"
-      >
-        <p class="mono-label text-muted">
-          Clinical information
-        </p>
-
-        <h3
-          class="mt-6 max-w-[520px] text-[clamp(1.5rem,2vw,2rem)] leading-[1.12] font-medium tracking-[-0.035em]"
-        >
-          Existing RekMed fields needed to align with structured clinical information.
-        </h3>
-
-        <ul
-          class="mt-6 space-y-3 text-[15px] leading-[1.8] text-muted"
-        >
-          <li>Conditions → ICD-10</li>
-          <li>Procedures → ICD-9-CM</li>
-          <li>Medication → KFA / DTO references</li>
-          <li>Allergies → structured terminology</li>
-          <li>Specimen and diagnostic-report information</li>
-        </ul>
-      </article>
-
-
-      <!-- UI states -->
-
-      <article
-        class="border border-line p-7 md:p-8"
-      >
-        <p class="mono-label text-muted">
-          Interface behavior
-        </p>
-
-        <h3
-          class="mt-6 max-w-[520px] text-[clamp(1.5rem,2vw,2rem)] leading-[1.12] font-medium tracking-[-0.035em]"
-        >
-          Some integration requirements also implied new UI behavior.
-        </h3>
-
-        <ul
-          class="mt-6 space-y-3 text-[15px] leading-[1.8] text-muted"
-        >
-          <li>Conditional domicile / KTP address fields</li>
-          <li>Polyclinic filtering after BPJS queue selection</li>
-          <li>Remaining-queue information</li>
-          <li>iCare access when BPJS is connected</li>
-          <li>BPJS treatment and DPHO medication actions</li>
-        </ul>
-      </article>
-
-    </div>
-
-  </div>
-</section>
-
-
-<!-- =======================================================
-     DATA TYPES
-     ======================================================= -->
-
-<section
-  class="site-container py-12 md:py-16"
-  data-reveal
->
-  <div class="editorial-grid">
-
-    <div>
-      <p class="mono-label text-muted">
-        Field Semantics
+        The map separates destinations, functionality,
+        and user actions so the existing product could
+        be discussed in more concrete terms before
+        integration requirements were layered onto it.
       </p>
     </div>
+  </div>
 
 
-    <div class="editorial-content">
+  <figure
+    class="mt-14 md:mt-20"
+  >
+    <div
+      class="border border-line bg-white p-2 md:p-4"
+    >
+      <img
+        src="/images/projects/datacakra/rekmed-information-architecture.png"
+        alt="RekMed information architecture mapping pages, features, and actions"
+        loading="lazy"
+        class="block h-auto w-full"
+      />
+    </div>
 
-      <div
-        class="border border-line p-6 md:p-8"
-      >
+
+    <figcaption
+      class="grid gap-6 border-t border-line pt-5 md:grid-cols-3"
+    >
+      <div>
+        <p
+          class="text-[10px] uppercase tracking-[0.08em]"
+        >
+          Yellow
+        </p>
 
         <p
-          class="editorial-copy text-[clamp(1rem,1.05vw,1.1rem)] leading-[1.85] text-muted"
+          class="mt-2 text-[12px] text-muted"
         >
-          The working requirements also specified how
-          certain medical inputs should behave rather
-          than treating every field as generic text.
-          Examples included:
+          Page or major destination.
         </p>
-
-
-        <div
-          class="mt-8 grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-4"
-        >
-
-          <div class="bg-paper p-5">
-            <p class="mono-label text-muted">
-              Numeric
-            </p>
-
-            <p class="mt-4 text-[15px] leading-[1.6]">
-              Integer / decimal
-            </p>
-          </div>
-
-
-          <div class="bg-paper p-5">
-            <p class="mono-label text-muted">
-              Measurement
-            </p>
-
-            <p class="mt-4 text-[15px] leading-[1.6]">
-              bpm · g · g/dL · mg/dL
-            </p>
-          </div>
-
-
-          <div class="bg-paper p-5">
-            <p class="mono-label text-muted">
-              Binary state
-            </p>
-
-            <p class="mt-4 text-[15px] leading-[1.6]">
-              Boolean / Yes-No
-            </p>
-          </div>
-
-
-          <div class="bg-paper p-5">
-            <p class="mono-label text-muted">
-              Controlled option
-            </p>
-
-            <p class="mt-4 text-[15px] leading-[1.6]">
-              Enum-like clinical states
-            </p>
-          </div>
-
-        </div>
-
       </div>
 
-    </div>
 
-  </div>
+      <div>
+        <p
+          class="text-[10px] uppercase tracking-[0.08em]"
+        >
+          Orange
+        </p>
+
+        <p
+          class="mt-2 text-[12px] text-muted"
+        >
+          Feature available inside a page.
+        </p>
+      </div>
+
+
+      <div>
+        <p
+          class="text-[10px] uppercase tracking-[0.08em]"
+        >
+          Pink
+        </p>
+
+        <p
+          class="mt-2 text-[12px] text-muted"
+        >
+          User action or control tied to a feature.
+        </p>
+      </div>
+    </figcaption>
+  </figure>
 </section>
 
-
 <!-- =======================================================
-     05 / TECHNICAL COLLABORATION
-     ======================================================= -->
-
-<CaseSection
-  number="05"
-  label="Technical Collaboration"
-  title="My contribution sat between what the interface collects and what the implementation needs."
->
-  <p>
-    I was not responsible for implementing the
-    SATUSEHAT API or backend integration.
-  </p>
-
-  <p>
-    Instead, I helped turn product and integration
-    requirements into something the development team
-    could reason about at the interface level:
-    which fields exist, when they appear, what kind of
-    value they should contain, and which workflow
-    condition they belong to.
-  </p>
-
-  <p>
-    When parts of the integration documentation were
-    too technical for me to interpret confidently, I
-    worked with the project-management intern to
-    clarify what the requirement meant before mapping
-    it back into the existing RekMed product.
-  </p>
-</CaseSection>
-
-
-<!-- =======================================================
-     HANDOFF FLOW
+     04 / REQUIREMENT MAPPING
      ======================================================= -->
 
 <section
-  class="site-container py-12 md:py-16"
-  data-reveal
+  class="bg-[#dedad0]"
 >
-  <div class="editorial-grid">
+  <div
+    class="site-container py-20 md:py-32"
+  >
+    <div
+      class="grid gap-12 md:grid-cols-12"
+    >
+      <div
+        class="md:col-span-3"
+      >
+        <p
+          class="rule-label"
+        >
+          04 / Requirements
+        </p>
+      </div>
 
-    <div>
-      <p class="mono-label text-muted">
-        Collaboration Flow
+
+      <div
+        class="md:col-span-8 md:col-start-5"
+      >
+        <h2
+          class="max-w-[950px] text-[clamp(2.6rem,5vw,5.7rem)] leading-[0.98] font-medium tracking-[-0.05em]"
+        >
+          “What type of field is this?”
+          turned out to be the smaller question.
+        </h2>
+
+        <p
+          class="mt-10 max-w-2xl text-[14px] leading-[1.8] text-muted"
+        >
+          Different patient identities, visit types,
+          clinical workflows, and integration states
+          changed both what information was required
+          and when that information should appear.
+        </p>
+      </div>
+    </div>
+
+
+    <div
+      class="mt-16 border-t border-ink md:mt-24"
+    >
+      {
+        requirementLayers.map(
+          (layer) => (
+            <article
+              class="grid gap-8 border-b border-ink/20 py-10 md:grid-cols-12 md:py-12"
+            >
+              <div
+                class="md:col-span-2"
+              >
+                <p
+                  class="text-[10px] text-accent"
+                >
+                  {layer.number}
+                </p>
+
+                <p
+                  class="mt-4 text-[10px] uppercase tracking-[0.08em] text-muted"
+                >
+                  {layer.label}
+                </p>
+              </div>
+
+
+              <div
+                class="md:col-span-4"
+              >
+                <h3
+                  class="text-[clamp(1.6rem,2.5vw,2.8rem)] leading-[1.05] font-medium tracking-[-0.035em]"
+                >
+                  {layer.title}
+                </h3>
+              </div>
+
+
+              <div
+                class="md:col-span-5 md:col-start-8"
+              >
+                <ul
+                  class="border-t border-ink/20"
+                >
+                  {
+                    layer.items.map(
+                      (
+                        item,
+                        index
+                      ) => (
+                        <li
+                          class="grid grid-cols-[32px_1fr] gap-3 border-b border-ink/15 py-3 text-[12px] leading-[1.6]"
+                        >
+                          <span
+                            class="text-muted"
+                          >
+                            {String(
+                              index + 1
+                            ).padStart(
+                              2,
+                              "0"
+                            )}
+                          </span>
+
+                          <span>
+                            {item}
+                          </span>
+                        </li>
+                      )
+                    )
+                  }
+                </ul>
+              </div>
+            </article>
+          )
+        )
+      }
+    </div>
+  </div>
+</section>
+
+<!-- =======================================================
+     FIELD SEMANTICS
+     ======================================================= -->
+
+<section
+  class="site-container py-20 md:py-32"
+>
+  <div
+    class="grid gap-12 md:grid-cols-12"
+  >
+    <div
+      class="md:col-span-3"
+    >
+      <p
+        class="rule-label text-muted"
+      >
+        Field semantics
       </p>
     </div>
 
 
-    <div class="editorial-content">
+    <div
+      class="md:col-span-8 md:col-start-5"
+    >
+      <h2
+        class="max-w-[850px] text-[clamp(2.2rem,4vw,4.6rem)] leading-[1] font-medium tracking-[-0.045em]"
+      >
+        Not every medical field should behave
+        like generic text.
+      </h2>
+    </div>
+  </div>
+
+
+  <div
+    class="mt-14 grid border-y border-ink sm:grid-cols-2 lg:grid-cols-4"
+  >
+    {
+      fieldSemantics.map(
+        (field) => (
+          <div
+            class="border-b border-line py-7 sm:border-r lg:border-b-0 lg:px-7 lg:first:pl-0 lg:last:border-r-0"
+          >
+            <p
+              class="text-[9px] uppercase tracking-[0.08em] text-muted"
+            >
+              {field.label}
+            </p>
+
+            <p
+              class="mt-4 text-[15px] leading-[1.6]"
+            >
+              {field.value}
+            </p>
+          </div>
+        )
+      )
+    }
+  </div>
+</section>
+
+<!-- =======================================================
+     05 / COLLABORATION
+     ======================================================= -->
+
+<section
+  class="bg-ink text-paper"
+>
+  <div
+    class="site-container py-20 md:py-32"
+  >
+    <div
+      class="grid gap-12 md:grid-cols-12"
+    >
+      <div
+        class="md:col-span-3"
+      >
+        <p
+          class="rule-label text-accent"
+        >
+          05 / Collaboration
+        </p>
+      </div>
+
 
       <div
-        class="grid gap-3 md:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr]"
+        class="md:col-span-8 md:col-start-5"
+      >
+        <h2
+          class="max-w-[920px] text-[clamp(2.5rem,5vw,5.6rem)] leading-[0.98] font-medium tracking-[-0.05em]"
+        >
+          My contribution sat between
+          the existing interface and the
+          implementation team.
+        </h2>
+
+        <p
+          class="mt-10 max-w-2xl text-[14px] leading-[1.8] text-paper/55"
+        >
+          I was not responsible for implementing
+          SATUSEHAT APIs. My role was to make the
+          interface-side implications concrete:
+          which information exists, when it appears,
+          what values it accepts, and which workflow
+          condition it belongs to.
+        </p>
+      </div>
+    </div>
+
+
+    <!-- Flow -->
+
+    <div
+      class="mt-16 border-y border-paper/25 md:mt-24"
+    >
+      <div
+        class="grid md:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr]"
       >
 
-        <div class="border border-line p-5">
-          <p class="mono-label text-muted">
+        <div
+          class="py-7 md:pr-6"
+        >
+          <p
+            class="text-[9px] text-paper/35"
+          >
             01
           </p>
 
-          <p class="mt-4 text-[15px] leading-[1.6]">
+          <p
+            class="mt-4 text-[14px]"
+          >
             Existing RekMed interface
           </p>
         </div>
 
 
-        <div class="hidden items-center text-muted md:flex">
-          →
-        </div>
-
-
-        <div class="border border-line p-6">
-          <p class="mono-label text-muted">
-            02
-          </p>
-
-          <p class="mt-4 text-[15px] leading-[1.6]">
-            Integration requirement
-          </p>
-        </div>
-
-
-        <div class="hidden items-center text-muted md:flex">
-          →
-        </div>
-
-
-        <div class="border border-line p-6">
-          <p class="mono-label text-muted">
-            03
-          </p>
-
-          <p class="mt-4 text-[15px] leading-[1.6]">
-            Field & workflow mapping
-          </p>
-        </div>
-
-
-        <div class="hidden items-center text-muted md:flex">
+        <div
+          class="hidden items-center px-4 text-paper/30 md:flex"
+          aria-hidden="true"
+        >
           →
         </div>
 
 
         <div
-          class="bg-[#126f78] p-6 text-white"
+          class="border-t border-paper/15 py-7 md:border-t-0 md:px-6"
         >
-          <p class="mono-label text-white/55">
+          <p
+            class="text-[9px] text-paper/35"
+          >
+            02
+          </p>
+
+          <p
+            class="mt-4 text-[14px]"
+          >
+            Integration requirement
+          </p>
+        </div>
+
+
+        <div
+          class="hidden items-center px-4 text-paper/30 md:flex"
+          aria-hidden="true"
+        >
+          →
+        </div>
+
+
+        <div
+          class="border-t border-paper/15 py-7 md:border-t-0 md:px-6"
+        >
+          <p
+            class="text-[9px] text-paper/35"
+          >
+            03
+          </p>
+
+          <p
+            class="mt-4 text-[14px]"
+          >
+            Field & workflow mapping
+          </p>
+        </div>
+
+
+        <div
+          class="hidden items-center px-4 text-paper/30 md:flex"
+          aria-hidden="true"
+        >
+          →
+        </div>
+
+
+        <div
+          class="border-t border-paper/15 py-7 md:border-t-0 md:pl-6"
+        >
+          <p
+            class="text-[9px] text-accent"
+          >
             04
           </p>
 
-          <p class="mt-4 text-[15px] leading-[1.6]">
+          <p
+            class="mt-4 text-[14px]"
+          >
             Development reference
           </p>
         </div>
 
       </div>
-
     </div>
-
   </div>
 </section>
 
-
 <!-- =======================================================
-     OWNERSHIP BOUNDARY
+     SCOPE / OWNERSHIP
      ======================================================= -->
 
 <section
-  class="site-container py-12 md:py-16"
-  data-reveal
+  class="site-container py-24 md:py-40"
 >
-  <div class="editorial-grid">
-
-    <div>
-      <p class="mono-label text-muted">
+  <div
+    class="grid gap-12 md:grid-cols-12"
+  >
+    <div
+      class="md:col-span-3"
+    >
+      <p
+        class="rule-label text-muted"
+      >
         Scope
       </p>
     </div>
 
 
     <div
-      class="editorial-content grid gap-4 md:grid-cols-2"
+      class="md:col-span-8 md:col-start-5"
     >
-
-      <article
-        class="border border-line p-7 md:p-8"
+      <h2
+        class="max-w-[850px] text-[clamp(2.5rem,4.5vw,5rem)] leading-[1] font-medium tracking-[-0.045em]"
       >
-        <p class="mono-label text-muted">
-          I owned
-        </p>
-
-        <ul
-          class="mt-6 space-y-4 text-[16px] leading-[1.75]"
-        >
-          <li>Smart Building dashboard mockup</li>
-          <li>RekMed product survey</li>
-          <li>Information-architecture mapping</li>
-          <li>Field and workflow requirement mapping</li>
-          <li>Design communication with my supervisor</li>
-        </ul>
-      </article>
+        Clear ownership matters more than
+        making the internship sound bigger.
+      </h2>
+    </div>
+  </div>
 
 
-      <article
-        class="border border-line p-7 md:p-8"
+  <div
+    class="mt-16 grid border-y border-ink md:grid-cols-2 md:mt-24"
+  >
+
+    <!-- Owned -->
+
+    <div
+      class="border-b border-line py-9 md:border-r md:border-b-0 md:pr-10"
+    >
+      <p
+        class="text-[10px] uppercase tracking-[0.08em] text-accent"
       >
-        <p class="mono-label text-muted">
-          I collaborated on / did not own
-        </p>
+        I owned
+      </p>
 
-        <ul
-          class="mt-6 space-y-4 text-[16px] leading-[1.75] text-muted"
-        >
-          <li>Interpretation of technical integration requirements</li>
-          <li>SATUSEHAT API implementation</li>
-          <li>Backend integration</li>
-          <li>Existing RekMed interface design</li>
-          <li>Later project implementation after my involvement ended</li>
-        </ul>
-      </article>
+      <ul
+        class="mt-8"
+      >
+        {
+          owned.map(
+            (
+              item,
+              index
+            ) => (
+              <li
+                class="grid grid-cols-[36px_1fr] gap-4 border-t border-line py-4 text-[14px] leading-[1.65]"
+              >
+                <span
+                  class="text-[9px] text-muted"
+                >
+                  {String(
+                    index + 1
+                  ).padStart(
+                    2,
+                    "0"
+                  )}
+                </span>
 
+                <span>
+                  {item}
+                </span>
+              </li>
+            )
+          )
+        }
+      </ul>
+    </div>
+
+
+    <!-- Not owned -->
+
+    <div
+      class="py-9 md:pl-10"
+    >
+      <p
+        class="text-[10px] uppercase tracking-[0.08em] text-muted"
+      >
+        Collaborated on / did not own
+      </p>
+
+      <ul
+        class="mt-8"
+      >
+        {
+          notOwned.map(
+            (
+              item,
+              index
+            ) => (
+              <li
+                class="grid grid-cols-[36px_1fr] gap-4 border-t border-line py-4 text-[14px] leading-[1.65] text-muted"
+              >
+                <span
+                  class="text-[9px]"
+                >
+                  {String(
+                    index + 1
+                  ).padStart(
+                    2,
+                    "0"
+                  )}
+                </span>
+
+                <span>
+                  {item}
+                </span>
+              </li>
+            )
+          )
+        }
+      </ul>
     </div>
 
   </div>
 </section>
 
-
 <!-- =======================================================
      06 / REFLECTION
      ======================================================= -->
 
-<CaseSection
-  number="06"
-  label="Reflection"
-  title="A useful interface designer needs to understand what happens after the interface."
+<section
+  class="site-container pb-24 md:pb-40"
 >
-  <p>
-    The two workstreams taught me different sides of
-    the same lesson.
-  </p>
+  <div
+    class="border-t border-ink pt-10"
+  >
+    <div
+      class="grid gap-12 md:grid-cols-12"
+    >
+      <div
+        class="md:col-span-3"
+      >
+        <p
+          class="rule-label text-muted"
+        >
+          06 / Reflection
+        </p>
+      </div>
 
-  <p>
-    The Smart Building proposal required me to turn
-    technical capabilities into an interface that
-    could communicate value quickly to people
-    evaluating a product.
-  </p>
 
-  <p>
-    RekMed required the opposite direction: working
-    inward from an existing interface to understand
-    what data it collects, why that data exists, and
-    how those decisions affect the people responsible
-    for integration and implementation.
-  </p>
+      <div
+        class="md:col-span-8 md:col-start-5"
+      >
+        <p
+          class="max-w-[980px] text-[clamp(2.4rem,4.8vw,5.4rem)] leading-[1.03] font-medium tracking-[-0.045em]"
+        >
+          One task asked me to move outward from
+          technical capability into communication.
+          The other asked me to move inward from
+          an interface into the data and requirements
+          behind it.
+        </p>
 
-  <p>
-    Together, they reinforced the kind of designer I
-    want to be — someone who can care about hierarchy,
-    interaction, and visual quality without treating
-    engineering or business requirements as somebody
-    else's problem.
-  </p>
-</CaseSection>
+
+        <div
+          class="mt-12 grid gap-8 md:grid-cols-2"
+        >
+          <p
+            class="text-[14px] leading-[1.8] text-muted"
+          >
+            Smart Building reinforced the value of
+            hierarchy and visual clarity when an
+            interface is being used to explain a
+            product to someone who may never operate
+            the final system themselves.
+          </p>
+
+          <p
+            class="text-[14px] leading-[1.8] text-muted"
+          >
+            RekMed showed me the opposite side:
+            understanding what an existing interface
+            collects, why that information exists,
+            and how design decisions affect the people
+            responsible for implementation.
+          </p>
+        </div>
+
+
+        <p
+          class="mt-14 max-w-[860px] text-[clamp(1.8rem,3.3vw,3.7rem)] leading-[1.1] tracking-[-0.04em]"
+        >
+          Together, they made the relationship between
+          design, engineering, and business requirements
+          feel much less theoretical.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
