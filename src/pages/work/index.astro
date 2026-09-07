@@ -42,7 +42,6 @@ import {
         </p>
       </div>
 
-
       <div
         class="md:col-span-8 md:col-start-5"
       >
@@ -57,7 +56,6 @@ import {
             implementation.
           </span>
         </h1>
-
 
         <p
           class="mt-10 max-w-2xl text-[15px] leading-[1.8] text-muted"
@@ -97,7 +95,6 @@ import {
       </p>
     </div>
 
-
     <div
       class="border-b border-line"
     >
@@ -121,9 +118,8 @@ import {
   <section
     class="site-container py-24 md:py-40"
   >
-    <a
-      href="/folio/"
-      class="group block bg-ink px-6 py-10 text-paper sm:px-10 md:px-14 md:py-16 lg:px-20 lg:py-20"
+    <div
+      class="bg-ink px-6 py-10 text-paper sm:px-10 md:px-14 md:py-16 lg:px-20 lg:py-20"
     >
       <div
         class="grid gap-14 md:grid-cols-12"
@@ -138,66 +134,50 @@ import {
           </p>
         </div>
 
-
         <div
           class="md:col-span-8 md:col-start-5"
         >
-          <div
-            class="flex items-start justify-between gap-8"
+          <h2
+            class="max-w-[900px] text-[clamp(2.8rem,5.5vw,6.2rem)] leading-[0.95] font-medium tracking-[-0.05em]"
           >
-            <h2
-              class="max-w-[900px] text-[clamp(2.8rem,5.5vw,6.2rem)] leading-[0.95] font-medium tracking-[-0.05em]"
-            >
-              Some work makes more sense
-              <span
-                class="editorial-serif"
-              >
-                as a publication.
-              </span>
-            </h2>
-
+            Selected design work,
             <span
-              aria-hidden="true"
-              class="shrink-0 text-2xl transition-transform duration-300 group-hover:translate-x-2 md:text-4xl"
+              class="editorial-serif"
             >
-              →
+              in publication form.
             </span>
-          </div>
-
+          </h2>
 
           <p
             class="mt-10 max-w-xl text-[14px] leading-[1.8] text-paper/55"
           >
-            A curated visual version of my design
-            work, with more room for process,
-            interface exploration, mockups, and
-            project storytelling.
+            A visual companion to the case studies,
+            with more room for layouts, process,
+            interface exploration, and mockups.
           </p>
 
-
           <div
-            class="mt-8 flex gap-7 text-[12px]"
+            class="mt-8 flex flex-wrap gap-7 text-[13px]"
           >
-            <span
-              class="border-b border-paper/35 pb-1"
+            <a
+              href="/folio/"
+              class="border-b border-paper/40 pb-1"
             >
-              Explore folio
-            </span>
+              Explore folio →
+            </a>
 
-            <object>
-              <a
-                href={folio.pdf}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="border-b border-paper/35 pb-1 text-paper/60 transition-colors hover:text-paper"
-              >
-                Open PDF ↗
-              </a>
-            </object>
+            <a
+              href={folio.pdf}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="border-b border-paper/25 pb-1 text-paper/55 transition-colors hover:text-paper"
+            >
+              Open PDF ↗
+            </a>
           </div>
         </div>
       </div>
-    </a>
+    </div>
   </section>
 
 
@@ -221,7 +201,6 @@ import {
         </p>
       </div>
 
-
       <div
         class="md:col-span-8 md:col-start-5"
       >
@@ -233,7 +212,6 @@ import {
           background without pretending every
           project needs a full portfolio case study.
         </p>
-
 
         <div
           class="border-t border-line"
@@ -268,7 +246,6 @@ import {
                     </p>
                   </div>
 
-
                   <div
                     class="md:col-span-4"
                   >
@@ -284,7 +261,6 @@ import {
                       {work.title}
                     </h3>
                   </div>
-
 
                   <div
                     class="md:col-span-6"

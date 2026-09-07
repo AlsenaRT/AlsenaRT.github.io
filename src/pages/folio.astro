@@ -9,8 +9,12 @@ import {
 
 <BaseLayout
   title="Design Folio"
-  description="Selected UI/UX portfolio spreads and design work by Alif Rafi Tulusena."
+  description="Selected UI/UX portfolio pages and design work by Alif Rafi Tulusena."
 >
+  <!-- =====================================================
+       INTRO
+       ===================================================== -->
+
   <section
     class="site-container pt-12 md:pt-20"
   >
@@ -27,19 +31,21 @@ import {
         </p>
       </div>
 
+
       <div
         class="md:col-span-8 md:col-start-5"
       >
         <h1
           class="max-w-[1050px] text-[clamp(3.5rem,7vw,8rem)] leading-[0.9] font-medium tracking-[-0.06em]"
         >
-          The portfolio,
+          Selected work,
           <span
             class="editorial-serif"
           >
-            as a publication.
+            page by page.
           </span>
         </h1>
+
 
         <div
           class="mt-10 grid gap-8 md:grid-cols-2"
@@ -47,12 +53,12 @@ import {
           <p
             class="text-[15px] leading-[1.8] text-muted"
           >
-            The website goes deeper into individual
-            case studies. This folio keeps the work
-            together as a single visual sequence —
-            closer to how I originally designed it
-            to be read.
+            This is a web edition of selected pages
+            from my design portfolio. The individual
+            case studies go deeper into each project;
+            this page keeps the visual work together.
           </p>
+
 
           <div
             class="md:text-right"
@@ -72,91 +78,152 @@ import {
   </section>
 
 
+  <!-- =====================================================
+       FOLIO INDEX
+       ===================================================== -->
+
+  <section
+    class="site-container pt-20 md:pt-28"
+  >
+    <div
+      class="border-y border-ink"
+    >
+      <div
+        class="grid gap-4 py-5 text-[9px] uppercase tracking-[0.08em] text-muted sm:grid-cols-3"
+      >
+        <p>
+          Publication
+        </p>
+
+        <p class="sm:text-center">
+          Selected pages
+        </p>
+
+        <p class="sm:text-right">
+          {String(
+            folio.pages.length
+          ).padStart(
+            2,
+            "0"
+          )} pages shown
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       PAGES
+       ===================================================== -->
+
   <section
     class="site-container py-20 md:py-32"
   >
     <div
-      class="grid gap-x-8 gap-y-16 md:grid-cols-2"
+      class="grid items-start gap-x-8 gap-y-20 md:grid-cols-12"
     >
       {
         folio.pages.map(
           (
             page,
             index
-          ) => (
-            <figure
-              class:list={[
-                index % 3 ===
-                1
-                  ? "md:mt-24"
-                  : "",
-              ]}
-            >
-              <div
-                class="folio-sheet"
-              >
-                <img
-                  src={
-                    page.image
-                  }
-                  alt={
-                    page.alt
-                  }
-                  loading={
-                    index <
-                    2
-                      ? "eager"
-                      : "lazy"
-                  }
-                />
-              </div>
+          ) => {
+            const wide =
+              index % 5 === 0 ||
+              index % 5 === 3;
 
-              <figcaption
-                class="mt-4 flex items-center justify-between border-t border-line pt-3 text-[10px] uppercase tracking-[0.08em] text-muted"
-              >
-                <span>
-                  Portfolio
-                </span>
+            const classes =
+              wide
+                ? "md:col-span-8 md:col-start-3"
+                : index % 2 === 0
+                  ? "md:col-span-5 md:col-start-1"
+                  : "md:col-span-5 md:col-start-8";
 
-                <span>
-                  {
-                    page.number
-                  }
-                </span>
-              </figcaption>
-            </figure>
-          )
+            return (
+              <figure
+                class={classes}
+              >
+                <div
+                  class="bg-white"
+                >
+                  <img
+                    src={page.image}
+                    alt={page.alt}
+                    loading={
+                      index < 2
+                        ? "eager"
+                        : "lazy"
+                    }
+                    class="block h-auto w-full"
+                  />
+                </div>
+
+
+                <figcaption
+                  class="mt-4 flex items-center justify-between border-t border-line pt-3"
+                >
+                  <span
+                    class="text-[9px] uppercase tracking-[0.08em] text-muted"
+                  >
+                    Portfolio page
+                  </span>
+
+                  <span
+                    class="text-[10px] text-accent"
+                  >
+                    {page.number}
+                  </span>
+                </figcaption>
+              </figure>
+            );
+          }
         )
       }
     </div>
   </section>
 
 
+  <!-- =====================================================
+       PDF
+       ===================================================== -->
+
   <section
     class="site-container pb-28 md:pb-44"
   >
     <div
-      class="flex flex-col gap-8 border-t border-ink pt-8 md:flex-row md:items-end md:justify-between"
+      class="grid gap-12 border-t border-ink pt-10 md:grid-cols-12"
     >
-      <h2
-        class="max-w-4xl text-[clamp(2.5rem,5vw,5.5rem)] leading-[0.98] font-medium tracking-[-0.045em]"
+      <div
+        class="md:col-span-3"
       >
-        Want the complete
-        <span
-          class="editorial-serif"
+        <p
+          class="rule-label text-muted"
         >
-          version?
-        </span>
-      </h2>
+          Complete edition
+        </p>
+      </div>
 
-      <a
-        href={folio.pdf}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="shrink-0 border-b border-ink pb-1 text-[13px]"
+
+      <div
+        class="md:col-span-8 md:col-start-5"
       >
-        Open PDF ↗
-      </a>
+        <h2
+          class="max-w-[850px] text-[clamp(2.5rem,4.8vw,5.3rem)] leading-[1] font-medium tracking-[-0.045em]"
+        >
+          The PDF contains the portfolio
+          in its original sequence.
+        </h2>
+
+
+        <a
+          href={folio.pdf}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-10 inline-block border-b border-ink pb-1 text-[13px]"
+        >
+          Open complete PDF ↗
+        </a>
+      </div>
     </div>
   </section>
 </BaseLayout>

@@ -13,6 +13,8 @@ const year =
   <div
     class="border-t border-ink"
   >
+    <!-- Contact -->
+
     <div
       class="grid gap-12 py-12 md:grid-cols-12 md:py-16"
     >
@@ -26,28 +28,39 @@ const year =
         </p>
       </div>
 
+
       <div
         class="md:col-span-8 md:col-start-5"
       >
-        <p
-          class="max-w-4xl text-[clamp(2.7rem,5vw,5.8rem)] leading-[0.96] font-medium tracking-[-0.05em]"
+        <h2
+          class="max-w-[820px] text-[clamp(2.1rem,4vw,4.5rem)] leading-[1.04] font-medium tracking-[-0.04em]"
         >
-          Available for thoughtful
-          <span
-            class="editorial-serif"
-          >
-            design work.
-          </span>
+          I'm currently open to any UI/UX,
+          product design, and software
+          development opportunities.
+        </h2>
+
+
+        <p
+          class="mt-7 max-w-xl text-[14px] leading-[1.75] text-muted"
+        >
+          If my work looks relevant to a role,
+          project, or team you're building,
+          feel free to get in touch.
         </p>
+
 
         <a
           href={`mailto:${site.email}`}
-          class="mt-10 inline-block border-b border-ink pb-1 text-[15px]"
+          class="mt-9 inline-block border-b border-ink pb-1 text-[15px]"
         >
           {site.email} ↗
         </a>
       </div>
     </div>
+
+
+    <!-- Footer utility -->
 
     <div
       class="grid gap-5 border-t border-line py-6 text-[11px] text-muted md:grid-cols-3 md:items-center"
@@ -56,14 +69,37 @@ const year =
         © {year} {site.name}
       </p>
 
-      <div
-        class="flex gap-6 md:justify-center"
+
+      <nav
+        aria-label="Footer navigation"
+        class="flex flex-wrap gap-6 md:justify-center"
       >
+        <a
+          href="/work/"
+          class="transition-colors hover:text-ink"
+        >
+          Work
+        </a>
+
+        <a
+          href="/folio/"
+          class="transition-colors hover:text-ink"
+        >
+          Folio
+        </a>
+
+        <a
+          href="/about/"
+          class="transition-colors hover:text-ink"
+        >
+          About
+        </a>
+
         <a
           href={site.links.linkedin}
           target="_blank"
           rel="noopener noreferrer"
-          class="hover:text-ink"
+          class="transition-colors hover:text-ink"
         >
           LinkedIn ↗
         </a>
@@ -72,23 +108,17 @@ const year =
           href={site.links.github}
           target="_blank"
           rel="noopener noreferrer"
-          class="hover:text-ink"
+          class="transition-colors hover:text-ink"
         >
           GitHub ↗
         </a>
+      </nav>
 
-        <a
-          href="/folio/"
-          class="hover:text-ink"
-        >
-          Folio
-        </a>
-      </div>
 
       <p
         class="md:text-right"
       >
-        South Tangerang, Indonesia
+        {site.location}
       </p>
     </div>
   </div>

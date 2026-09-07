@@ -17,10 +17,7 @@ import {
 } from "../data/site";
 
 const featuredProjects =
-  projects.filter(
-    (project) =>
-      project.featured
-  );
+  projects.slice(0, 3);
 ---
 
 <BaseLayout>
