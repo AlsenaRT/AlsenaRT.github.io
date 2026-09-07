@@ -42,44 +42,50 @@
     clamp(
       1rem,
       0.35vw + 0.94rem,
-      1.125rem
+      1.25rem
     );
 
   --text-body-lg:
     clamp(
       1.075rem,
       0.45vw + 0.97rem,
-      1.25rem
+      1.375rem
     );
 
   --text-support:
     clamp(
       0.95rem,
       0.25vw + 0.91rem,
-      1.05rem
+      1.125rem
     );
 
   --text-small:
     clamp(
       0.84rem,
-      0.18vw + 0.81rem,
-      0.92rem
+      0.22vw + 0.8rem,
+      1rem
     );
 
   --text-micro:
     clamp(
       0.7rem,
-      0.12vw + 0.68rem,
-      0.78rem
+      0.24vw + 0.65rem,
+      0.875rem
     );
+
 
   --leading-body: 1.78;
   --leading-support: 1.7;
 
+
   --page-max-width: 1600px;
 
   --page-padding:
-    clamp(1.25rem, 3.5vw, 3.5rem);
+    clamp(
+      1.25rem,
+      3.5vw,
+      3.5rem
+    );
 
   --header-height: 72px;
 
@@ -91,7 +97,52 @@
     );
 
   --ease-out:
-    cubic-bezier(0.22, 1, 0.36, 1);
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
+}
+
+/* =========================================================
+   DESKTOP TYPOGRAPHY SCALE
+
+   Mobile typography is intentionally left untouched.
+   These values are used to improve readability as the
+   viewport becomes wider.
+   ========================================================= */
+
+@media (min-width: 768px) {
+  :root {
+    --desktop-text-micro: 0.75rem;
+    --desktop-text-small: 0.875rem;
+    --desktop-text-support: 1rem;
+    --desktop-text-body: 1.0625rem;
+    --desktop-text-body-lg: 1.125rem;
+  }
+}
+
+
+@media (min-width: 1200px) {
+  :root {
+    --desktop-text-micro: 0.8125rem;
+    --desktop-text-small: 0.9375rem;
+    --desktop-text-support: 1.0625rem;
+    --desktop-text-body: 1.125rem;
+    --desktop-text-body-lg: 1.25rem;
+  }
+}
+
+
+@media (min-width: 1440px) {
+  :root {
+    --desktop-text-micro: 0.875rem;
+    --desktop-text-small: 1rem;
+    --desktop-text-support: 1.125rem;
+    --desktop-text-body: 1.1875rem;
+    --desktop-text-body-lg: 1.3125rem;
+  }
 }
 
 /* =========================================================
@@ -591,6 +642,13 @@ ol {
   letter-spacing: 0.08em;
 }
 
+@media (min-width: 768px) {
+  .rule-label {
+    font-size:
+      var(--desktop-text-micro);
+  }
+}
+
 .rule-label::before {
   content: "";
 
@@ -598,6 +656,51 @@ ol {
   height: 1px;
 
   background: currentColor;
+}
+
+/* =========================================================
+   DESKTOP LEGACY TEXT SIZE MAPPING
+
+   Existing arbitrary Tailwind sizes remain untouched
+   on phones. They are enlarged progressively only once
+   more screen space is available.
+   ========================================================= */
+
+@media (min-width: 768px) {
+  /* Labels / metadata */
+  [class~="text-[9px]"],
+  [class~="text-[10px]"] {
+    font-size:
+      var(--desktop-text-micro)
+      !important;
+  }
+
+
+  /* Captions / secondary information */
+  [class~="text-[11px]"],
+  [class~="text-[12px]"] {
+    font-size:
+      var(--desktop-text-small)
+      !important;
+  }
+
+
+  /* Supporting copy */
+  [class~="text-[13px]"],
+  [class~="text-[14px]"] {
+    font-size:
+      var(--desktop-text-support)
+      !important;
+  }
+
+
+  /* Main paragraph copy */
+  [class~="text-[15px]"],
+  [class~="text-[16px]"] {
+    font-size:
+      var(--desktop-text-body)
+      !important;
+  }
 }
 
 /* =========================================================
