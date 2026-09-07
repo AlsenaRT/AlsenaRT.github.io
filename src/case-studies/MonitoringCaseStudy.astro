@@ -1,5 +1,15 @@
 ---
-import CaseSection from "../components/case-study/CaseSection.astro";
+import type {
+  Project,
+} from "../data/projects";
+
+interface Props {
+  project: Project;
+}
+
+const {
+  project,
+} = Astro.props;
 
 const degreeFlows = [
   {
@@ -80,732 +90,1540 @@ const testResults = [
   ["Email notification", "Valid"],
   ["Excel export", "Troubleshoot"],
 ];
+
+const dataSources = [
+  {
+    name: "api_khs_raw",
+    role:
+      "Course-history and academic records used to reconstruct completed academic activity.",
+  },
+  {
+    name: "api_bimbingan_raw",
+    role:
+      "Student-to-supervisor relationships used to determine academic responsibility.",
+  },
+  {
+    name: "pegawais",
+    role:
+      "Employee data used to resolve lecturers and supervisor identities.",
+  },
+  {
+    name: "users",
+    role:
+      "Persuratan accounts used as part of authentication and access handling.",
+  },
+  {
+    name: "probstud_prodi",
+    role:
+      "Program-level troubled-student totals used by Dashboard Stats.",
+  },
+];
+
+
+const operationalFeatures = [
+  {
+    number: "01",
+    title: "Pagination & sorting",
+    description:
+      "Large result sets are divided into manageable pages, while compatible fields can be sorted for faster review.",
+  },
+  {
+    number: "02",
+    title: "Two-stage notification",
+    description:
+      "Students and their supervisor or promoter receive a reminder before the deadline and a stronger warning if the milestone becomes overdue.",
+  },
+  {
+    number: "03",
+    title: "Excel reporting",
+    description:
+      "Detailed monitoring data can be exported for administrative follow-up using PHPSpreadsheet.",
+  },
+];
 ---
 
 <!-- =======================================================
-     01 / CONTEXT
-     ======================================================= -->
-
-<CaseSection
-  number="01"
-  label="Context"
-  title="Detecting academic delays before they become easy to overlook."
-  intro="FMIPA UGM needed an integrated way to identify students who were late completing mandatory academic agendas, notify the people responsible for them, and give academic leadership a clearer monitoring overview."
->
-  <p>
-    Before the feature existed, identifying potentially troubled students relied heavily on
-    manual review. Without an automated monitoring mechanism, early detection could become
-    slow, inconsistent, or simply be overlooked.
-  </p>
-
-  <p>
-    The module was developed inside the existing Persuratan FMIPA system rather than as a
-    separate application. Its core responsibilities were to detect delayed mandatory academic
-    agendas, send email warnings, expose detailed monitoring information, and generate data
-    that academic staff could use for follow-up.
-  </p>
-
-  <p>
-    The resulting project therefore combined UI/UX design, business-rule mapping, relational
-    data processing, role-based access, backend implementation, reporting, notification logic,
-    and functional testing within an existing institutional system.
-  </p>
-</CaseSection>
-
-<!-- =======================================================
-     SYSTEM SCOPE
+     MONITORING PROJECT OPENING
+     Systems / data language
      ======================================================= -->
 
 <section
-  class="site-container py-12 md:py-16"
-  data-reveal
+  class="mt-8 bg-ink text-paper md:mt-12"
 >
-  <div class="editorial-grid">
-
-    <!-- Label -->
-
-    <div>
-      <p class="mono-label text-muted">
-        System Scope
-      </p>
-    </div>
-
-
-    <!-- Scope cards -->
+  <div
+    class="site-container py-10 md:py-16 lg:py-20"
+  >
+    <!-- Header -->
 
     <div
-      class="editorial-content grid gap-4 md:grid-cols-2 xl:grid-cols-4"
+      class="grid gap-12 md:grid-cols-12"
     >
-
-      <!-- Degree flows -->
-
-      <article
-        class="border border-line p-6 md:p-7"
+      <div
+        class="md:col-span-8"
       >
         <p
-          class="font-mono text-[9px] uppercase tracking-[0.08em] text-muted"
+          class="rule-label text-accent"
         >
-          S1 · S2 · S3
+          Academic Monitoring System
         </p>
 
-        <h3
-          class="mt-4 text-[clamp(1.5rem,2vw,2rem)] leading-[1.05] font-medium tracking-[-0.035em]"
+        <h1
+          class="mt-10 max-w-[1100px] text-[clamp(3.5rem,7vw,8rem)] leading-[0.9] font-medium tracking-[-0.055em]"
         >
-          Degree flows
-        </h3>
-
-        <p
-          class="mt-3 text-[13px] leading-[1.7] text-muted"
-        >
-          Separate monitoring logic for undergraduate,
-          master's, and doctoral programs.
-        </p>
-      </article>
-
-
-      <!-- Access scopes -->
-
-      <article
-        class="border border-line p-6 md:p-7"
-      >
-        <p
-          class="font-mono text-[9px] uppercase tracking-[0.08em] text-muted"
-        >
-          4 access levels
-        </p>
-
-        <h3
-          class="mt-4 text-[clamp(1.5rem,2vw,2rem)] leading-[1.05] font-medium tracking-[-0.035em]"
-        >
-          Access scopes
-        </h3>
-
-        <p
-          class="mt-3 text-[13px] leading-[1.7] text-muted"
-        >
-          Faculty, department, program, and
-          supervisor-level data filtering.
-        </p>
-      </article>
-
-
-      <!-- Core features -->
-
-      <article
-        class="border border-line p-6 md:p-7"
-      >
-        <p
-          class="font-mono text-[9px] uppercase tracking-[0.08em] text-muted"
-        >
-          5 core functions
-        </p>
-
-        <h3
-          class="mt-4 text-[clamp(1.5rem,2vw,2rem)] leading-[1.05] font-medium tracking-[-0.035em]"
-        >
-          Core features
-        </h3>
-
-        <p
-          class="mt-3 text-[13px] leading-[1.7] text-muted"
-        >
-          Statistics, monitoring, notifications,
-          reporting, and system integration.
-        </p>
-      </article>
-
-
-      <!-- Warning stages -->
-
-      <article
-        class="border border-line p-6 md:p-7"
-      >
-        <p
-          class="font-mono text-[9px] uppercase tracking-[0.08em] text-muted"
-        >
-          2 warning stages
-        </p>
-
-        <h3
-          class="mt-4 text-[clamp(1.5rem,2vw,2rem)] leading-[1.05] font-medium tracking-[-0.035em]"
-        >
-          Warning flow
-        </h3>
-
-        <p
-          class="mt-3 text-[13px] leading-[1.7] text-muted"
-        >
-          Reminder first, followed by an overdue
-          warning after the required deadline.
-        </p>
-      </article>
-
-    </div>
-
-  </div>
-</section>
-
-<!-- =======================================================
-     02 / REQUIREMENTS + PROTOTYPE
-     ======================================================= -->
-
-<CaseSection
-  number="02"
-  label="Requirements"
-  title="Academic policy had to be translated into rules the system could actually evaluate."
->
-  <p>
-    The project began with understanding the existing Persuratan environment and its technical
-    structure. I was introduced to PHP CodeIgniter 4, MySQL, and the MVC architecture used by
-    the system, then explored the existing codebase with the programmer responsible for
-    maintaining Persuratan FMIPA.
-  </p>
-
-  <p>
-    Requirement discovery then moved beyond the IT team. I communicated with the project
-    initiator and academic administration staff to identify the mandatory agendas used to
-    evaluate student progress at different degree levels.
-  </p>
-
-  <p>
-    The findings were turned into an early UI/UX prototype and process flows. The prototype was
-    used as a communication tool with the project initiator, MBKM mentor, and academic staff
-    before development continued iteratively.
-  </p>
-</CaseSection>
-
-<section class="site-container py-10 md:py-16" data-reveal>
-  <div class="editorial-grid">
-    <div>
-      <p class="mono-label text-muted">Early Prototype</p>
-    </div>
-
-    <div class="editorial-content">
-      <figure>
-        <div class="overflow-hidden border border-line bg-[#ecebe6] p-4 md:p-8">
-          <img
-            src="/images/projects/monitoring/early-prototype.png"
-            alt="Early UI prototype for the FMIPA student monitoring system"
-            loading="lazy"
-            class="mx-auto block h-auto w-full max-w-[1100px] border border-black/10 bg-white"
-          />
-        </div>
-
-        <figcaption class="mt-4 max-w-[800px] text-[12px] leading-[1.75] text-muted">
-          Early dashboard prototype used to validate the feature direction before the final
-          production implementation was integrated into Persuratan FMIPA.
-        </figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-
-<!-- =======================================================
-     03 / DETECTION LOGIC
-     ======================================================= -->
-
-<CaseSection
-  number="03"
-  label="Detection Logic"
-  title="One generic rule was not enough for three different academic pathways."
->
-  <p>
-    The system collects student academic records, supervisor or promoter relationships, and
-    completed mandatory agendas from the existing data environment. Those records are compared
-    against parameters agreed with academic staff to determine whether a student should appear
-    in the troubled-student list.
-  </p>
-
-  <p>
-    S1, S2, and S3 students follow different milestone sequences and timelines. I therefore
-    mapped an independent flow for each degree level rather than forcing all students through a
-    single detection rule.
-  </p>
-
-  <p>
-    Each flow checks whether the required agenda has already been completed, evaluates the
-    student's academic timing, and decides whether the system should send a reminder, issue an
-    overdue warning, or continue checking the next agenda.
-  </p>
-</CaseSection>
-
-{degreeFlows.map((flow, index) => (
-  <section class="site-container py-10 md:py-14" data-reveal>
-    <div class="editorial-grid">
-      <div>
-        <p class="mono-label text-muted">{flow.number} / {flow.degree}</p>
+          Student Performance
+          <br />
+          Monitoring System
+        </h1>
       </div>
 
-      <div class="editorial-content">
+
+      <!-- System metrics -->
+
+      <div
+        class="grid grid-cols-2 gap-px bg-paper/20 md:col-span-4"
+      >
         <div
-          class:list={[
-            "grid items-start gap-8 lg:grid-cols-[minmax(0,0.42fr)_minmax(0,0.58fr)] lg:gap-12",
-            index % 2 === 1 && "lg:grid-cols-[minmax(0,0.58fr)_minmax(0,0.42fr)]",
-          ]}
+          class="bg-ink p-5 md:p-6"
         >
-          <div class:list={[index % 2 === 1 && "lg:order-2"]}>
-            <div class="bg-[#151615] p-4 md:p-7">
-              <img
-                src={flow.src}
-                alt={flow.alt}
-                loading="lazy"
-                class="mx-auto block h-auto w-full max-w-[600px]"
-              />
-            </div>
-          </div>
+          <p
+            class="text-[9px] uppercase tracking-[0.08em] text-paper/50"
+          >
+            Records
+          </p>
 
-          <div class:list={["pt-1", index % 2 === 1 && "lg:order-1"]}>
-            <p class="mono-label text-muted">{flow.degree}</p>
-            <h3 class="mt-5 max-w-[620px] text-[clamp(2rem,3vw,3.25rem)] leading-[1.05] font-medium tracking-[-0.04em]">
-              {flow.title}
-            </h3>
+          <p
+            class="mt-4 text-[clamp(1.8rem,3vw,3.5rem)] tracking-[-0.04em]"
+          >
+            ~1,500
+          </p>
 
-            <p class="mt-6 max-w-[620px] text-[14px] leading-[1.8] text-muted">
-              {flow.description}
-            </p>
+          <p
+            class="mt-2 text-[11px] text-paper/50"
+          >
+            student records
+          </p>
+        </div>
 
-            <div class="mt-8 border-t border-line">
-              {flow.milestones.map((milestone, milestoneIndex) => (
-                <div class="flex items-center gap-5 border-b border-line py-4">
-                  <span class="font-mono text-[9px] text-muted">0{milestoneIndex + 1}</span>
-                  <span class="text-[13px]">{milestone}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+        <div
+          class="bg-ink p-5 md:p-6"
+        >
+          <p
+            class="text-[9px] uppercase tracking-[0.08em] text-paper/50"
+          >
+            Degree logic
+          </p>
+
+          <p
+            class="mt-4 text-[clamp(1.8rem,3vw,3.5rem)] tracking-[-0.04em]"
+          >
+            03
+          </p>
+
+          <p
+            class="mt-2 text-[11px] text-paper/50"
+          >
+            S1 · S2 · S3
+          </p>
+        </div>
+
+        <div
+          class="bg-ink p-5 md:p-6"
+        >
+          <p
+            class="text-[9px] uppercase tracking-[0.08em] text-paper/50"
+          >
+            Data scopes
+          </p>
+
+          <p
+            class="mt-4 text-[clamp(1.8rem,3vw,3.5rem)] tracking-[-0.04em]"
+          >
+            04
+          </p>
+
+          <p
+            class="mt-2 text-[11px] text-paper/50"
+          >
+            access levels
+          </p>
+        </div>
+
+        <div
+          class="bg-ink p-5 md:p-6"
+        >
+          <p
+            class="text-[9px] uppercase tracking-[0.08em] text-paper/50"
+          >
+            Validation
+          </p>
+
+          <p
+            class="mt-4 text-[clamp(1.8rem,3vw,3.5rem)] tracking-[-0.04em]"
+          >
+            09
+          </p>
+
+          <p
+            class="mt-2 text-[11px] text-paper/50"
+          >
+            test scenarios
+          </p>
         </div>
       </div>
     </div>
-  </section>
-))}
 
 
-<!-- =======================================================
-     04 / ARCHITECTURE + DATA
-     ======================================================= -->
+    <!-- Dashboard -->
 
-<CaseSection
-  number="04"
-  label="Architecture & Data"
-  title="The visible dashboard depended on reconstructing useful information from an existing relational data model."
->
-  <p>
-    The module was implemented with PHP CodeIgniter 4 using MVC, MySQL for data storage and
-    processing, and HTML, CSS, and JavaScript for the frontend. The feature was designed to
-    integrate directly into Persuratan FMIPA and communicate with the system's existing data
-    environment.
-  </p>
-
-  <p>
-    Much of the information required by the monitoring feature was not stored as one clean,
-    ready-to-display dataset. Academic records, supervisor relationships, employee data, user
-    accounts, agenda completion, and program statistics had to be connected and processed
-    before the interface could show a reliable result.
-  </p>
-</CaseSection>
-
-<section class="site-container py-10 md:py-16" data-reveal>
-  <div class="editorial-grid">
-    <div>
-      <p class="mono-label text-muted">System Architecture</p>
-    </div>
-
-    <div class="editorial-content">
-      <div class="bg-[#191b19] p-5 text-white md:p-8 lg:p-10">
-        <div class="grid gap-4 lg:grid-cols-[1fr_auto_1fr_auto_1fr] lg:items-stretch">
-          <div class="border border-white/10 p-6">
-            <p class="font-mono text-[9px] uppercase tracking-[0.08em] text-white/40">View</p>
-            <h3 class="mt-4 text-2xl font-medium tracking-[-0.04em]">Frontend</h3>
-            <p class="mt-4 text-[13px] leading-[1.7] text-white/55">HTML · CSS · JavaScript</p>
-          </div>
-
-          <div class="hidden items-center text-white/25 lg:flex">→</div>
-
-          <div class="border border-white/10 p-6">
-            <p class="font-mono text-[9px] uppercase tracking-[0.08em] text-white/40">Controller / Model</p>
-            <h3 class="mt-4 text-2xl font-medium tracking-[-0.04em]">CodeIgniter 4</h3>
-            <p class="mt-4 text-[13px] leading-[1.7] text-white/55">PHP · MVC · application logic</p>
-          </div>
-
-          <div class="hidden items-center text-white/25 lg:flex">→</div>
-
-          <div class="border border-white/10 p-6">
-            <p class="font-mono text-[9px] uppercase tracking-[0.08em] text-white/40">Data</p>
-            <h3 class="mt-4 text-2xl font-medium tracking-[-0.04em]">MySQL</h3>
-            <p class="mt-4 text-[13px] leading-[1.7] text-white/55">Academic records · parameters · notification logs</p>
-          </div>
-        </div>
-
-        <div class="mt-4 border border-white/10 p-5 md:p-6">
-          <p class="font-mono text-[9px] uppercase tracking-[0.08em] text-white/40">Integration target</p>
-          <p class="mt-3 text-[14px] text-white/75">Existing Persuratan FMIPA system and its academic data environment</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="site-container py-10 md:py-16" data-reveal>
-  <div class="editorial-grid">
-    <div>
-      <p class="mono-label text-muted">Data Sources</p>
-    </div>
-
-    <div class="editorial-content grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-      <article class="border border-line p-5">
-        <code class="font-mono text-[10px]">api_khs_raw</code>
-        <p class="mt-4 text-[12px] leading-[1.65] text-muted">KHS and course-history records used to evaluate completed academic activity and derive further monitoring data.</p>
-      </article>
-
-      <article class="border border-line p-5">
-        <code class="font-mono text-[10px]">api_bimbingan_raw</code>
-        <p class="mt-4 text-[12px] leading-[1.65] text-muted">Relationship between student NIM and supervisor NIP.</p>
-      </article>
-
-      <article class="border border-line p-5">
-        <code class="font-mono text-[10px]">pegawais</code>
-        <p class="mt-4 text-[12px] leading-[1.65] text-muted">FMIPA employee data used to resolve supervisor information.</p>
-      </article>
-
-      <article class="border border-line p-5">
-        <code class="font-mono text-[10px]">users</code>
-        <p class="mt-4 text-[12px] leading-[1.65] text-muted">Persuratan user accounts used as part of access and user-data handling.</p>
-      </article>
-
-      <article class="border border-line p-5">
-        <code class="font-mono text-[10px]">probstud_prodi</code>
-        <p class="mt-4 text-[12px] leading-[1.65] text-muted">Troubled-student totals used by Dashboard Stats for program-level visualization.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-
-<!-- =======================================================
-     05 / PRODUCTION INTERFACE
-     ======================================================= -->
-
-<CaseSection
-  number="05"
-  label="Production Interface"
-  title="The final module turns monitoring logic into information academic staff can scan and act on."
->
-  <p>
-    The interface was designed around two main views. Dashboard Stats provides a quick bar-chart
-    overview of troubled-student totals by study program, while the detailed monitoring table
-    exposes the information required for follow-up: academic timing, delayed agenda,
-    supervisor, program, and department.
-  </p>
-
-  <p>
-    The UI was intentionally kept simple and direct because it lives inside an existing
-    administrative system. Navigation and responsive behavior were designed to keep the module
-    usable on desktop and tablet without visually separating it from the surrounding Persuratan
-    environment.
-  </p>
-</CaseSection>
-
-<section class="site-container py-10 md:py-16" data-reveal>
-  <div class="editorial-grid">
-    <div>
-      <p class="mono-label text-muted">Dashboard Stats</p>
-    </div>
-
-    <div class="editorial-content">
-      <figure>
-        <div class="overflow-hidden border border-line bg-[#ecebe6] p-4 md:p-7 lg:p-9">
-          <img
-            src="/images/projects/monitoring/dashboard-stats.png"
-            alt="Production Dashboard Stats showing troubled students by study program"
-            loading="lazy"
-            class="block h-auto w-full border border-black/10 bg-white"
-          />
-        </div>
-
-        <figcaption class="mt-4 max-w-[800px] text-[12px] leading-[1.75] text-muted">
-          Production Dashboard Stats. The implementation report documents this view as a bar
-          chart of troubled-student totals per study program; at the documented stage, the
-          statistics view was still limited to S1 and did not yet include a degree-level selector.
-        </figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<CaseSection
-  number="06"
-  label="Role-Based Access"
-  title="The interface stays consistent while the visible dataset changes with organizational responsibility."
->
-  <p>
-    Login credentials are translated into server-side filtering rules. Dean, Vice Dean, and
-    administrator-level access can review the broader faculty dataset, while narrower roles are
-    restricted to the academic scope they are responsible for.
-  </p>
-
-  <p>
-    Department leadership is limited to its department, program leadership is limited to its
-    study program, and academic supervisors or promoter teams only receive records belonging to
-    students under their supervision.
-  </p>
-
-  <p>
-    This allowed one monitoring module to support several institutional levels while avoiding
-    unnecessary exposure of unrelated student records.
-  </p>
-</CaseSection>
-
-<section class="site-container py-10 md:py-16" data-reveal>
-  <div class="editorial-grid">
-    <div>
-      <p class="mono-label text-muted">Production Views</p>
-    </div>
-
-    <div class="editorial-content grid gap-x-5 gap-y-10 lg:grid-cols-2">
-      {roleViews.map((role) => (
-        <figure>
-          <div class="overflow-hidden border border-line bg-white">
+    <div
+      class="mt-14 border-t border-paper/20 pt-7 md:mt-20 md:pt-10"
+    >
+      <div
+        class="grid gap-8 md:grid-cols-12"
+      >
+        <div
+          class="md:col-span-9"
+        >
+          <div
+            class="relative isolate aspect-[16/9] overflow-hidden bg-[#171817]"
+          >
             <img
-              src={role.src}
-              alt={role.alt}
-              loading="lazy"
-              class="block h-auto w-full"
+              src={project.cover}
+              alt={project.coverAlt}
+              class="absolute inset-0 h-full w-full object-cover"
+              style={`
+                object-position:
+                  ${project.coverPosition ?? "100% 30%"};
+
+                transform:
+                  scale(${project.coverScale ?? 1});
+              `}
             />
           </div>
+        </div>
 
-          <figcaption class="mt-4">
-            <div class="flex flex-wrap items-baseline justify-between gap-3">
-              <p class="text-[14px] font-medium">{role.title}</p>
-              <p class="font-mono text-[9px] uppercase tracking-[0.06em] text-muted">{role.scope}</p>
-            </div>
-            <p class="mt-3 max-w-[620px] text-[12px] leading-[1.7] text-muted">{role.description}</p>
-          </figcaption>
-        </figure>
-      ))}
+
+        <div
+          class="flex flex-col justify-between md:col-span-3"
+        >
+          <p
+            class="max-w-[320px] text-[14px] leading-[1.75] text-paper/60"
+          >
+            An internal module that turns academic
+            policy, student records, milestone status,
+            organizational roles, and notification
+            history into one operational monitoring
+            workflow.
+          </p>
+
+          <div
+            class="mt-10 border-t border-paper/20 pt-5"
+          >
+            <p
+              class="text-[9px] uppercase tracking-[0.08em] text-paper/40"
+            >
+              Stack
+            </p>
+
+            <p
+              class="mt-3 text-[12px] leading-[1.8] text-paper/70"
+            >
+              PHP · CodeIgniter 4
+              <br />
+              MySQL · JavaScript
+              <br />
+              HTML · CSS
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
-
-<section class="site-container py-4 md:py-8" data-reveal>
-  <div class="editorial-grid">
-    <div>
-      <p class="mono-label text-muted">Privacy Note</p>
-    </div>
-
-    <div class="editorial-content border-y border-line py-6">
-      <p class="max-w-[900px] text-[13px] leading-[1.8] text-muted">
-        These are production screenshots from an internal academic system. Only personally
-        sensitive table values are obscured for public presentation; role identity, interface
-        structure, table headers, and non-sensitive monitoring fields are intentionally left
-        visible so the implementation can still be evaluated.
-      </p>
-    </div>
-  </div>
-</section>
-
 
 <!-- =======================================================
-     07 / OPERATIONAL FEATURES
+     01 / FROM POLICY TO SYSTEM
      ======================================================= -->
 
-<CaseSection
-  number="07"
-  label="Operational Features"
-  title="Detection was only useful if staff could navigate the result, communicate it, and take the data forward."
+<section
+  class="site-container py-20 md:py-32"
 >
-  <h3>Pagination and sorting</h3>
-  <p>
-    Pagination was added so the interface did not load an unnecessarily large number of
-    records at once, improving efficiency while keeping the monitoring table visually cleaner.
-    Compatible table fields also support sorting to make analysis faster.
-  </p>
-
-  <h3>Two-stage email notification</h3>
-  <p>
-    The notification feature sends both the student and their academic supervisor or promoter
-    team a first reminder before the required agenda becomes overdue. If the agenda is later
-    confirmed as overdue, a stronger warning is sent.
-  </p>
-
-  <p>
-    Email delivery is synchronized with database updates and warning logs so the application
-    can keep track of previous notifications rather than treating every message as a first
-    warning.
-  </p>
-
-  <h3>Excel reporting</h3>
-  <p>
-    A detailed-report export was implemented with PHPSpreadsheet for administrative use. The
-    feature worked, but testing exposed a pagination-related limitation: the downloaded file
-    contained only the records from the currently active page instead of the complete dataset.
-  </p>
-</CaseSection>
-
-<section class="site-container py-10 md:py-14" data-reveal>
-  <div class="editorial-grid">
-    <div>
-      <p class="mono-label text-muted">Pagination UI</p>
+  <div
+    class="grid gap-12 md:grid-cols-12"
+  >
+    <div
+      class="md:col-span-3"
+    >
+      <p
+        class="rule-label text-muted"
+      >
+        01 / The problem
+      </p>
     </div>
 
-    <div class="editorial-content">
-      <div class="max-w-[760px] border border-line bg-white p-6 md:p-10">
+
+    <div
+      class="md:col-span-8 md:col-start-5"
+    >
+      <h2
+        class="max-w-[950px] text-[clamp(2.6rem,5vw,5.8rem)] leading-[0.98] font-medium tracking-[-0.05em]"
+      >
+        Academic policy had to become
+        something the system could actually evaluate.
+      </h2>
+
+      <div
+        class="mt-10 grid gap-8 md:grid-cols-2"
+      >
+        <p
+          class="text-[15px] leading-[1.8] text-muted"
+        >
+          Before the module existed, identifying
+          students who were late completing mandatory
+          academic milestones depended heavily on
+          manual review. That made early detection
+          slower and easier to overlook.
+        </p>
+
+        <p
+          class="text-[15px] leading-[1.8] text-muted"
+        >
+          The feature therefore had to do more than
+          display records. It needed to understand
+          academic timing, completed milestones,
+          supervisor relationships, organizational
+          responsibility, and previous notification
+          state.
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Translation strip -->
+
+  <div
+    class="mt-16 border-y border-ink md:mt-24"
+  >
+    <div
+      class="grid md:grid-cols-4"
+    >
+
+      <div
+        class="border-b border-line py-7 md:border-r md:border-b-0 md:px-7 md:first:pl-0"
+      >
+        <p
+          class="text-[10px] uppercase tracking-[0.08em] text-accent"
+        >
+          Input
+        </p>
+
+        <p
+          class="mt-4 text-xl font-medium tracking-[-0.025em]"
+        >
+          Academic policy
+        </p>
+      </div>
+
+
+      <div
+        class="border-b border-line py-7 md:border-r md:border-b-0 md:px-7"
+      >
+        <p
+          class="text-[10px] uppercase tracking-[0.08em] text-muted"
+        >
+          Translate
+        </p>
+
+        <p
+          class="mt-4 text-xl font-medium tracking-[-0.025em]"
+        >
+          Monitoring rules
+        </p>
+      </div>
+
+
+      <div
+        class="border-b border-line py-7 md:border-r md:border-b-0 md:px-7"
+      >
+        <p
+          class="text-[10px] uppercase tracking-[0.08em] text-muted"
+        >
+          Evaluate
+        </p>
+
+        <p
+          class="mt-4 text-xl font-medium tracking-[-0.025em]"
+        >
+          Student records
+        </p>
+      </div>
+
+
+      <div
+        class="py-7 md:px-7 md:last:pr-0"
+      >
+        <p
+          class="text-[10px] uppercase tracking-[0.08em] text-muted"
+        >
+          Output
+        </p>
+
+        <p
+          class="mt-4 text-xl font-medium tracking-[-0.025em]"
+        >
+          Actionable cases
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =======================================================
+     EARLY PROTOTYPE
+     ======================================================= -->
+
+<section
+  class="site-container pb-24 md:pb-40"
+>
+  <div
+    class="grid items-start gap-10 border-t border-line pt-8 md:grid-cols-12"
+  >
+    <div
+      class="md:col-span-4"
+    >
+      <p
+        class="text-[10px] uppercase tracking-[0.08em] text-muted"
+      >
+        Early prototype
+      </p>
+
+      <h3
+        class="mt-6 max-w-sm text-[clamp(1.8rem,3vw,3.3rem)] leading-[1.02] font-medium tracking-[-0.04em]"
+      >
+        The interface started as a way to discuss
+        the rules.
+      </h3>
+
+      <p
+        class="mt-6 max-w-sm text-[14px] leading-[1.75] text-muted"
+      >
+        The first prototype was used with the project
+        initiator, academic staff, and technical
+        mentors to make the proposed monitoring
+        workflow concrete before development moved
+        further into the existing Persuratan system.
+      </p>
+    </div>
+
+
+    <figure
+      class="md:col-span-7 md:col-start-6"
+    >
+      <div
+        class="bg-[#e3dfd5] p-4 sm:p-6 md:p-8"
+      >
         <img
-          src="/images/projects/monitoring/pagination-ui.png"
-          alt="Production pagination controls for the student monitoring table"
+          src="/images/projects/monitoring/early-prototype.png"
+          alt="Early prototype of the student monitoring dashboard"
           loading="lazy"
           class="block h-auto w-full"
         />
       </div>
-    </div>
+
+      <figcaption
+        class="mt-4 border-t border-line pt-3 text-[11px] leading-[1.65] text-muted"
+      >
+        Early dashboard prototype used to validate
+        the direction before production implementation.
+      </figcaption>
+    </figure>
   </div>
 </section>
-
-<section class="site-container py-10 md:py-14" data-reveal>
-  <div class="editorial-grid">
-    <div>
-      <p class="mono-label text-muted">Notification Flow</p>
-    </div>
-
-    <div class="editorial-content">
-      <div class="grid gap-3 md:grid-cols-[1fr_auto_1fr_auto_1fr] md:items-stretch">
-        <article class="border border-line p-6">
-          <p class="mono-label text-muted">01 / Detect</p>
-          <h3 class="mt-5 text-xl font-medium tracking-[-0.03em]">Agenda approaching</h3>
-          <p class="mt-3 text-[12px] leading-[1.7] text-muted">Monitoring logic determines that the required agenda has not yet been completed.</p>
-        </article>
-
-        <div class="hidden items-center text-muted md:flex">→</div>
-
-        <article class="border border-line p-6">
-          <p class="mono-label text-muted">02 / Remind</p>
-          <h3 class="mt-5 text-xl font-medium tracking-[-0.03em]">First email</h3>
-          <p class="mt-3 text-[12px] leading-[1.7] text-muted">Student and supervisor or promoter receive a reminder before the agenda becomes overdue.</p>
-        </article>
-
-        <div class="hidden items-center text-muted md:flex">→</div>
-
-        <article class="bg-[#191b19] p-6 text-white">
-          <p class="mono-label text-white/45">03 / Escalate</p>
-          <h3 class="mt-5 text-xl font-medium tracking-[-0.03em]">Overdue warning</h3>
-          <p class="mt-3 text-[12px] leading-[1.7] text-white/55">If the deadline is missed, the second warning is sent and the notification state is updated.</p>
-        </article>
-      </div>
-    </div>
-  </div>
-</section>
-
 
 <!-- =======================================================
-     08 / TESTING + LIMITATIONS
+     02 / DEGREE LOGIC
      ======================================================= -->
 
-<CaseSection
-  number="08"
-  label="Testing"
-  title="The final validation checked the feature as an integrated workflow, not only as an interface."
+<section
+  class="bg-ink text-paper"
 >
-  <p>
-    Functional testing used a black-box approach focused on whether each module produced the
-    expected result from representative inputs. Browser validation was performed with Chrome
-    and Firefox, and MySQL Workbench was used to verify database integrity and query results.
-    PHPUnit was identified as an optional tool for validating selected backend helpers or
-    filtering logic.
-  </p>
+  <div
+    class="site-container py-20 md:py-32 lg:py-40"
+  >
+    <div
+      class="grid gap-12 md:grid-cols-12"
+    >
+      <div
+        class="md:col-span-3"
+      >
+        <p
+          class="rule-label text-accent"
+        >
+          02 / Detection logic
+        </p>
+      </div>
 
-  <p>
-    The tested modules covered login, role-based filtering, Dashboard Stats, pagination, Excel
-    export, and automatic email notifications. The final integration results recorded all core
-    modules as successful and valid except the documented Excel-export pagination issue.
-  </p>
-</CaseSection>
 
-<section class="site-container py-10 md:py-14" data-reveal>
-  <div class="editorial-grid">
-    <div>
-      <p class="mono-label text-muted">Result Summary</p>
+      <div
+        class="md:col-span-8 md:col-start-5"
+      >
+        <h2
+          class="max-w-[980px] text-[clamp(2.8rem,5.5vw,6rem)] leading-[0.97] font-medium tracking-[-0.055em]"
+        >
+          One rule could not represent
+          three different academic pathways.
+        </h2>
+
+        <p
+          class="mt-10 max-w-2xl text-[15px] leading-[1.8] text-paper/55"
+        >
+          Undergraduate, master's, and doctoral
+          students follow different milestone
+          sequences and timelines. Each degree level
+          therefore required its own detection flow
+          rather than being forced into a generic rule.
+        </p>
+      </div>
     </div>
 
-    <div class="editorial-content">
-      <div class="border-t border-line">
-        {testResults.map(([feature, status], index) => (
-          <div class="grid grid-cols-[48px_1fr_auto] items-center gap-4 border-b border-line py-4">
-            <span class="font-mono text-[9px] text-muted">{String(index + 1).padStart(2, "0")}</span>
-            <span class="text-[13px]">{feature}</span>
-            <span
-              class:list={[
-                "font-mono text-[9px] uppercase tracking-[0.06em]",
-                status === "Valid" ? "text-ink" : "text-muted",
-              ]}
+
+    <!-- Degree flows -->
+
+    <div
+      class="mt-20 border-t border-paper/25"
+    >
+      {
+        degreeFlows.map(
+          (flow, index) => (
+            <article
+              class="grid gap-10 border-b border-paper/15 py-12 md:grid-cols-12 md:py-16"
             >
-              {status}
-            </span>
-          </div>
-        ))}
+              <!-- Identity -->
+
+              <div
+                class="md:col-span-2"
+              >
+                <p
+                  class="text-[10px] uppercase tracking-[0.08em] text-accent"
+                >
+                  {flow.number}
+                </p>
+
+                <p
+                  class="mt-4 text-[clamp(2.5rem,4vw,4.8rem)] leading-none font-medium tracking-[-0.05em]"
+                >
+                  {flow.degree}
+                </p>
+              </div>
+
+
+              <!-- Flowchart -->
+
+              <div
+                class:list={[
+                  "md:col-span-5",
+                  index % 2 === 1 &&
+                    "md:order-3",
+                ]}
+              >
+                <div
+                  class="bg-[#161816] p-4 md:p-6"
+                >
+                  <img
+                    src={flow.src}
+                    alt={flow.alt}
+                    loading="lazy"
+                    class="mx-auto block h-auto w-full"
+                  />
+                </div>
+              </div>
+
+
+              <!-- Explanation -->
+
+              <div
+                class:list={[
+                  "md:col-span-5",
+                  index % 2 === 1 &&
+                    "md:order-2",
+                ]}
+              >
+                <h3
+                  class="max-w-lg text-[clamp(1.8rem,2.8vw,3.2rem)] leading-[1.03] font-medium tracking-[-0.04em]"
+                >
+                  {flow.title}
+                </h3>
+
+                <p
+                  class="mt-6 max-w-lg text-[13px] leading-[1.8] text-paper/55"
+                >
+                  {flow.description}
+                </p>
+
+
+                <div
+                  class="mt-8 border-t border-paper/20"
+                >
+                  {
+                    flow.milestones.map(
+                      (
+                        milestone,
+                        milestoneIndex
+                      ) => (
+                        <div
+                          class="grid grid-cols-[40px_1fr] gap-4 border-b border-paper/15 py-4"
+                        >
+                          <span
+                            class="text-[9px] text-paper/35"
+                          >
+                            {String(
+                              milestoneIndex +
+                                1
+                            ).padStart(
+                              2,
+                              "0"
+                            )}
+                          </span>
+
+                          <span
+                            class="text-[12px] text-paper/70"
+                          >
+                            {milestone}
+                          </span>
+                        </div>
+                      )
+                    )
+                  }
+                </div>
+              </div>
+            </article>
+          )
+        )
+      }
+    </div>
+  </div>
+</section>
+
+<!-- =======================================================
+     03 / DATA ARCHITECTURE
+     ======================================================= -->
+
+<section
+  class="site-container py-24 md:py-40"
+>
+  <div
+    class="grid gap-12 md:grid-cols-12"
+  >
+    <div
+      class="md:col-span-3"
+    >
+      <p
+        class="rule-label text-muted"
+      >
+        03 / Under the interface
+      </p>
+    </div>
+
+
+    <div
+      class="md:col-span-8 md:col-start-5"
+    >
+      <h2
+        class="max-w-[960px] text-[clamp(2.7rem,5vw,5.8rem)] leading-[0.98] font-medium tracking-[-0.05em]"
+      >
+        The dashboard only works because several
+        disconnected records are reconstructed
+        underneath it.
+      </h2>
+
+      <p
+        class="mt-10 max-w-2xl text-[15px] leading-[1.8] text-muted"
+      >
+        The information required by the monitoring
+        feature did not exist as one clean dataset.
+        Student activity, supervisor relationships,
+        employee information, accounts, monitoring
+        parameters, and program statistics had to be
+        connected and processed before the interface
+        could show a reliable result.
+      </p>
+    </div>
+  </div>
+
+
+  <!-- Architecture schematic -->
+
+  <div
+    class="mt-16 border-y border-ink md:mt-24"
+  >
+
+    <div
+      class="grid md:grid-cols-[1fr_auto_1fr_auto_1fr]"
+    >
+
+      <!-- Sources -->
+
+      <div
+        class="py-8 md:pr-8"
+      >
+        <p
+          class="text-[10px] uppercase tracking-[0.08em] text-accent"
+        >
+          01 / Existing data
+        </p>
+
+        <h3
+          class="mt-5 text-2xl font-medium tracking-[-0.035em]"
+        >
+          MySQL sources
+        </h3>
+
+        <p
+          class="mt-4 max-w-sm text-[13px] leading-[1.7] text-muted"
+        >
+          Academic records and existing Persuratan
+          data.
+        </p>
+      </div>
+
+
+      <div
+        class="hidden items-center px-4 text-muted md:flex"
+        aria-hidden="true"
+      >
+        →
+      </div>
+
+
+      <!-- Processing -->
+
+      <div
+        class="border-t border-line py-8 md:border-t-0 md:border-l md:border-r md:px-8"
+      >
+        <p
+          class="text-[10px] uppercase tracking-[0.08em] text-muted"
+        >
+          02 / Application
+        </p>
+
+        <h3
+          class="mt-5 text-2xl font-medium tracking-[-0.035em]"
+        >
+          CodeIgniter 4
+        </h3>
+
+        <p
+          class="mt-4 max-w-sm text-[13px] leading-[1.7] text-muted"
+        >
+          PHP, MVC logic, filtering, monitoring
+          parameters, notification state, and
+          reporting.
+        </p>
+      </div>
+
+
+      <div
+        class="hidden items-center px-4 text-muted md:flex"
+        aria-hidden="true"
+      >
+        →
+      </div>
+
+
+      <!-- Output -->
+
+      <div
+        class="border-t border-line py-8 md:border-t-0 md:pl-8"
+      >
+        <p
+          class="text-[10px] uppercase tracking-[0.08em] text-muted"
+        >
+          03 / Interface
+        </p>
+
+        <h3
+          class="mt-5 text-2xl font-medium tracking-[-0.035em]"
+        >
+          Monitoring views
+        </h3>
+
+        <p
+          class="mt-4 max-w-sm text-[13px] leading-[1.7] text-muted"
+        >
+          Dashboard statistics, student records,
+          role-specific datasets, alerts, and export.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- Data sources -->
+
+  <div
+    class="mt-14 grid gap-8 md:grid-cols-12"
+  >
+    <div
+      class="md:col-span-3"
+    >
+      <p
+        class="text-[10px] uppercase tracking-[0.08em] text-muted"
+      >
+        Existing sources
+      </p>
+    </div>
+
+
+    <div
+      class="md:col-span-8 md:col-start-5"
+    >
+      <div
+        class="border-t border-line"
+      >
+        {
+          dataSources.map(
+            (
+              source,
+              index
+            ) => (
+              <div
+                class="grid gap-4 border-b border-line py-5 md:grid-cols-[56px_180px_1fr]"
+              >
+                <span
+                  class="text-[9px] text-muted"
+                >
+                  {String(
+                    index + 1
+                  ).padStart(
+                    2,
+                    "0"
+                  )}
+                </span>
+
+                <code
+                  class="font-mono text-[11px]"
+                >
+                  {source.name}
+                </code>
+
+                <p
+                  class="max-w-xl text-[12px] leading-[1.7] text-muted"
+                >
+                  {source.role}
+                </p>
+              </div>
+            )
+          )
+        }
       </div>
     </div>
   </div>
 </section>
 
-<section class="site-container py-10 md:py-16" data-reveal>
-  <div class="editorial-grid">
-    <div>
-      <p class="mono-label text-muted">Integration Results</p>
+<!-- =======================================================
+     04 / PRODUCTION INTERFACE
+     ======================================================= -->
+
+<section
+  class="site-container pb-24 md:pb-40"
+>
+  <div
+    class="grid gap-12 border-t border-ink pt-10 md:grid-cols-12"
+  >
+    <div
+      class="md:col-span-3"
+    >
+      <p
+        class="rule-label text-muted"
+      >
+        04 / Production
+      </p>
     </div>
 
-    <div class="editorial-content">
-      <figure>
-        <div class="overflow-hidden border border-line bg-white p-2 md:p-4">
+
+    <div
+      class="md:col-span-8 md:col-start-5"
+    >
+      <h2
+        class="max-w-[930px] text-[clamp(2.7rem,5vw,5.8rem)] leading-[0.98] font-medium tracking-[-0.05em]"
+      >
+        The interface is deliberately quieter
+        than the system behind it.
+      </h2>
+
+      <p
+        class="mt-10 max-w-2xl text-[15px] leading-[1.8] text-muted"
+      >
+        The module lives inside an existing
+        administrative application, so the production
+        UI was designed to remain familiar rather
+        than introducing a completely separate visual
+        language.
+      </p>
+    </div>
+  </div>
+
+
+  <!-- Main production view -->
+
+  <figure
+    class="mt-16 md:mt-24"
+  >
+    <div
+      class="relative isolate aspect-[16/9] overflow-hidden bg-[#ddd9cf]"
+    >
+      <img
+        src={project.cover}
+        alt={project.coverAlt}
+        loading="lazy"
+        class="absolute inset-0 h-full w-full object-cover"
+        style={`
+          object-position:
+            ${project.coverPosition ?? "50% 50%"};
+
+          transform:
+            scale(${project.coverScale ?? 1});
+        `}
+      />
+    </div>
+
+    <figcaption
+      class="grid gap-4 border-t border-line pt-4 text-[10px] uppercase tracking-[0.07em] text-muted md:grid-cols-3"
+    >
+      <p>
+        Production interface
+      </p>
+
+      <p class="md:text-center">
+        Persuratan FMIPA
+      </p>
+
+      <p class="md:text-right">
+        PHP · CodeIgniter 4 · MySQL
+      </p>
+    </figcaption>
+  </figure>
+</section>
+
+<!-- =======================================================
+     05 / ACCESS SCOPES
+     ======================================================= -->
+
+<section
+  class="bg-[#dedad0]"
+>
+  <div
+    class="site-container py-20 md:py-32"
+  >
+    <div
+      class="grid gap-12 md:grid-cols-12"
+    >
+      <div
+        class="md:col-span-3"
+      >
+        <p
+          class="rule-label"
+        >
+          05 / Access
+        </p>
+      </div>
+
+
+      <div
+        class="md:col-span-8 md:col-start-5"
+      >
+        <h2
+          class="max-w-[950px] text-[clamp(2.6rem,5vw,5.7rem)] leading-[0.98] font-medium tracking-[-0.05em]"
+        >
+          One interface.
+          Four different data boundaries.
+        </h2>
+
+        <p
+          class="mt-10 max-w-2xl text-[15px] leading-[1.8] text-muted"
+        >
+          The visible structure stays consistent,
+          while the dataset is restricted according
+          to organizational responsibility.
+        </p>
+      </div>
+    </div>
+
+
+    <div
+      class="mt-16 border-t border-ink md:mt-24"
+    >
+      {
+        roleViews.map(
+          (
+            role,
+            index
+          ) => (
+            <figure
+              class="grid gap-8 border-b border-ink/20 py-10 md:grid-cols-12 md:py-14"
+            >
+              <div
+                class="md:col-span-2"
+              >
+                <p
+                  class="text-[10px] text-accent"
+                >
+                  {String(
+                    index + 1
+                  ).padStart(
+                    2,
+                    "0"
+                  )}
+                </p>
+
+                <p
+                  class="mt-4 text-[10px] uppercase tracking-[0.08em] text-muted"
+                >
+                  {role.scope}
+                </p>
+              </div>
+
+
+              <div
+                class="md:col-span-4"
+              >
+                <h3
+                  class="text-[clamp(1.8rem,2.8vw,3rem)] leading-[1.02] font-medium tracking-[-0.04em]"
+                >
+                  {role.title}
+                </h3>
+
+                <p
+                  class="mt-6 max-w-sm text-[13px] leading-[1.75] text-muted"
+                >
+                  {role.description}
+                </p>
+              </div>
+
+
+              <div
+                class="md:col-span-6"
+              >
+                <div
+                  class="overflow-hidden bg-white"
+                >
+                  <img
+                    src={role.src}
+                    alt={role.alt}
+                    loading="lazy"
+                    class="block h-auto w-full"
+                  />
+                </div>
+              </div>
+            </figure>
+          )
+        )
+      }
+    </div>
+
+
+    <!-- Privacy -->
+
+    <div
+      class="mt-10 grid gap-6 md:grid-cols-12"
+    >
+      <p
+        class="text-[9px] uppercase tracking-[0.08em] text-muted md:col-span-2"
+      >
+        Privacy note
+      </p>
+
+      <p
+        class="max-w-3xl text-[12px] leading-[1.75] text-muted md:col-span-8 md:col-start-4"
+      >
+        The production views are shown with
+        personally sensitive table values obscured.
+        Role identity, interface structure, headers,
+        and non-sensitive monitoring fields remain
+        visible so the implementation can still be
+        evaluated.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- =======================================================
+     06 / OPERATIONAL FEATURES
+     ======================================================= -->
+
+<section
+  class="site-container py-24 md:py-40"
+>
+  <div
+    class="grid gap-12 md:grid-cols-12"
+  >
+    <div
+      class="md:col-span-3"
+    >
+      <p
+        class="rule-label text-muted"
+      >
+        06 / Operations
+      </p>
+    </div>
+
+
+    <div
+      class="md:col-span-8 md:col-start-5"
+    >
+      <h2
+        class="max-w-[940px] text-[clamp(2.7rem,5vw,5.8rem)] leading-[0.98] font-medium tracking-[-0.05em]"
+      >
+        Detection is only useful when someone
+        can act on the result.
+      </h2>
+    </div>
+  </div>
+
+
+  <!-- Feature rows -->
+
+  <div
+    class="mt-16 border-t border-ink md:mt-24"
+  >
+    {
+      operationalFeatures.map(
+        (feature) => (
+          <div
+            class="grid gap-5 border-b border-line py-8 md:grid-cols-12"
+          >
+            <p
+              class="text-[10px] text-accent md:col-span-1"
+            >
+              {feature.number}
+            </p>
+
+            <h3
+              class="text-[clamp(1.6rem,2.4vw,2.7rem)] leading-[1.05] font-medium tracking-[-0.035em] md:col-span-4"
+            >
+              {feature.title}
+            </h3>
+
+            <p
+              class="max-w-xl text-[14px] leading-[1.75] text-muted md:col-span-6 md:col-start-7"
+            >
+              {feature.description}
+            </p>
+          </div>
+        )
+      )
+    }
+  </div>
+
+
+  <!-- Notification pipeline -->
+
+  <div
+    class="mt-20 bg-ink p-6 text-paper md:p-10 lg:p-14"
+  >
+    <div
+      class="grid gap-10 md:grid-cols-12"
+    >
+      <div
+        class="md:col-span-3"
+      >
+        <p
+          class="text-[10px] uppercase tracking-[0.08em] text-accent"
+        >
+          Notification state
+        </p>
+      </div>
+
+
+      <div
+        class="md:col-span-9"
+      >
+        <div
+          class="grid gap-px bg-paper/20 md:grid-cols-3"
+        >
+
+          <div
+            class="bg-ink p-6 md:p-8"
+          >
+            <p
+              class="text-[9px] text-paper/35"
+            >
+              01
+            </p>
+
+            <h3
+              class="mt-5 text-2xl font-medium tracking-[-0.035em]"
+            >
+              Detect
+            </h3>
+
+            <p
+              class="mt-4 text-[12px] leading-[1.75] text-paper/50"
+            >
+              The required milestone is still
+              incomplete and its configured timing
+              is evaluated.
+            </p>
+          </div>
+
+
+          <div
+            class="bg-ink p-6 md:p-8"
+          >
+            <p
+              class="text-[9px] text-paper/35"
+            >
+              02
+            </p>
+
+            <h3
+              class="mt-5 text-2xl font-medium tracking-[-0.035em]"
+            >
+              Remind
+            </h3>
+
+            <p
+              class="mt-4 text-[12px] leading-[1.75] text-paper/50"
+            >
+              The student and responsible supervisor
+              or promoter receive the first warning
+              before the deadline.
+            </p>
+          </div>
+
+
+          <div
+            class="bg-ink p-6 md:p-8"
+          >
+            <p
+              class="text-[9px] text-accent"
+            >
+              03
+            </p>
+
+            <h3
+              class="mt-5 text-2xl font-medium tracking-[-0.035em]"
+            >
+              Escalate
+            </h3>
+
+            <p
+              class="mt-4 text-[12px] leading-[1.75] text-paper/50"
+            >
+              If the agenda becomes overdue, a
+              stronger warning is sent and the
+              notification state is updated.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Pagination + known limitation -->
+
+  <div
+    class="mt-16 grid items-start gap-10 md:grid-cols-12"
+  >
+    <figure
+      class="md:col-span-6"
+    >
+      <div
+        class="border border-line bg-white p-6 md:p-8"
+      >
+        <img
+          src="/images/projects/monitoring/pagination-ui.png"
+          alt="Pagination controls in the production monitoring table"
+          loading="lazy"
+          class="block h-auto w-full"
+        />
+      </div>
+
+      <figcaption
+        class="mt-4 text-[11px] leading-[1.7] text-muted"
+      >
+        Production pagination controls for the
+        monitoring dataset.
+      </figcaption>
+    </figure>
+
+
+    <div
+      class="border-t border-accent pt-5 md:col-span-5 md:col-start-8"
+    >
+      <p
+        class="text-[10px] uppercase tracking-[0.08em] text-accent"
+      >
+        Documented limitation
+      </p>
+
+      <h3
+        class="mt-5 text-[clamp(1.8rem,3vw,3.3rem)] leading-[1.02] font-medium tracking-[-0.04em]"
+      >
+        Excel export exposed a pagination edge case.
+      </h3>
+
+      <p
+        class="mt-6 max-w-md text-[13px] leading-[1.8] text-muted"
+      >
+        PHPSpreadsheet export worked, but testing
+        revealed that the downloaded file contained
+        only records from the currently active page
+        rather than the full dataset.
+      </p>
+
+      <p
+        class="mt-5 max-w-md text-[13px] leading-[1.8] text-muted"
+      >
+        I am keeping that limitation visible here
+        because it was part of the actual handover,
+        rather than presenting the project as if every
+        implementation detail finished perfectly.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- =======================================================
+     07 / TESTING
+     ======================================================= -->
+
+<section
+  class="bg-ink text-paper"
+>
+  <div
+    class="site-container py-20 md:py-32 lg:py-40"
+  >
+    <div
+      class="grid gap-12 md:grid-cols-12"
+    >
+      <div
+        class="md:col-span-3"
+      >
+        <p
+          class="rule-label text-accent"
+        >
+          07 / Validation
+        </p>
+      </div>
+
+
+      <div
+        class="md:col-span-8 md:col-start-5"
+      >
+        <h2
+          class="max-w-[920px] text-[clamp(2.7rem,5vw,5.8rem)] leading-[0.98] font-medium tracking-[-0.05em]"
+        >
+          The final test was the workflow,
+          not the screenshot.
+        </h2>
+
+        <p
+          class="mt-10 max-w-2xl text-[14px] leading-[1.8] text-paper/55"
+        >
+          Black-box testing covered authentication,
+          each role-filtering level, statistics,
+          pagination, email notification, and Excel
+          export as integrated functionality.
+        </p>
+      </div>
+    </div>
+
+
+    <!-- Test result table -->
+
+    <div
+      class="mt-16 grid gap-10 md:grid-cols-12 md:mt-24"
+    >
+      <div
+        class="md:col-span-6 md:col-start-2"
+      >
+        <div
+          class="border-t border-paper/30"
+        >
+          {
+            testResults.map(
+              (
+                [feature, status],
+                index
+              ) => (
+                <div
+                  class="grid grid-cols-[44px_1fr_auto] items-center gap-4 border-b border-paper/15 py-4"
+                >
+                  <span
+                    class="text-[9px] text-paper/30"
+                  >
+                    {String(
+                      index + 1
+                    ).padStart(
+                      2,
+                      "0"
+                    )}
+                  </span>
+
+                  <span
+                    class="text-[12px] text-paper/75"
+                  >
+                    {feature}
+                  </span>
+
+                  <span
+                    class:list={[
+                      "text-[9px] uppercase tracking-[0.08em]",
+                      status ===
+                      "Valid"
+                        ? "text-paper/60"
+                        : "text-accent",
+                    ]}
+                  >
+                    {status}
+                  </span>
+                </div>
+              )
+            )
+          }
+        </div>
+      </div>
+
+
+      <figure
+        class="md:col-span-5"
+      >
+        <div
+          class="bg-white p-2 md:p-3"
+        >
           <img
             src="/images/projects/monitoring/integration-test-results.png"
-            alt="Final integration test results for the student monitoring system"
+            alt="Integration test results for the student monitoring system"
             loading="lazy"
             class="block h-auto w-full"
           />
         </div>
 
-        <figcaption class="mt-4 max-w-[820px] text-[12px] leading-[1.75] text-muted">
-          Final integration-test summary. Login, every role-filtering level, Dashboard Stats,
-          pagination, and email notification were recorded as valid. Excel export remained the
-          single documented troubleshooting item.
+        <figcaption
+          class="mt-4 text-[11px] leading-[1.7] text-paper/45"
+        >
+          Final integration-test summary. Excel
+          export remained the only documented
+          troubleshooting item.
         </figcaption>
       </figure>
     </div>
   </div>
 </section>
 
-
 <!-- =======================================================
-     09 / OWNERSHIP + PRODUCTION
+     08 / OWNERSHIP
      ======================================================= -->
 
-<CaseSection
-  number="09"
-  label="Ownership"
-  title="I carried the feature from requirement discovery to an integrated production implementation."
+<section
+  class="site-container py-24 md:py-40"
 >
-  <p>
-    My involvement covered requirement gathering, academic-rule mapping, process diagrams,
-    UI/UX prototyping, frontend implementation, backend logic, relational-data handling,
-    role-based filtering, notification behavior, reporting, and testing.
-  </p>
+  <div
+    class="grid gap-12 md:grid-cols-12"
+  >
+    <div
+      class="md:col-span-3"
+    >
+      <p
+        class="rule-label text-muted"
+      >
+        08 / Ownership
+      </p>
+    </div>
 
-  <p>
-    The project was developed iteratively inside an existing institutional application rather
-    than in isolation. Technical guidance was available from the Persuratan programmer when I
-    needed to understand the surrounding system, while the feature itself remained my primary
-    development responsibility.
-  </p>
 
-  <p>
-    The final deployment was handled by the IT supervisor, and the monitoring module became
-    part of the live Persuratan FMIPA environment used for academic monitoring.
-  </p>
+    <div
+      class="md:col-span-8 md:col-start-5"
+    >
+      <h2
+        class="max-w-[940px] text-[clamp(2.7rem,5vw,5.8rem)] leading-[0.98] font-medium tracking-[-0.05em]"
+      >
+        I carried the feature from requirement
+        discovery into an integrated implementation.
+      </h2>
 
-  <p>
-    More than anything, the project made the relationship between interface design and backend
-    data concrete. The dashboard is only the visible layer; its usefulness depends on academic
-    rules, reliable queries, access boundaries, notification state, and testing all working
-    together underneath it.
-  </p>
-</CaseSection>
+
+      <div
+        class="mt-12 grid gap-8 md:grid-cols-2"
+      >
+        <p
+          class="text-[14px] leading-[1.8] text-muted"
+        >
+          My responsibility included requirement
+          gathering, academic-rule mapping, process
+          diagrams, UI/UX prototyping, frontend work,
+          backend logic, relational-data handling,
+          role filtering, notifications, reporting,
+          and functional testing.
+        </p>
+
+        <p
+          class="text-[14px] leading-[1.8] text-muted"
+        >
+          The surrounding Persuratan application
+          already existed, and technical guidance was
+          available when I needed to understand its
+          architecture. The monitoring feature itself
+          remained my primary development
+          responsibility.
+        </p>
+      </div>
+
+
+      <div
+        class="mt-16 border-y border-ink py-10 md:py-14"
+      >
+        <p
+          class="max-w-[900px] text-[clamp(2rem,3.8vw,4.2rem)] leading-[1.08] font-medium tracking-[-0.04em]"
+        >
+          The dashboard is only the visible layer.
+          Its usefulness depends on rules, queries,
+          access boundaries, notification state,
+          and testing all working together underneath.
+        </p>
+      </div>
+
+
+      <div
+        class="mt-10 grid gap-6 md:grid-cols-2"
+      >
+        <div>
+          <p
+            class="text-[9px] uppercase tracking-[0.08em] text-muted"
+          >
+            Deployment
+          </p>
+
+          <p
+            class="mt-3 max-w-md text-[13px] leading-[1.75]"
+          >
+            Final production deployment was handled
+            by the IT supervisor.
+          </p>
+        </div>
+
+
+        <div>
+          <p
+            class="text-[9px] uppercase tracking-[0.08em] text-muted"
+          >
+            Environment
+          </p>
+
+          <p
+            class="mt-3 max-w-md text-[13px] leading-[1.75]"
+          >
+            Integrated into the existing Persuratan
+            FMIPA academic administration system.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

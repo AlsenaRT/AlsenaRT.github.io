@@ -1,0 +1,115 @@
+---
+import {
+  folio,
+} from "../data/folio";
+
+const previewPages =
+  folio.pages.slice(0, 3);
+
+const rotations = [
+  "-rotate-[1.5deg]",
+  "rotate-[1deg]",
+  "-rotate-[0.6deg]",
+];
+---
+
+<section
+  class="site-container my-28 md:my-48"
+>
+  <div
+    class="overflow-hidden bg-ink text-paper"
+  >
+    <div
+      class="grid gap-16 px-6 py-10 sm:px-10 md:grid-cols-12 md:px-14 md:py-16 lg:px-20 lg:py-20"
+    >
+      <div
+        class="flex flex-col justify-between md:col-span-4"
+      >
+        <div>
+          <p
+            class="rule-label text-accent"
+          >
+            Design Folio
+          </p>
+
+          <h2
+            class="mt-8 max-w-lg text-[clamp(2.8rem,5.4vw,6.2rem)] leading-[0.94] font-medium tracking-[-0.05em]"
+          >
+            Some work is better
+            <span
+              class="editorial-serif"
+            >
+              read as a book.
+            </span>
+          </h2>
+        </div>
+
+        <div class="mt-14 md:mt-20">
+          <p
+            class="max-w-sm text-[15px] leading-[1.75] text-paper/60"
+          >
+            The design portfolio brings selected
+            projects together as one continuous
+            visual narrative — with more room for
+            process, decisions, mockups, and detail
+            than a résumé can carry.
+          </p>
+
+          <div
+            class="mt-8 flex flex-wrap gap-x-7 gap-y-4 text-[13px]"
+          >
+            <a
+              href="/folio/"
+              class="border-b border-paper/40 pb-1 transition-colors hover:border-paper"
+            >
+              Explore the folio →
+            </a>
+
+            <a
+              href={folio.pdf}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="border-b border-paper/40 pb-1 transition-colors hover:border-paper"
+            >
+              Open PDF ↗
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="grid grid-cols-2 items-center gap-5 md:col-span-8 md:gap-7"
+      >
+        {
+          previewPages.map(
+            (page, index) => (
+              <figure
+                class:list={[
+                  "folio-sheet",
+                  rotations[
+                    index
+                  ],
+                  index === 0
+                    ? "col-span-2 mx-auto w-[72%]"
+                    : "",
+                ]}
+              >
+                <img
+                  src={page.image}
+                  alt={page.alt}
+                  loading="lazy"
+                />
+
+                <figcaption
+                  class="absolute right-3 bottom-3 bg-black/80 px-2 py-1 text-[9px] tracking-[0.08em] text-white"
+                >
+                  {page.number}
+                </figcaption>
+              </figure>
+            )
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>

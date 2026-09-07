@@ -1,8 +1,216 @@
 ---
 import CaseSection
   from "../components/case-study/CaseSection.astro";
+
+import type {
+  Project,
+} from "../data/projects";
+
+
+interface Props {
+  project: Project;
+}
+
+
+const {
+  project,
+} = Astro.props;
 ---
 
+<!-- =======================================================
+     DATACAKRA PROJECT OPENING
+     Two-workstream language
+     ======================================================= -->
+
+<section
+  class="site-container pt-10 md:pt-16"
+>
+  <!-- Identity -->
+
+  <div
+    class="grid gap-12 md:grid-cols-12"
+  >
+    <div
+      class="md:col-span-8"
+    >
+      <p
+        class="rule-label text-accent"
+      >
+        UI/UX Internship / 2026
+      </p>
+
+      <h1
+        class="mt-10 max-w-[1100px] text-[clamp(3.5rem,7vw,8rem)] leading-[0.9] font-medium tracking-[-0.055em]"
+      >
+        Datacakra Product Design
+        <span
+          class="editorial-serif"
+        >
+          Internship.
+        </span>
+      </h1>
+    </div>
+
+    <div
+      class="flex items-end md:col-span-3 md:col-start-10"
+    >
+      <p
+        class="max-w-[320px] text-[14px] leading-[1.8] text-muted"
+      >
+        One internship, two very different assignments:
+        a sales-facing interface concept and a deeper
+        investigation into an existing healthcare
+        product.
+      </p>
+    </div>
+  </div>
+
+
+  <!-- Two workstreams -->
+
+  <div
+    class="mt-14 grid gap-3 border-y border-ink py-3 md:mt-20 md:grid-cols-2"
+  >
+
+    <!-- Workstream A -->
+
+    <article
+      class="flex min-h-[600px] flex-col bg-[#0d8e99] p-6 text-white md:p-8 lg:p-10"
+    >
+      <div
+        class="flex items-center justify-between text-[9px] uppercase tracking-[0.08em] text-white/60"
+      >
+        <p>
+          01 / External
+        </p>
+
+        <p>
+          Sales communication
+        </p>
+      </div>
+
+      <div
+        class="mt-10"
+      >
+        <p
+          class="text-[clamp(2.4rem,4vw,4.8rem)] leading-[0.96] font-medium tracking-[-0.045em]"
+        >
+          Smart Building
+        </p>
+
+        <p
+          class="mt-4 max-w-[420px] text-[13px] leading-[1.7] text-white/70"
+        >
+          A dashboard concept produced for a
+          partnership and product proposal.
+        </p>
+      </div>
+
+      <div
+        class="mt-auto pt-14"
+      >
+        <div
+          class="overflow-hidden bg-white"
+        >
+          <img
+            src="/images/projects/datacakra/smart-building-dashboard.jpg"
+            alt="Smart Building monitoring dashboard designed during the Datacakra internship"
+            loading="eager"
+            class="block h-auto w-full"
+          />
+        </div>
+      </div>
+    </article>
+
+
+    <!-- Workstream B -->
+
+    <article
+      class="flex min-h-[600px] flex-col bg-ink p-6 text-paper md:p-8 lg:p-10"
+    >
+      <div
+        class="flex items-center justify-between text-[9px] uppercase tracking-[0.08em] text-paper/50"
+      >
+        <p>
+          02 / Internal
+        </p>
+
+        <p>
+          Product investigation
+        </p>
+      </div>
+
+      <div
+        class="mt-10"
+      >
+        <p
+          class="text-[clamp(2.4rem,4vw,4.8rem)] leading-[0.96] font-medium tracking-[-0.045em]"
+        >
+          RekMed × SATUSEHAT
+        </p>
+
+        <p
+          class="mt-4 max-w-[440px] text-[13px] leading-[1.7] text-paper/60"
+        >
+          Product survey, information-architecture
+          mapping, and requirements support around
+          an existing electronic medical record
+          platform.
+        </p>
+      </div>
+
+      <div
+        class="mt-auto pt-14"
+      >
+        <div
+          class="overflow-hidden bg-white p-2 md:p-3"
+        >
+          <img
+            src="/images/projects/datacakra/rekmed-information-architecture.png"
+            alt="RekMed information architecture mapping"
+            loading="eager"
+            class="block h-auto w-full"
+          />
+        </div>
+      </div>
+    </article>
+  </div>
+
+
+  <!-- Framing statement -->
+
+  <div
+    class="grid gap-8 py-14 md:grid-cols-12 md:py-20"
+  >
+    <div
+      class="md:col-span-3"
+    >
+      <p
+        class="rule-label text-muted"
+      >
+        Internship structure
+      </p>
+    </div>
+
+    <div
+      class="md:col-span-8 md:col-start-5"
+    >
+      <p
+        class="max-w-[940px] text-[clamp(2rem,4vw,4.5rem)] leading-[1.04] font-medium tracking-[-0.04em]"
+      >
+        The work moved between designing something
+        that could communicate an idea quickly and
+        studying an existing system carefully enough
+        to help other people
+        <span
+          class="editorial-serif"
+        >
+          build the next part of it.
+        </span>
+      </p>
+    </div>
+  </div>
+</section>
 
 <!-- =======================================================
      01 / CONTEXT

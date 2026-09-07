@@ -1,175 +1,257 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import ProjectCard from "../components/ProjectCard.astro";
-import { projects } from "../data/projects";
-import { site } from "../data/site";
+import BaseLayout
+  from "../layouts/BaseLayout.astro";
+
+import ProjectCard
+  from "../components/ProjectCard.astro";
+
+import FolioTeaser
+  from "../components/FolioTeaser.astro";
+
+import {
+  projects,
+} from "../data/projects";
+
+import {
+  site,
+} from "../data/site";
 
 const featuredProjects =
   projects.filter(
-    (project) => project.featured
+    (project) =>
+      project.featured
   );
 ---
 
 <BaseLayout>
-  <section class="site-container">
+  <!-- =====================================================
+       HERO
+       ===================================================== -->
+
+  <section
+    class="site-container"
+  >
     <div
-      class="flex min-h-[calc(100svh-72px)] flex-col"
+      class="grid min-h-[calc(100svh-72px)] border-b border-ink md:grid-cols-12"
     >
       <div
-        class="grid gap-3 border-b border-line py-5 font-mono text-[11px] uppercase tracking-[0.07em] text-muted sm:grid-cols-3 md:text-[12px]"
+        class="flex flex-col justify-between py-10 md:col-span-8 md:py-14 lg:py-16"
       >
-        <p>Alif Rafi Tulusena</p>
-        <p class="sm:text-center">UI/UX Designer · Computer Science Graduate</p>
-        <p class="sm:text-right">South Tangerang, Indonesia</p>
-      </div>
+        <div>
+          <p
+            class="rule-label text-accent"
+          >
+            UI/UX Designer
+          </p>
+        </div>
 
-      <div
-        class="flex flex-1 items-center py-16 md:py-20"
-      >
         <h1
-          class="hero-enter display-title max-w-[1320px] text-balance"
+          class="my-20 max-w-[1100px] text-[clamp(3.8rem,8vw,8.8rem)] leading-[0.88] font-medium tracking-[-0.065em]"
         >
-          I design clear and intuitive interfaces for
-          <span class="text-muted">
-            complex, information-heavy systems.
+          I design interfaces for
+          <span
+            class="editorial-serif block text-[0.96em]"
+          >
+            information-heavy systems.
           </span>
         </h1>
+
+        <p
+          class="max-w-xl text-[14px] leading-[1.75] text-muted md:text-[16px]"
+        >
+          UI/UX designer with a Computer Science
+          background. I have worked on institutional
+          websites, internal academic systems, and
+          product concepts — often close to the people
+          responsible for implementing them.
+        </p>
       </div>
 
-      <div
-        class="grid gap-7 border-t border-line py-6 md:grid-cols-12 md:items-end"
-        style="animation-delay: 120ms;"
+      <aside
+        class="flex flex-col justify-between border-t border-ink py-8 md:col-span-3 md:col-start-10 md:border-t-0 md:border-l md:py-14 md:pl-8 lg:pl-12"
       >
-        <p
-          class="max-w-2xl text-[clamp(1rem,1.05vw,1.1rem)] leading-[1.7] text-muted md:col-span-5"
-        >
-          I'm Alif, a UI/UX designer and Computer Science graduate.
-          My work spans institutional websites, internal systems,
-          and product concepts, often close to the people responsible
-          for building and maintaining them.
-        </p>
+        <div>
+          <p
+            class="text-[10px] uppercase tracking-[0.08em] text-muted"
+          >
+            Based in
+          </p>
 
-        <div class="md:col-span-3 md:col-start-7">
-          <p class="mono-label text-muted">
+          <p
+            class="mt-2 text-[14px]"
+          >
+            {site.location}
+          </p>
+        </div>
+
+        <div
+          class="my-12 md:my-0"
+        >
+          <p
+            class="text-[10px] uppercase tracking-[0.08em] text-muted"
+          >
             Currently
           </p>
 
-          <p class="mt-2 text-[15px]">
-            Open to any software development opportunities
-          </p>
-        </div>
-
-        <div class="md:col-span-3 md:text-right">
-          <a
-            href="#selected-work"
-            class="text-link"
-          >
-            View selected work ↓
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section
-    id="selected-work"
-    class="site-container scroll-mt-24 pt-28 md:pt-44"
-  >
-    <div
-      class="editorial-grid pb-12 md:pb-16"
-      data-reveal
-    >
-      <div>
-        <p class="mono-label text-muted">
-          01 / Selected Work
-        </p>
-      </div>
-
-      <div class="editorial-content">
-        <div class="flex items-end justify-between gap-8">
-          <h2 class="section-title text-balance">
-            Work shaped by real content, real constraints,
-            and the systems behind the interface.
-          </h2>
-
           <p
-            class="hidden shrink-0 font-mono text-[11px] text-muted md:block"
+            class="mt-2 max-w-[240px] text-[14px] leading-[1.6]"
           >
-            01—03
+            Open to UI/UX and product design
+            opportunities.
           </p>
         </div>
-      </div>
-    </div>
 
-    <div>
-      {
-        featuredProjects.map(
-          (project, index) => (
-            <ProjectCard
-              project={project}
-              index={index}
-            />
-          )
-        )
-      }
+        <a
+          href="#work"
+          class="inline-flex items-center gap-3 text-[13px]"
+        >
+          Selected work
+          <span aria-hidden="true">
+            ↓
+          </span>
+        </a>
+      </aside>
     </div>
   </section>
 
+
+  <!-- =====================================================
+       WORK
+       ===================================================== -->
+
   <section
-    class="site-container py-28 md:py-48"
+    id="work"
+    class="site-container scroll-mt-10 pt-28 md:pt-44"
   >
-    <div
-      class="editorial-grid border-t border-line pt-8"
-      data-reveal
+    <header
+      class="grid gap-8 pb-10 md:grid-cols-12 md:pb-14"
     >
-      <div>
-        <p class="mono-label text-muted">
-          02 / About
+      <div
+        class="md:col-span-3"
+      >
+        <p
+          class="rule-label"
+        >
+          Selected work
         </p>
       </div>
 
-      <div class="editorial-content">
-        <p class="section-title text-balance">
-          I like design problems where the hard part
-          isn't just how something looks, but how it works.
+      <div
+        class="md:col-span-8 md:col-start-5"
+      >
+        <h2
+          class="max-w-[950px] text-[clamp(2.5rem,5vw,5.6rem)] leading-[1] font-medium tracking-[-0.045em]"
+        >
+          Three projects.
+          Three different kinds of
+          <span
+            class="editorial-serif"
+          >
+            design problem.
+          </span>
+        </h2>
+      </div>
+    </header>
+
+    {
+      featuredProjects.map(
+        (
+          project,
+          index
+        ) => (
+          <ProjectCard
+            project={
+              project
+            }
+            index={
+              index
+            }
+          />
+        )
+      )
+    }
+  </section>
+
+
+  <!-- =====================================================
+       DESIGN PORTFOLIO PDF
+       ===================================================== -->
+
+  <FolioTeaser />
+
+
+  <!-- =====================================================
+       ABOUT
+       ===================================================== -->
+
+  <section
+    class="site-container pb-24 md:pb-40"
+  >
+    <div
+      class="grid gap-12 border-t border-ink pt-10 md:grid-cols-12"
+    >
+      <div
+        class="md:col-span-3"
+      >
+        <p
+          class="rule-label"
+        >
+          About
+        </p>
+      </div>
+
+      <div
+        class="md:col-span-8 md:col-start-5"
+      >
+        <p
+          class="max-w-[980px] text-[clamp(2.3rem,4.4vw,5rem)] leading-[1.04] font-medium tracking-[-0.04em]"
+        >
+          I gravitate toward projects where the
+          difficult part is not decoration,
+          <span
+            class="editorial-serif"
+          >
+            but structure.
+          </span>
         </p>
 
         <div
-          class="mt-12 grid gap-8 md:grid-cols-2"
+          class="mt-10 grid gap-8 text-[15px] leading-[1.8] text-muted md:grid-cols-2"
         >
-          <p
-            class="max-w-[520px] text-[clamp(1rem,1.05vw,1.1rem)] leading-[1.8] text-muted"
-          >
-            That has meant reorganizing a faculty website,
-            mapping academic rules into a role-based monitoring
-            system, and turning product requirements into
-            interfaces people can discuss and build from.
+          <p>
+            That has meant reorganizing a faculty
+            website, mapping academic rules into a
+            role-based monitoring system, and turning
+            product requirements into interfaces that
+            teams can discuss and build from.
           </p>
 
-          <p
-            class="max-w-[520px] text-[clamp(1rem,1.05vw,1.1rem)] leading-[1.8] text-muted"
-          >
-            I work primarily in UI/UX, but I'm comfortable
-            going into the technical side when a project calls
-            for it — from CMS constraints and frontend behavior
-            to data relationships and implementation trade-offs.
+          <p>
+            My Computer Science background means I am
+            comfortable looking past the design file
+            when necessary — whether the constraint is
+            a CMS, frontend behaviour, relational data,
+            or the way an existing system already works.
           </p>
         </div>
 
-        <div class="mt-12 flex flex-wrap gap-7">
+        <div
+          class="mt-10 flex flex-wrap gap-7 text-[13px]"
+        >
           <a
             href="/about/"
-            class="text-link"
+            class="border-b border-ink pb-1"
           >
-            More about me ↗
+            About me →
           </a>
 
           <a
             href={site.resume}
             target="_blank"
-            class="text-link"
+            rel="noopener noreferrer"
+            class="border-b border-ink pb-1"
           >
-            View résumé ↗
+            Résumé ↗
           </a>
         </div>
       </div>

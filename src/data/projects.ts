@@ -8,6 +8,11 @@ export interface Project {
   disciplines: string[];
   description: string;
   featured: boolean;
+  
+  cover: string;
+  coverAlt: string;
+  coverPosition?: string;
+  coverScale?: number;
 
   preview:
     | "fmipa"
@@ -32,6 +37,15 @@ export const projects: Project[] = [
     description:
       "A complete redesign of FMIPA UGM's faculty website, covering information architecture, visual direction, responsive interface design, and implementation within a constrained WordPress environment.",
     featured: true,
+
+    cover:
+      "/images/projects/fmipa/new-home.png",
+
+    coverAlt:
+      "Redesigned FMIPA UGM website homepage",
+    
+    coverPosition:
+      "50% 0%",
 
     preview: "fmipa"
   },
@@ -67,6 +81,18 @@ export const projects: Project[] = [
   featured:
     true,
 
+  cover:
+    "/images/projects/monitoring/dashboard-stats.png",
+
+  coverAlt:
+    "Student performance monitoring dashboard developed for FMIPA UGM",
+
+  coverPosition:
+    "100% 30%",
+
+  coverScale:
+    1.06,
+
   preview:
     "monitoring",
 },
@@ -101,6 +127,15 @@ export const projects: Project[] = [
 
   featured:
     true,
+
+  cover:
+    "/images/projects/datacakra/smart-building-dashboard.jpg",
+
+  coverAlt:
+    "Smart Building monitoring dashboard designed during the Datacakra internship",
+    
+  coverPosition:
+    "50% 0%",
 
   preview:
     "datacakra",

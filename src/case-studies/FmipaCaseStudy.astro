@@ -1,530 +1,968 @@
 ---
-import CaseSection
-  from "../components/case-study/CaseSection.astro";
-
 import WebsiteShowcase
   from "../components/case-study/WebsiteShowcase.astro";
+
+import type {
+  Project,
+} from "../data/projects";
+
+
+interface Props {
+  project: Project;
+}
+
+const {
+  project,
+} = Astro.props;
 ---
 
 <!-- =======================================================
-     01 / CONTEXT
+     FMIPA PROJECT OPENING
+     Editorial / web-design language
      ======================================================= -->
 
-<CaseSection
-  number="01"
-  label="Context"
-  title="Modernizing a faculty website that had become difficult to navigate and maintain."
-  intro="FMIPA UGM initiated a full website redesign to replace an aging digital experience with a clearer, more responsive, and more maintainable system."
+<section
+  class="site-container pt-10 md:pt-16"
 >
-  <p>
-    Over time, the existing website had accumulated
-    several issues. Its interface felt visually
-    outdated, some components and assets no longer
-    behaved consistently, responsive behavior was
-    limited, and parts of the website depended on
-    paid assets that introduced recurring maintenance
-    costs.
-  </p>
+  <div
+    class="grid gap-12 pb-12 md:grid-cols-12 md:pb-16"
+  >
+    <!-- Main identity -->
 
-  <p>
-    The content structure had also become fragmented.
-    Important information was spread across many
-    pages, while several destinations were redundant
-    or difficult to discover.
-  </p>
+    <div
+      class="md:col-span-8"
+    >
+      <p
+        class="rule-label text-accent"
+      >
+        Institutional Website / 2026
+      </p>
 
-  <p>
-    The redesign therefore became more than a visual
-    refresh. It was also an opportunity to reconsider
-    how information should be organized and how
-    visitors should move through the faculty website.
-  </p>
-</CaseSection>
+      <h1
+        class="mt-10 max-w-[1100px] text-[clamp(3.8rem,7.5vw,8.5rem)] leading-[0.88] font-medium tracking-[-0.06em]"
+      >
+        FMIPA UGM
+        <span
+          class="editorial-serif"
+        >
+          Website Redesign.
+        </span>
+      </h1>
+    </div>
 
+
+    <!-- Metadata -->
+
+    <aside
+      class="flex flex-col justify-end gap-8 border-t border-line pt-6 md:col-span-3 md:col-start-10 md:border-t-0 md:border-l md:pt-0 md:pl-8"
+    >
+      <div>
+        <p
+          class="text-[9px] uppercase tracking-[0.08em] text-muted"
+        >
+          Role
+        </p>
+
+        <p
+          class="mt-2 text-[14px] leading-[1.6]"
+        >
+          UI/UX Designer
+          <br />
+          Frontend contributor
+        </p>
+      </div>
+
+      <div>
+        <p
+          class="text-[9px] uppercase tracking-[0.08em] text-muted"
+        >
+          Scope
+        </p>
+
+        <p
+          class="mt-2 text-[14px] leading-[1.6]"
+        >
+          Information architecture
+          <br />
+          Visual system
+          <br />
+          WordPress implementation
+        </p>
+      </div>
+
+      <div>
+        <p
+          class="text-[9px] uppercase tracking-[0.08em] text-muted"
+        >
+          Year
+        </p>
+
+        <p
+          class="mt-2 text-[14px]"
+        >
+          {project.year}
+        </p>
+      </div>
+    </aside>
+  </div>
+
+
+  <!-- Main website image -->
+
+  <figure
+    class="border-y border-ink py-5 md:py-7"
+  >
+    <div
+      class="relative aspect-[16/9] overflow-hidden bg-panel"
+    >
+      <img
+        src="/images/projects/fmipa/new-home.png"
+        alt="Redesigned FMIPA UGM faculty homepage"
+        class="absolute inset-0 h-full w-full object-cover object-top"
+      />
+    </div>
+
+    <figcaption
+      class="grid gap-4 pt-4 text-[10px] uppercase tracking-[0.07em] text-muted md:grid-cols-3"
+    >
+      <p>
+        Faculty homepage
+      </p>
+
+      <p class="md:text-center">
+        Figma → WordPress
+      </p>
+
+      <p class="md:text-right">
+        FMIPA Universitas Gadjah Mada
+      </p>
+    </figcaption>
+  </figure>
+
+
+  <!-- Opening statement -->
+
+  <div
+    class="grid gap-8 py-14 md:grid-cols-12 md:py-20"
+  >
+    <div
+      class="md:col-span-3"
+    >
+      <p
+        class="rule-label text-muted"
+      >
+        The brief
+      </p>
+    </div>
+
+    <div
+      class="md:col-span-8 md:col-start-5"
+    >
+      <p
+        class="max-w-[980px] text-[clamp(2rem,4vw,4.6rem)] leading-[1.04] font-medium tracking-[-0.04em]"
+      >
+        The project was not simply about giving the
+        faculty website a newer look. It meant
+        deciding what information belonged together,
+        what could disappear, and how one design
+        system could support very different
+        <span
+          class="editorial-serif"
+        >
+          kinds of academic content.
+        </span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- =======================================================
+     01 / DIAGNOSIS
+     ======================================================= -->
+
+<section
+  class="site-container py-20 md:py-32"
+>
+  <div
+    class="grid gap-12 md:grid-cols-12"
+  >
+    <div
+      class="md:col-span-3"
+    >
+      <p
+        class="rule-label text-muted"
+      >
+        01 / Why redesign
+      </p>
+    </div>
+
+
+    <div
+      class="md:col-span-8 md:col-start-5"
+    >
+      <h2
+        class="max-w-[950px] text-[clamp(2.6rem,5vw,5.8rem)] leading-[0.98] font-medium tracking-[-0.05em]"
+      >
+        A visual refresh would have solved
+        <span
+          class="editorial-serif"
+        >
+          the least important problem.
+        </span>
+      </h2>
+
+
+      <p
+        class="mt-10 max-w-2xl text-[15px] leading-[1.8] text-muted md:text-[16px]"
+      >
+        The previous faculty website had accumulated
+        problems across both presentation and
+        structure. Content had grown over time,
+        destinations overlapped, responsive behaviour
+        was limited, and parts of the interface
+        depended on assets that were increasingly
+        difficult to maintain.
+      </p>
+
+
+      <!-- Issues -->
+
+      <div
+        class="mt-16 border-t border-ink"
+      >
+
+        <div
+          class="grid gap-5 border-b border-line py-7 md:grid-cols-12 md:py-9"
+        >
+          <p
+            class="text-[10px] uppercase tracking-[0.08em] text-accent md:col-span-1"
+          >
+            01
+          </p>
+
+          <h3
+            class="text-[clamp(1.5rem,2.2vw,2.4rem)] leading-[1.08] font-medium tracking-[-0.035em] md:col-span-5"
+          >
+            Navigation had become fragmented.
+          </h3>
+
+          <p
+            class="max-w-lg text-[14px] leading-[1.75] text-muted md:col-span-6"
+          >
+            Important information was distributed
+            across many destinations, while several
+            pages overlapped in purpose or were
+            difficult to discover.
+          </p>
+        </div>
+
+
+        <div
+          class="grid gap-5 border-b border-line py-7 md:grid-cols-12 md:py-9"
+        >
+          <p
+            class="text-[10px] uppercase tracking-[0.08em] text-accent md:col-span-1"
+          >
+            02
+          </p>
+
+          <h3
+            class="text-[clamp(1.5rem,2.2vw,2.4rem)] leading-[1.08] font-medium tracking-[-0.035em] md:col-span-5"
+          >
+            The interface no longer felt coherent.
+          </h3>
+
+          <p
+            class="max-w-lg text-[14px] leading-[1.75] text-muted md:col-span-6"
+          >
+            Visual hierarchy, component behaviour,
+            responsive treatment, and long-form
+            content presentation had become
+            inconsistent across the website.
+          </p>
+        </div>
+
+
+        <div
+          class="grid gap-5 border-b border-line py-7 md:grid-cols-12 md:py-9"
+        >
+          <p
+            class="text-[10px] uppercase tracking-[0.08em] text-accent md:col-span-1"
+          >
+            03
+          </p>
+
+          <h3
+            class="text-[clamp(1.5rem,2.2vw,2.4rem)] leading-[1.08] font-medium tracking-[-0.035em] md:col-span-5"
+          >
+            Maintenance mattered too.
+          </h3>
+
+          <p
+            class="max-w-lg text-[14px] leading-[1.75] text-muted md:col-span-6"
+          >
+            Some existing components relied on paid
+            assets and tooling, so the redesign also
+            needed to leave the faculty with a system
+            that was practical to maintain.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- =======================================================
      BEFORE / AFTER
      ======================================================= -->
 
 <section
-  class="site-container py-12 md:py-16"
-  data-reveal
+  class="site-container pb-24 md:pb-40"
 >
-
-  <div class="editorial-grid">
-
-    <div>
-      <p class="mono-label text-muted">
+  <div
+    class="border-t border-ink pt-5"
+  >
+    <div
+      class="mb-8 flex items-center justify-between"
+    >
+      <p
+        class="text-[10px] uppercase tracking-[0.08em] text-muted"
+      >
         Before / After
       </p>
-    </div>
 
-
-    <div class="editorial-content">
-
-      <div
-        class="grid gap-8 lg:grid-cols-2"
+      <p
+        class="text-[10px] uppercase tracking-[0.08em] text-muted"
       >
-
-        <!-- Before -->
-
-        <figure>
-
-          <div
-            class="mb-4 flex items-center justify-between"
-          >
-            <p
-              class="font-mono text-[10px] uppercase tracking-[0.07em] text-muted"
-            >
-              Before
-            </p>
-
-            <span
-              class="font-mono text-[9px] uppercase tracking-[0.05em] text-muted"
-            >
-              Previous website
-            </span>
-          </div>
-
-
-          <div
-            class="relative aspect-[16/10] overflow-hidden border border-line bg-white"
-          >
-            <img
-              src="/images/projects/fmipa/old-about.png"
-              alt="Previous FMIPA UGM About page"
-              loading="lazy"
-              class="absolute inset-0 h-full w-full object-cover object-top"
-            />
-          </div>
-
-
-          <figcaption
-            class="mt-4 text-[12px] leading-[1.7] text-muted"
-          >
-            The previous experience relied on an
-            older visual system, dense content,
-            inconsistent hierarchy, and less
-            deliberate long-form structure.
-          </figcaption>
-
-        </figure>
-
-
-        <!-- After -->
-
-        <figure>
-
-          <div
-            class="mb-4 flex items-center justify-between"
-          >
-            <p
-              class="font-mono text-[10px] uppercase tracking-[0.07em] text-muted"
-            >
-              After
-            </p>
-
-            <span
-              class="font-mono text-[9px] uppercase tracking-[0.05em] text-muted"
-            >
-              Redesigned website
-            </span>
-          </div>
-
-
-          <div
-            class="relative aspect-[16/10] overflow-hidden border border-line bg-white"
-          >
-            <img
-              src="/images/projects/fmipa/new-about.png"
-              alt="Redesigned FMIPA UGM About page"
-              loading="lazy"
-              class="absolute inset-0 h-full w-full object-cover object-top"
-            />
-          </div>
-
-
-          <figcaption
-            class="mt-4 text-[12px] leading-[1.7] text-muted"
-          >
-            The new system introduces clearer
-            hierarchy, stronger grouping, more useful
-            navigation cues, and a shared visual
-            language.
-          </figcaption>
-
-        </figure>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =======================================================
-     02 / STRATEGY
-     ======================================================= -->
-
-<CaseSection
-  number="02"
-  label="Strategy"
-  title="Simplifying the journey before redesigning the interface."
->
-  <p>
-    I worked as the project's only UI/UX designer,
-    responsible for the overall visual direction,
-    information architecture, page flow, layouts,
-    component decisions, and image selection across
-    the new website.
-  </p>
-
-  <h3>
-    Reducing unnecessary paths
-  </h3>
-
-  <p>
-    One of the largest problems was structural rather
-    than visual. The previous website contained many
-    overlapping, redundant, or low-priority pages.
-  </p>
-
-  <p>
-    Instead of carrying that complete structure into
-    a new interface, I reorganized the information
-    architecture and consolidated related content
-    into clearer destinations.
-  </p>
-
-  <h3>
-    Designing within a real team
-  </h3>
-
-  <p>
-    Development was handled by a two-person team. I
-    contributed mainly to frontend implementation,
-    while another developer focused more heavily on
-    backend functionality and custom development.
-  </p>
-
-  <p>
-    The project was supervised by a lecturer acting
-    as both team leader and stakeholder, who reviewed
-    and approved the design direction throughout the
-    process.
-  </p>
-</CaseSection>
-
-
-<!-- =======================================================
-     03 / DESIGN DIRECTION
-     ======================================================= -->
-
-<CaseSection
-  number="03"
-  label="Design Direction"
-  title="Building a contemporary editorial system while preserving UGM's institutional identity."
->
-  <p>
-    Early in the project, I studied university
-    websites whose structure and editorial treatment
-    aligned with the experience we wanted to create.
-  </p>
-
-  <p>
-    A Japanese university website became the primary
-    visual reference for the agreed direction. The
-    qualities we liked were translated into a system
-    appropriate for FMIPA while preserving UGM's
-    existing identity requirements, including its
-    colors and institutional marks.
-  </p>
-
-  <p>
-    Beyond those brand constraints, I had significant
-    flexibility in defining typography, spacing,
-    composition, imagery, navigation, and reusable
-    interface components.
-  </p>
-</CaseSection>
-
-
-<!-- =======================================================
-     FIGMA PROCESS CLUSTER
-     ======================================================= -->
-
-<section
-  class="site-container py-12 md:py-16"
-  data-reveal
->
-
-  <div class="editorial-grid">
-
-    <div>
-      <p class="mono-label text-muted">
-        Exploration
+        About FMIPA
       </p>
     </div>
 
 
     <div
-      class="editorial-content grid gap-8 lg:grid-cols-2"
+      class="grid gap-4 lg:grid-cols-2"
     >
 
-      <figure>
+      <!-- Previous -->
 
+      <figure>
         <div
-          class="overflow-hidden border border-line bg-[#1d1d1d]"
+          class="relative aspect-[16/11] overflow-hidden bg-panel"
         >
           <img
-            src="/images/projects/fmipa/figma-exploration.png"
-            alt="Early cancelled FMIPA website exploration in Figma"
+            src="/images/projects/fmipa/old-about.png"
+            alt="Previous FMIPA UGM About page"
             loading="lazy"
-            class="block h-auto w-full"
+            class="absolute inset-0 h-full w-full object-cover object-top"
           />
         </div>
 
         <figcaption
-          class="mt-4 font-mono text-[9px] leading-[1.7] uppercase tracking-[0.045em] text-muted"
+          class="grid gap-4 border-t border-line pt-4 md:grid-cols-3"
         >
-          An earlier design direction that was later
-          discarded.
-        </figcaption>
+          <p
+            class="text-[10px] uppercase tracking-[0.08em]"
+          >
+            Before
+          </p>
 
+          <p
+            class="text-[12px] leading-[1.65] text-muted md:col-span-2"
+          >
+            Dense long-form content, weaker visual
+            grouping, and an older interface system.
+          </p>
+        </figcaption>
       </figure>
 
 
-      <figure>
+      <!-- Redesigned -->
 
+      <figure>
         <div
-          class="overflow-hidden border border-line bg-[#1d1d1d]"
+          class="relative aspect-[16/11] overflow-hidden bg-panel"
         >
           <img
-            src="/images/projects/fmipa/figma-overview.png"
-            alt="High fidelity FMIPA website designs in Figma"
+            src="/images/projects/fmipa/new-about.png"
+            alt="Redesigned FMIPA UGM About page"
             loading="lazy"
-            class="block h-auto w-full"
+            class="absolute inset-0 h-full w-full object-cover object-top"
           />
         </div>
 
         <figcaption
-          class="mt-4 font-mono text-[9px] leading-[1.7] uppercase tracking-[0.045em] text-muted"
+          class="grid gap-4 border-t border-line pt-4 md:grid-cols-3"
         >
-          High-fidelity page development showing
-          several page types within the final system.
-        </figcaption>
+          <p
+            class="text-[10px] uppercase tracking-[0.08em] text-accent"
+          >
+            Redesigned
+          </p>
 
+          <p
+            class="text-[12px] leading-[1.65] text-muted md:col-span-2"
+          >
+            Stronger hierarchy, clearer information
+            grouping, and one visual language carried
+            across long-form content.
+          </p>
+        </figcaption>
       </figure>
 
     </div>
-
   </div>
-
 </section>
 
-
 <!-- =======================================================
-     04 / FINAL DESIGN
+     02 / INFORMATION ARCHITECTURE
      ======================================================= -->
 
-<CaseSection
-  number="04"
-  label="Final Design"
-  title="One system designed to accommodate very different kinds of information."
+<section
+  class="bg-ink text-paper"
 >
-  <p>
-    The redesign extended across the complete faculty
-    website rather than a single landing page.
-  </p>
+  <div
+    class="site-container py-20 md:py-32 lg:py-40"
+  >
+    <div
+      class="grid gap-14 md:grid-cols-12"
+    >
+      <div
+        class="md:col-span-3"
+      >
+        <p
+          class="rule-label text-accent"
+        >
+          02 / Structure first
+        </p>
+      </div>
 
-  <p>
-    Shared typography, spacing, navigation,
-    components, colors, and interaction patterns
-    create continuity, while each page is allowed to
-    respond to its own content and audience.
-  </p>
 
-  <p>
-    The following pages illustrate how that system
-    scales across three very different experiences.
-  </p>
-</CaseSection>
+      <div
+        class="md:col-span-8 md:col-start-5"
+      >
+        <h2
+          class="max-w-[960px] text-[clamp(2.8rem,5.6vw,6.2rem)] leading-[0.96] font-medium tracking-[-0.055em]"
+        >
+          Before drawing pages, I reduced
+          what the website asked people
+          <span
+            class="editorial-serif"
+          >
+            to navigate.
+          </span>
+        </h2>
 
+        <p
+          class="mt-10 max-w-2xl text-[15px] leading-[1.8] text-paper/55"
+        >
+          Instead of reproducing the existing site
+          structure inside a newer interface, related
+          information was consolidated into clearer
+          destinations and the page hierarchy was
+          reconsidered before high-fidelity design.
+        </p>
+
+
+        <div
+          class="mt-16 border-t border-paper/25"
+        >
+
+          <div
+            class="grid gap-6 border-b border-paper/15 py-8 md:grid-cols-12"
+          >
+            <p
+              class="text-[10px] tracking-[0.08em] text-paper/40 md:col-span-1"
+            >
+              01
+            </p>
+
+            <h3
+              class="text-xl font-medium tracking-[-0.025em] md:col-span-4"
+            >
+              Consolidate
+            </h3>
+
+            <p
+              class="max-w-xl text-[14px] leading-[1.75] text-paper/55 md:col-span-7"
+            >
+              Overlapping and redundant destinations
+              were brought together rather than
+              carried forward simply because they
+              already existed.
+            </p>
+          </div>
+
+
+          <div
+            class="grid gap-6 border-b border-paper/15 py-8 md:grid-cols-12"
+          >
+            <p
+              class="text-[10px] tracking-[0.08em] text-paper/40 md:col-span-1"
+            >
+              02
+            </p>
+
+            <h3
+              class="text-xl font-medium tracking-[-0.025em] md:col-span-4"
+            >
+              Re-prioritize
+            </h3>
+
+            <p
+              class="max-w-xl text-[14px] leading-[1.75] text-paper/55 md:col-span-7"
+            >
+              Navigation and page structure were
+              organized around what visitors needed
+              to find, rather than around the history
+              of how the old website had grown.
+            </p>
+          </div>
+
+
+          <div
+            class="grid gap-6 border-b border-paper/15 py-8 md:grid-cols-12"
+          >
+            <p
+              class="text-[10px] tracking-[0.08em] text-paper/40 md:col-span-1"
+            >
+              03
+            </p>
+
+            <h3
+              class="text-xl font-medium tracking-[-0.025em] md:col-span-4"
+            >
+              Build a shared system
+            </h3>
+
+            <p
+              class="max-w-xl text-[14px] leading-[1.75] text-paper/55 md:col-span-7"
+            >
+              Very different content types still
+              needed to feel like one faculty website,
+              so typography, navigation, spacing, and
+              reusable interface behaviour became the
+              common layer.
+            </p>
+          </div>
+
+        </div>
+
+
+        <!-- Team -->
+
+        <div
+          class="mt-16 grid gap-8 border-t border-paper/25 pt-8 md:grid-cols-2"
+        >
+          <div>
+            <p
+              class="text-[9px] uppercase tracking-[0.08em] text-paper/40"
+            >
+              Design responsibility
+            </p>
+
+            <p
+              class="mt-4 max-w-md text-[14px] leading-[1.7] text-paper/70"
+            >
+              I was the project's sole UI/UX designer,
+              responsible for the visual direction,
+              information architecture, page flow,
+              layout decisions, component direction,
+              and image selection.
+            </p>
+          </div>
+
+
+          <div>
+            <p
+              class="text-[9px] uppercase tracking-[0.08em] text-paper/40"
+            >
+              Development structure
+            </p>
+
+            <p
+              class="mt-4 max-w-md text-[14px] leading-[1.7] text-paper/70"
+            >
+              Development was handled by a two-person
+              team. I contributed primarily on the
+              frontend while another developer handled
+              more of the backend and custom
+              functionality.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- =======================================================
-     FINAL DESIGN SHOWCASES
-     Keep them together deliberately.
+     03 / VISUAL DIRECTION
      ======================================================= -->
+
+<section
+  class="site-container py-24 md:py-40"
+>
+  <div
+    class="grid gap-12 md:grid-cols-12"
+  >
+    <div
+      class="md:col-span-3"
+    >
+      <p
+        class="rule-label text-muted"
+      >
+        03 / Direction
+      </p>
+    </div>
+
+
+    <div
+      class="md:col-span-8 md:col-start-5"
+    >
+      <h2
+        class="max-w-[900px] text-[clamp(2.7rem,5vw,5.8rem)] leading-[0.98] font-medium tracking-[-0.05em]"
+      >
+        Contemporary, but still recognizably
+        <span
+          class="editorial-serif"
+        >
+          FMIPA UGM.
+        </span>
+      </h2>
+
+      <div
+        class="mt-10 grid gap-8 md:grid-cols-2"
+      >
+        <p
+          class="text-[15px] leading-[1.8] text-muted"
+        >
+          Early exploration drew from university
+          websites whose editorial structure felt
+          appropriate for the direction being
+          discussed with the team. A Japanese
+          university website became the strongest
+          shared visual reference.
+        </p>
+
+        <p
+          class="text-[15px] leading-[1.8] text-muted"
+        >
+          The reference was never treated as a
+          template. Its qualities were translated
+          into a system that still respected UGM's
+          existing colours, institutional marks,
+          content requirements, and technical
+          environment.
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Exploration images -->
+
+  <div
+    class="mt-16 grid items-start gap-5 md:mt-24 md:grid-cols-12"
+  >
+
+    <figure
+      class="md:col-span-5"
+    >
+      <div
+        class="overflow-hidden bg-[#1d1d1d]"
+      >
+        <img
+          src="/images/projects/fmipa/figma-exploration.png"
+          alt="Early FMIPA website design exploration in Figma"
+          loading="lazy"
+          class="block h-auto w-full"
+        />
+      </div>
+
+      <figcaption
+        class="mt-4 grid grid-cols-[auto_1fr] gap-5 border-t border-line pt-3"
+      >
+        <span
+          class="text-[10px] text-accent"
+        >
+          A
+        </span>
+
+        <p
+          class="text-[11px] leading-[1.65] text-muted"
+        >
+          An earlier direction that was explored and
+          later discarded.
+        </p>
+      </figcaption>
+    </figure>
+
+
+    <figure
+      class="md:col-span-7 md:mt-24"
+    >
+      <div
+        class="overflow-hidden bg-[#1d1d1d]"
+      >
+        <img
+          src="/images/projects/fmipa/figma-overview.png"
+          alt="High-fidelity FMIPA website designs in Figma"
+          loading="lazy"
+          class="block h-auto w-full"
+        />
+      </div>
+
+      <figcaption
+        class="mt-4 grid grid-cols-[auto_1fr] gap-5 border-t border-line pt-3"
+      >
+        <span
+          class="text-[10px] text-accent"
+        >
+          B
+        </span>
+
+        <p
+          class="text-[11px] leading-[1.65] text-muted"
+        >
+          High-fidelity development of the visual
+          system across several page types.
+        </p>
+      </figcaption>
+    </figure>
+
+  </div>
+</section>
+
+<!-- =======================================================
+     04 / FINAL SYSTEM
+     ======================================================= -->
+
+<section
+  class="site-container pt-12 md:pt-20"
+>
+  <div
+    class="grid gap-12 border-t border-ink pt-10 md:grid-cols-12"
+  >
+    <div
+      class="md:col-span-3"
+    >
+      <p
+        class="rule-label text-muted"
+      >
+        04 / The system
+      </p>
+    </div>
+
+
+    <div
+      class="md:col-span-8 md:col-start-5"
+    >
+      <h2
+        class="max-w-[960px] text-[clamp(2.7rem,5vw,5.8rem)] leading-[0.98] font-medium tracking-[-0.05em]"
+      >
+        One identity, applied to pages with
+        <span
+          class="editorial-serif"
+        >
+          very different jobs.
+        </span>
+      </h2>
+
+      <p
+        class="mt-10 max-w-2xl text-[15px] leading-[1.8] text-muted"
+      >
+        Shared typography, spacing, navigation,
+        components, colours, and interaction patterns
+        create continuity. Individual pages are still
+        allowed to respond to their own content,
+        audience, and purpose.
+      </p>
+    </div>
+  </div>
+</section>
 
 <WebsiteShowcase
   src="/images/projects/fmipa/new-home.png"
   alt="Redesigned FMIPA UGM homepage"
   number="04.1"
   title="Faculty Homepage"
-  description="A consolidated entry point for departments, admissions, faculty information, news, academic updates, and events."
+  description="The central entry point brings departments, admissions, faculty information, news, academic updates, and events into one navigable overview."
   tone="warm"
   previewPosition="top"
 />
-
 
 <WebsiteShowcase
   src="/images/projects/fmipa/new-about.png"
   alt="Redesigned FMIPA UGM About page"
   number="04.2"
   title="About FMIPA"
-  description="A structured long-form destination combining faculty overview, statistics, history, academics, strategic direction, governance, and organizational information."
+  description="A long-form institutional page combining faculty overview, statistics, history, academics, strategy, governance, and organizational information."
   tone="paper"
   previewPosition="top"
 />
-
 
 <WebsiteShowcase
   src="/images/projects/fmipa/new-iup.png"
   alt="Redesigned FMIPA UGM International Undergraduate Program page"
   number="04.3"
   title="International Undergraduate Program"
-  description="A recruitment-oriented experience covering program value, international exposure, study pathways, student support, available programs, and tuition."
+  description="A recruitment-oriented page structured around program value, international exposure, study pathways, student support, available programs, and tuition."
   tone="blue"
   previewPosition="top"
 />
 
-
 <!-- =======================================================
-     05 / IMPLEMENTATION + VALIDATION
-     ======================================================= -->
-
-<CaseSection
-  number="05"
-  label="Implementation"
-  title="Bringing the design into WordPress without relying on premium tooling."
->
-  <p>
-    Implementation introduced another layer of
-    constraint. The website needed to rely on free
-    WordPress plugins rather than premium
-    dependencies, including Elementor Basic instead
-    of Elementor Pro.
-  </p>
-
-  <p>
-    Components that would normally be available
-    through premium page-building tools therefore had
-    to be implemented manually or hardcoded by the
-    development team.
-  </p>
-
-  <h3>
-    Frontend contribution
-  </h3>
-
-  <p>
-    I contributed to frontend implementation and
-    personally implemented the Organization Structure
-    experience in WordPress, including lecturer
-    profiles containing educational and research
-    information.
-  </p>
-
-  <h3>
-    User Acceptance Testing
-  </h3>
-
-  <p>
-    The website went through three rounds of User
-    Acceptance Testing with lecturers and faculty
-    leadership.
-  </p>
-
-  <p>
-    The core design direction remained largely intact.
-    Feedback primarily resulted in smaller functional
-    adjustments, editorial corrections, and content
-    revisions.
-  </p>
-</CaseSection>
-
-
-<!-- =======================================================
-     LIVE STAGING
+     05 / IMPLEMENTATION
      ======================================================= -->
 
 <section
-  class="site-container py-10"
-  data-reveal
+  class="site-container py-24 md:py-40"
 >
   <div
-    class="editorial-grid border-y border-line py-8"
+    class="grid gap-12 border-t border-ink pt-10 md:grid-cols-12"
   >
-
-    <div>
-      <p class="mono-label text-muted">
-        Live staging
+    <div
+      class="md:col-span-3"
+    >
+      <p
+        class="rule-label text-muted"
+      >
+        05 / Implementation
       </p>
     </div>
 
 
     <div
-      class="editorial-content flex flex-col gap-6 md:flex-row md:items-center md:justify-between"
+      class="md:col-span-8 md:col-start-5"
+    >
+      <h2
+        class="max-w-[900px] text-[clamp(2.6rem,5vw,5.8rem)] leading-[0.98] font-medium tracking-[-0.05em]"
+      >
+        The design still had to survive
+        <span
+          class="editorial-serif"
+        >
+          WordPress.
+        </span>
+      </h2>
+
+      <p
+        class="mt-10 max-w-2xl text-[15px] leading-[1.8] text-muted"
+      >
+        Implementation added constraints that were
+        largely invisible inside Figma. The website
+        needed to work with the faculty's existing
+        environment and rely on free WordPress tooling
+        rather than premium dependencies.
+      </p>
+    </div>
+  </div>
+
+
+  <!-- Three implementation dimensions -->
+
+  <div
+    class="mt-16 grid border-y border-ink md:grid-cols-3"
+  >
+
+    <article
+      class="border-b border-line py-8 md:border-r md:border-b-0 md:px-8 md:first:pl-0"
     >
       <p
-        class="editorial-copy text-[14px] leading-[1.8]"
+        class="text-[10px] uppercase tracking-[0.08em] text-accent"
       >
-        The redesign is currently available on a
-        staging environment while the previous
-        production website remains active.
+        Constraint
       </p>
 
-      <a
-        href="https://dark.sheen.id/"
-        target="_blank"
-        rel="noreferrer"
-        class="text-link shrink-0 text-[13px]"
+      <h3
+        class="mt-5 text-2xl font-medium tracking-[-0.035em]"
       >
-        Visit staging website ↗
-      </a>
-    </div>
+        Free tooling
+      </h3>
 
+      <p
+        class="mt-5 max-w-sm text-[14px] leading-[1.75] text-muted"
+      >
+        The implementation relied on free WordPress
+        plugins, including Elementor Basic rather
+        than Elementor Pro.
+      </p>
+    </article>
+
+
+    <article
+      class="border-b border-line py-8 md:border-r md:border-b-0 md:px-8"
+    >
+      <p
+        class="text-[10px] uppercase tracking-[0.08em] text-accent"
+      >
+        Contribution
+      </p>
+
+      <h3
+        class="mt-5 text-2xl font-medium tracking-[-0.035em]"
+      >
+        Frontend implementation
+      </h3>
+
+      <p
+        class="mt-5 max-w-sm text-[14px] leading-[1.75] text-muted"
+      >
+        I contributed to frontend implementation
+        and personally implemented the Organization
+        Structure experience, including lecturer
+        profile information.
+      </p>
+    </article>
+
+
+    <article
+      class="py-8 md:px-8 md:last:pr-0"
+    >
+      <p
+        class="text-[10px] uppercase tracking-[0.08em] text-accent"
+      >
+        Validation
+      </p>
+
+      <h3
+        class="mt-5 text-2xl font-medium tracking-[-0.035em]"
+      >
+        Three UAT rounds
+      </h3>
+
+      <p
+        class="mt-5 max-w-sm text-[14px] leading-[1.75] text-muted"
+      >
+        Lecturers and faculty leadership reviewed the
+        website through three rounds of User
+        Acceptance Testing.
+      </p>
+    </article>
+
+  </div>
+
+
+  <!-- UAT outcome -->
+
+  <div
+    class="mt-12 grid gap-8 md:grid-cols-12"
+  >
+    <p
+      class="text-[10px] uppercase tracking-[0.08em] text-muted md:col-span-3"
+    >
+      What changed after testing
+    </p>
+
+    <p
+      class="max-w-3xl text-[clamp(1.4rem,2.5vw,2.7rem)] leading-[1.2] tracking-[-0.03em] md:col-span-8 md:col-start-5"
+    >
+      The core design direction remained largely
+      intact. Feedback focused mostly on smaller
+      functional adjustments, editorial corrections,
+      and content revisions.
+    </p>
   </div>
 </section>
 
-
-<!-- =======================================================
-     06 / REFLECTION
-     ======================================================= -->
-
-<CaseSection
-  number="06"
-  label="Reflection"
-  title="The redesign became an exercise in balancing design, content, maintainability, and implementation."
->
-  <p>
-    The project gave me responsibility over a much
-    broader design problem than an individual screen
-    or isolated feature.
-  </p>
-
-  <p>
-    Decisions about navigation, content hierarchy,
-    reusable components, imagery, and visual
-    direction needed to work across an entire
-    institutional website.
-  </p>
-
-  <p>
-    Working alongside implementation also made the
-    trade-offs more tangible. A design could not only
-    look appropriate in Figma; it also needed to work
-    within WordPress, existing infrastructure, free
-    tooling, and the resources available to the team.
-  </p>
-
-  <p>
-    That combination strengthened the way I approach
-    UI/UX design: not as a visual layer applied before
-    development, but as part of a larger system that
-    must remain useful and maintainable after the
-    design file is finished.
-  </p>
-</CaseSection>
