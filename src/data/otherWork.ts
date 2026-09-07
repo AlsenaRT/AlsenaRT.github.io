@@ -3,43 +3,34 @@ export interface OtherWork {
   title: string;
   category: string;
   description: string;
-  tags: string[];
+  meta: string[];
 }
 
 export const otherWork: OtherWork[] = [
   {
     year: "2024",
-    title:
-      "LSTM From Scratch",
-
-    category:
-      "Research / Machine Learning",
-
+    title: "LSTM From Scratch",
+    category: "Research / Development",
     description:
-      "Implemented a dynamic Long Short-Term Memory model from scratch in C++ without machine-learning libraries as part of a research project.",
-
-    tags: [
+      "Implemented a dynamic Long Short-Term Memory network from scratch in C++ without relying on machine-learning libraries, as part of a three-month research project.",
+    meta: [
       "C++",
       "Deep Learning",
-      "Research",
+      "800+ lines",
     ],
   },
 
   {
     year: "2024",
     title:
-      "Application Beta Testing",
-
-    category:
-      "Software Testing",
-
+      "ESDM Application Beta Testing",
+    category: "Software Testing",
     description:
-      "Participated in beta testing for an internal Ministry of Energy and Mineral Resources application and identified 24 software issues during the testing session.",
-
-    tags: [
+      "Participated in a focused beta-testing session for a Ministry of Energy and Mineral Resources application, identifying and documenting 24 software issues.",
+    meta: [
       "QA",
-      "Testing",
-      "Bug Hunting",
+      "Black-box testing",
+      "24 documented issues",
     ],
   },
 ];

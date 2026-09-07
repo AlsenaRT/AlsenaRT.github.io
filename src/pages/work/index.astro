@@ -2,8 +2,8 @@
 import BaseLayout
   from "../../layouts/BaseLayout.astro";
 
-import ProjectCard
-  from "../../components/ProjectCard.astro";
+import WorkIndexItem
+  from "../../components/WorkIndexItem.astro";
 
 import {
   projects,
@@ -12,220 +12,311 @@ import {
 import {
   otherWork,
 } from "../../data/otherWork";
+
+import {
+  folio,
+} from "../../data/folio";
 ---
 
 <BaseLayout
   title="Work"
-  description="Selected UI/UX design, web development, and technical projects by Alif Rafi Tulusena."
+  description="Selected UI/UX design, product, and development work by Alif Rafi Tulusena."
 >
-
   <!-- =====================================================
-       HERO
+       PAGE INTRO
        ===================================================== -->
 
-  <section class="site-container">
-
+  <section
+    class="site-container pt-12 md:pt-20"
+  >
     <div
-      class="editorial-grid pb-20 pt-16 md:pb-28 md:pt-24"
+      class="grid gap-12 border-t border-ink pt-8 md:grid-cols-12"
     >
-
-      <div>
-        <p class="mono-label text-muted">
-          Work / 2024—2026
-        </p>
-      </div>
-
-
-      <div class="editorial-content">
-        <h1
-          class="max-w-[1150px] text-[clamp(4.5rem,9vw,10rem)] leading-[0.86] font-medium tracking-[-0.07em]"
+      <div
+        class="md:col-span-3"
+      >
+        <p
+          class="rule-label text-accent"
         >
-          Selected
-          <span class="text-muted">
-            work.
-          </span>
-        </h1>
-      </div>
-
-    </div>
-
-
-    <!-- Intro -->
-
-    <div
-      class="editorial-grid border-y border-line py-8 md:py-9"
-    >
-
-      <div>
-        <p class="mono-label text-muted">
-          Overview
+          Selected Work
         </p>
       </div>
 
 
       <div
-        class="editorial-content flex flex-col gap-8 md:flex-row md:items-end md:justify-between"
+        class="md:col-span-8 md:col-start-5"
       >
-        <p
-          class="max-w-[760px] text-[clamp(1rem,1.05vw,1.1rem)] leading-[1.8] text-muted"
+        <h1
+          class="max-w-[1050px] text-[clamp(3.8rem,7vw,8rem)] leading-[0.9] font-medium tracking-[-0.06em]"
         >
-          A selection of projects across UI/UX
-          design, web experiences, product
-          interfaces, and technical implementation.
-        </p>
-
-
-        <div class="shrink-0 md:text-right">
-          <p class="mono-label text-muted">
-            Featured
-          </p>
-
-          <p
-            class="mt-2 text-[15px] leading-[1.6]"
+          Work across interfaces,
+          systems, and
+          <span
+            class="editorial-serif"
           >
-            {projects.length} featured projects
-          </p>
-        </div>
+            implementation.
+          </span>
+        </h1>
+
+
+        <p
+          class="mt-10 max-w-2xl text-[15px] leading-[1.8] text-muted"
+        >
+          These projects cover different kinds of
+          design problems — from restructuring a
+          public-facing faculty website, to building
+          an academic monitoring system, to working
+          between product requirements and technical
+          teams during an internship.
+        </p>
       </div>
-
     </div>
-
   </section>
 
 
   <!-- =====================================================
-       FEATURED PROJECTS
+       CASE STUDY INDEX
        ===================================================== -->
 
   <section
     class="site-container pt-20 md:pt-32"
   >
-
     <div
-      class="editorial-grid pb-12 md:pb-16"
-      data-reveal
+      class="mb-6 flex items-end justify-between"
     >
+      <p
+        class="text-[10px] uppercase tracking-[0.08em] text-muted"
+      >
+        Case studies
+      </p>
 
-      <div>
-        <p class="mono-label text-muted">
-          01 / Featured Projects
-        </p>
-      </div>
-
-
-      <div class="editorial-content">
-        <h2
-          class="section-title"
-        >
-          Projects where design,
-          technology, or both played
-          a meaningful role.
-        </h2>
-      </div>
-
+      <p
+        class="text-[10px] text-muted"
+      >
+        01—03
+      </p>
     </div>
 
 
-    <div>
+    <div
+      class="border-b border-line"
+    >
       {
         projects.map(
-          (project, index) => (
-            <ProjectCard
+          (project) => (
+            <WorkIndexItem
               project={project}
-              index={index}
             />
           )
         )
       }
     </div>
-
   </section>
 
 
   <!-- =====================================================
-       OTHER WORK
+       DESIGN FOLIO
        ===================================================== -->
 
   <section
-    class="site-container py-28 md:py-40 lg:py-44"
+    class="site-container py-24 md:py-40"
   >
-
-    <div
-      class="editorial-grid border-t border-line pt-8"
-      data-reveal
+    <a
+      href="/folio/"
+      class="group block bg-ink px-6 py-10 text-paper sm:px-10 md:px-14 md:py-16 lg:px-20 lg:py-20"
     >
+      <div
+        class="grid gap-14 md:grid-cols-12"
+      >
+        <div
+          class="md:col-span-3"
+        >
+          <p
+            class="rule-label text-accent"
+          >
+            Design Folio
+          </p>
+        </div>
 
-      <div>
-        <p class="mono-label text-muted">
-          02 / Other Work
+
+        <div
+          class="md:col-span-8 md:col-start-5"
+        >
+          <div
+            class="flex items-start justify-between gap-8"
+          >
+            <h2
+              class="max-w-[900px] text-[clamp(2.8rem,5.5vw,6.2rem)] leading-[0.95] font-medium tracking-[-0.05em]"
+            >
+              Some work makes more sense
+              <span
+                class="editorial-serif"
+              >
+                as a publication.
+              </span>
+            </h2>
+
+            <span
+              aria-hidden="true"
+              class="shrink-0 text-2xl transition-transform duration-300 group-hover:translate-x-2 md:text-4xl"
+            >
+              →
+            </span>
+          </div>
+
+
+          <p
+            class="mt-10 max-w-xl text-[14px] leading-[1.8] text-paper/55"
+          >
+            A curated visual version of my design
+            work, with more room for process,
+            interface exploration, mockups, and
+            project storytelling.
+          </p>
+
+
+          <div
+            class="mt-8 flex gap-7 text-[12px]"
+          >
+            <span
+              class="border-b border-paper/35 pb-1"
+            >
+              Explore folio
+            </span>
+
+            <object>
+              <a
+                href={folio.pdf}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="border-b border-paper/35 pb-1 text-paper/60 transition-colors hover:text-paper"
+              >
+                Open PDF ↗
+              </a>
+            </object>
+          </div>
+        </div>
+      </div>
+    </a>
+  </section>
+
+
+  <!-- =====================================================
+       SUPPORTING WORK
+       ===================================================== -->
+
+  <section
+    class="site-container pb-28 md:pb-44"
+  >
+    <div
+      class="grid gap-12 border-t border-ink pt-8 md:grid-cols-12"
+    >
+      <div
+        class="md:col-span-3"
+      >
+        <p
+          class="rule-label text-muted"
+        >
+          Beyond case studies
         </p>
       </div>
 
 
-      <div class="editorial-content">
-        {
-          otherWork.map(
-            (item) => (
-              <article
-                class="grid gap-5 border-b border-line py-10 first:pt-0 md:grid-cols-[110px_minmax(0,1fr)] md:gap-8"
-              >
+      <div
+        class="md:col-span-8 md:col-start-5"
+      >
+        <p
+          class="mb-12 max-w-xl text-[14px] leading-[1.75] text-muted"
+        >
+          Smaller technical and testing work that
+          adds context to my Computer Science
+          background without pretending every
+          project needs a full portfolio case study.
+        </p>
 
-                <!-- Year -->
 
-                <p
-                  class="font-mono text-[11px] uppercase tracking-[0.05em] text-muted"
+        <div
+          class="border-t border-line"
+        >
+          {
+            otherWork.map(
+              (
+                work,
+                index
+              ) => (
+                <article
+                  class="grid gap-6 border-b border-line py-8 md:grid-cols-12"
                 >
-                  {item.year}
-                </p>
-
-
-                <!-- Main content -->
-
-                <div>
-                  <p
-                    class="mb-3 font-mono text-[10px] uppercase tracking-[0.07em] text-muted"
+                  <div
+                    class="md:col-span-2"
                   >
-                    {item.category}
-                  </p>
+                    <p
+                      class="text-[10px] text-accent"
+                    >
+                      {String(
+                        index + 1
+                      ).padStart(
+                        2,
+                        "0"
+                      )}
+                    </p>
 
-                  <h2
-                    class="text-[clamp(1.7rem,2.4vw,2.4rem)] leading-[1.12] font-medium tracking-[-0.04em]"
-                  >
-                    {item.title}
-                  </h2>
-
-                  <p
-                    class="mt-5 max-w-[760px] text-[clamp(1rem,1.05vw,1.08rem)] leading-[1.8] text-muted"
-                  >
-                    {item.description}
-                  </p>
+                    <p
+                      class="mt-3 text-[10px] text-muted"
+                    >
+                      {work.year}
+                    </p>
+                  </div>
 
 
                   <div
-                    class="mt-6 flex flex-wrap gap-x-5 gap-y-2"
+                    class="md:col-span-4"
                   >
-                    {
-                      item.tags.map(
-                        (tag) => (
-                          <span
-                            class="font-mono text-[10px] uppercase tracking-[0.05em] text-muted"
-                          >
-                            {tag}
-                          </span>
-                        )
-                      )
-                    }
+                    <p
+                      class="mb-2 text-[9px] uppercase tracking-[0.08em] text-muted"
+                    >
+                      {work.category}
+                    </p>
+
+                    <h3
+                      class="text-[clamp(1.6rem,2.5vw,2.7rem)] leading-[1.05] font-medium tracking-[-0.035em]"
+                    >
+                      {work.title}
+                    </h3>
                   </div>
-                </div>
 
-              </article>
+
+                  <div
+                    class="md:col-span-6"
+                  >
+                    <p
+                      class="max-w-xl text-[13px] leading-[1.75] text-muted"
+                    >
+                      {work.description}
+                    </p>
+
+                    <div
+                      class="mt-5 flex flex-wrap gap-4"
+                    >
+                      {
+                        work.meta.map(
+                          (item) => (
+                            <span
+                              class="text-[9px] uppercase tracking-[0.07em] text-muted"
+                            >
+                              {item}
+                            </span>
+                          )
+                        )
+                      }
+                    </div>
+                  </div>
+                </article>
+              )
             )
-          )
-        }
+          }
+        </div>
       </div>
-
     </div>
-
   </section>
-
 </BaseLayout>
